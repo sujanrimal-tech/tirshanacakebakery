@@ -1,41 +1,55 @@
-<!-- Similar structure as about/index.html with different main content -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Our Services - Tirshana Cake Bakery</title>
+    <meta name="description" content="From custom cake designs to event catering, see what Tirshana Cake Bakery can do for you.">
+    <!-- Fonts and CSS links (same as about/index.html) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <!-- Other head elements -->
 </head>
 <body>
-    <!-- Header (copied from about/index.html) -->
-    <header class="main-header">...</header>
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">Tirshana</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../about/">About</a></li>
+                    <li><a href="../services/" class="active">Services</a></li>
+                    <li><a href="../products/">Products</a></li>
+                    <li><a href="../custom-order/">Custom Order</a></li>
+                    <li><a href="../contact/">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <main>
-        <section id="services" class="services-section page-section">
+        <section class="page-header">
+            <div class="container"><h1>What We Offer</h1></div>
+        </section>
+        <section class="services-section">
             <div class="container">
-                <h2 class="section-title">What We Offer</h2>
                 <div class="services-grid">
                     <div class="service-card">
                         <img src="../assets/icons/custom-design.svg" alt="Custom Design" class="service-icon">
                         <h3>Custom Cake Designs</h3>
-                        <p>Have a unique idea? We specialize in creating bespoke cakes for birthdays, weddings, and any special event. Your imagination is our recipe!</p>
+                        <p>Your vision, our craft. We specialize in creating one-of-a-kind cakes for weddings, birthdays, and corporate events that taste as incredible as they look.</p>
                     </div>
                     <div class="service-card">
                         <img src="../assets/icons/events.svg" alt="Events" class="service-icon">
-                        <h3>Celebration Packages</h3>
-                        <p>Planning a party? We offer complete dessert packages, including cupcakes, pastries, and cookies to make your event deliciously memorable.</p>
+                        <h3>Dessert Catering</h3>
+                        <p>Elevate your event with a full dessert table. We offer curated packages of cupcakes, pastries, and cookies to delight your guests.</p>
                     </div>
                     <div class="service-card">
                         <img src="../assets/icons/delivery.svg" alt="Delivery" class="service-icon">
-                        <h3>Local Delivery</h3>
-                        <p>Get your favorite treats delivered right to your doorstep within Bharatpur. We handle your order with care to ensure it arrives perfectly.</p>
+                        <h3>Careful Local Delivery</h3>
+                        <p>Enjoy our creations without the hassle. We offer reliable and careful delivery service within the Bharatpur area to ensure your order arrives in perfect condition.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <!-- Footer (copied from about/index.html) -->
-    <footer class="main-footer">...</footer>
+    
+    <footer class="main-footer"><!-- Same footer as about/index.html --></footer>
 </body>
 </html>
