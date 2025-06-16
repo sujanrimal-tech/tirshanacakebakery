@@ -1,28 +1,37 @@
-<!-- Structure with contact details and map. Copy header/footer from about/index.html -->
-<!DOCTYPE html><html lang="en"><head><title>Contact Us - Tirshana Cake Bakery</title>...</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact Us - Tirshana Cake Bakery</title>
+    <meta name="description" content="Get in touch with Tirshana Cake Bakery. Find our location, hours, and contact information.">
+    <!-- Fonts and CSS links (same as about/index.html) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
 <body>
-    <header>...</header>
+    <header class="main-header"><!-- Same header as services/index.html, but with "Contact" active --></header>
     <main>
-        <section id="contact" class="contact-section page-section">
+        <section class="page-header">
+            <div class="container"><h1>Get In Touch</h1></div>
+        </section>
+        <section class="contact-section">
             <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
                 <div class="contact-grid">
                     <div class="contact-details">
-                        <h3>Contact Information</h3>
-                        <p><strong><i class="icon">📍</i> Location:</strong><br>Bharatpur-13, Chitwan, Nepal</p>
+                        <h3>Our Location & Hours</h3>
+                        <p><strong><i class="icon">📍</i> Address:</strong><br>Bharatpur-13, Chitwan, Nepal</p>
                         <p><strong><i class="icon">📧</i> Email:</strong><br><a href="mailto:tirshanapoudel0@gmail.com">tirshanapoudel0@gmail.com</a></p>
                         <p><strong><i class="icon">📞</i> Phone / WhatsApp:</strong><br><a href="https://wa.me/9779845645446" target="_blank">9845645446</a></p>
-                        <h3>Opening Hours</h3>
-                        <p><strong>Sunday - Friday:</strong> 9:00 AM - 7:00 PM</p>
-                        <p><strong>Saturday:</strong> Closed</p>
+                        <hr>
+                        <p><strong>Opening Hours:</strong><br>Sunday - Friday: 9:00 AM - 7:00 PM<br>Saturday: Closed</p>
                     </div>
                     <div class="map-container">
-                        <!-- PASTE YOUR GOOGLE MAPS IFRAME CODE HERE -->
-                        <iframe src="https://www.google.com/maps/embed?pb=..."></iframe>
+                        <!-- IMPORTANT: Paste your Google Maps iFrame code here -->
+                        <iframe src="https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_CODE" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-    <footer>...</footer>
-</body></html>
+    <footer class="main-footer"><!-- Same footer as about/index.html --></footer>
+</body>
+</html>
