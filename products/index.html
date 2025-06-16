@@ -1,23 +1,35 @@
-<!-- Structure with products grid. Copy header/footer from about/index.html -->
-<!DOCTYPE html><html lang="en"><head><title>Our Products - Tirshana Cake Bakery</title>...</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Our Products - Tirshana Cake Bakery</title>
+    <meta name="description" content="Browse our collection of signature cakes, available for order in Bharatpur, Chitwan.">
+    <!-- Fonts and CSS links (same as about/index.html) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
 <body>
-    <header>...</header>
+    <header class="main-header"><!-- Same header as services/index.html, but with "Products" active --></header>
+    
     <main>
-        <section class="products-section page-section">
+        <section class="page-header">
+            <div class="container"><h1>Our Full Menu</h1></div>
+        </section>
+        <section class="products-section">
             <div class="container">
-                <h2 class="section-title">All Our Products</h2>
-                <p class="subtitle">Find the perfect treat for any occasion. Click "Order Now" to start a custom order based on any design.</p>
+                <p class="subtitle">Find the perfect treat for any occasion. All items are made to order with the freshest ingredients.</p>
                 <div class="products-grid">
-                    <!-- Add more products here -->
-                    <div class="product-card"><img src="../assets/images/cake1.jpg"><h3>Chocolate Fudge</h3>...</div>
-                    <div class="product-card"><img src="../assets/images/cake2.jpg"><h3>Red Velvet</h3>...</div>
-                    <div class="product-card"><img src="../assets/images/cake3.jpg"><h3>Fruity Fresh Cream</h3>...</div>
-                    <div class="product-card"><img src="../assets/images/cake4.jpg"><h3>Unicorn Fantasy</h3>...</div>
-                    <div class="product-card"><img src="../assets/images/gallery1.jpg"><h3>Elegant Floral</h3>...</div>
-                    <div class="product-card"><img src="../assets/images/gallery2.jpg"><h3>Cartoon Fun</h3>...</div>
+                    <!-- Repeat this block for each product -->
+                    <div class="product-card"><img src="../assets/images/cake1.jpg" alt="Cake"><div class="card-content"><h3>Chocolate Fudge</h3><p class="price">Starts at NPR 1200</p><a href="../custom-order/" class="btn btn-secondary">Order Now</a></div></div>
+                    <div class="product-card"><img src="../assets/images/cake2.jpg" alt="Cake"><div class="card-content"><h3>Red Velvet</h3><p class="price">Starts at NPR 1400</p><a href="../custom-order/" class="btn btn-secondary">Order Now</a></div></div>
+                    <div class="product-card"><img src="../assets/images/cake3.jpg" alt="Cake"><div class="card-content"><h3>Fruity Fresh Cream</h3><p class="price">Starts at NPR 1500</p><a href="../custom-order/" class="btn btn-secondary">Order Now</a></div></div>
+                    <div class="product-card"><img src="../assets/images/cake4.jpg" alt="Cake"><div class="card-content"><h3>Unicorn Fantasy</h3><p class="price">Starts at NPR 1800</p><a href="../custom-order/" class="btn btn-secondary">Order Now</a></div></div>
+                    <div class="product-card"><img src="../assets/images/gallery1.jpg" alt="Cake"><div class="card-content"><h3>Elegant Floral</h3><p class="price">Starts at NPR 1600</p><a href="../custom-order/" class="btn btn-secondary">Order Now</a></div></div>
+                    <div class="product-card"><img src="../assets/images/gallery2.jpg" alt="Cake"><div class="card-content"><h3>Cartoon Fun</h3><p class="price">Starts at NPR 1700</p><a href="../custom-order/" class="btn btn-secondary">Order Now</a></div></div>
                 </div>
             </div>
         </section>
     </main>
-    <footer>...</footer>
-</body></html>
+
+    <footer class="main-footer"><!-- Same footer as about/index.html --></footer>
+</body>
+</html>
