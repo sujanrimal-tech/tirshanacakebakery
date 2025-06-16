@@ -314,3 +314,67 @@ section { padding: 80px 0; }
         grid-template-columns: 1fr; /* Stack elements on smaller screens */
     }
 }
+/* =========================================
+   Testimonials Section Styles
+   ========================================= */
+
+.testimonials-section {
+    padding: 60px 0;
+    background-color: #ffffff; /* A clean white background */
+}
+
+.testimonials-grid {
+    display: grid;
+    /* Create 3 columns on desktop, then adjust for smaller screens */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.testimonial-card {
+    background-color: #fdfdfd;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.testimonial-rating {
+    font-size: 1.5rem;
+    color: #ffc107; /* Gold color for stars */
+    margin-bottom: 1rem;
+}
+
+.testimonial-card blockquote {
+    margin: 0 0 1.5rem 0; /* Reset default blockquote margin */
+    font-size: 1rem;
+    color: #555;
+    font-family: 'Playfair Display', serif; /* Use your elegant font for the quote */
+    font-style: italic;
+    line-height: 1.6;
+    flex-grow: 1; /* Allows cards to have the same height */
+}
+
+.testimonial-card cite {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #333;
+    font-style: normal;
+}
+
+/* Responsive styles for testimonials */
+@media (max-width: 992px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr 1fr; /* Two columns for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr; /* One column for mobile */
+    }
+}
