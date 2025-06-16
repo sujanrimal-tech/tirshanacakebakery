@@ -3,12 +3,27 @@
 <head>
     <title>Custom Order - Tirshana Cake Bakery</title>
     <meta name="description" content="Design your dream cake! Fill out our form to begin your custom order.">
-    <!-- Fonts and CSS links (same as about/index.html) -->
+   
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <header class="main-header"><!-- Same header as services/index.html, but with "Custom Order" active --></header>
+     <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">Tirshana</a>
+            <nav class="main-nav">
+                <ul>
+                    <!-- NOTE: The 'active' class is added to the current page link -->
+                    <li><a href="../about/" class="active">About</a></li>
+                    <li><a href="../services/">Services</a></li>
+                    <li><a href="../products/">Products</a></li>
+                    <li><a href="../custom-order/">Custom Order</a></li>
+                    <li><a href="../contact/">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     
     <main>
         <section class="page-header">
@@ -37,9 +52,18 @@
         </section>
     </main>
 
-    <footer class="main-footer"><!-- Same footer as about/index.html --></footer>
+   <footer class="main-footer">
+        <div class="container">
+            <a href="../index.html" class="logo-footer">Tirshana</a>
+            <p>Bharatpur-13, Chitwan, Nepal</p>
+            <div class="footer-contact">
+                <a href="mailto:tirshanapoudel0@gmail.com">tirshanapoudel0@gmail.com</a> | <a href="tel:9845645446">9845645446</a>
+            </div>
+            <p class="copyright">© 2025 Tirshana Cake Bakery. All Rights Reserved.</p>
+        </div>
+    </footer>
     
-    <!-- Link the JavaScript ONLY on this page -->
+  
     <script src="../js/order-form-handler.js"></script>
 </body>
 </html>
