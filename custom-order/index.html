@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Custom Order - Tirshana Cake Bakery</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Other head elements -->
+</head>
+<body>
+    <!-- Header (copied from about/index.html) -->
+    <header class="main-header">...</header>
+
+    <main>
+        <section id="custom-design" class="custom-design-section page-section">
+            <div class="container">
+                <h2 class="section-title">Create Your Custom Masterpiece</h2>
+                <p class="subtitle">Fill out the form below to start your order. We'll contact you to confirm the details and price. No online payment required.</p>
+                
+                <form id="order-form" action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST" enctype="multipart/form-data">
+                    <div class="form-grid">
+                         <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" required></div>
+                        <div class="form-group"><label for="phone">Phone Number (For WhatsApp)</label><input type="tel" id="phone" name="phone" required placeholder="e.g., 9845645446"></div>
+                        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email"></div>
+                        <div class="form-group"><label for="address">Delivery Address</label><input type="text" id="address" name="address" required placeholder="e.g., Bharatpur-13, Chitwan"></div>
+                        <div class="form-group"><label for="cake-size">Cake Size / Weight</label><select id="cake-size" name="cake_size" required><option value="1 Pound">1 Pound</option><option value="2 Pounds">2 Pounds</option><option value="3 Pounds">3 Pounds</option><option value="Custom Size">Custom Size (describe below)</option></select></div>
+                        <div class="form-group"><label for="cake-flavor">Cake Flavor</label><input type="text" id="cake-flavor" name="cake_flavor" required placeholder="e.g., Chocolate Truffle, Black Forest"></div>
+                    </div>
+                    <div class="form-group"><label for="cake-message">Message on Cake</label><input type="text" id="cake-message" name="cake_message" placeholder="e.g., Happy Birthday Tirshana!"></div>
+                    <div class="form-group"><label for="design-details">Custom Design Details</label><textarea id="design-details" name="design_details" rows="4" placeholder="Describe the colors, theme, or any special requests."></textarea></div>
+                    <div class="form-group"><label for="design-upload">Upload a Reference Image (Optional)</label><input type="file" id="design-upload" name="design_upload" accept="image/*"></div>
+                    <button type="submit" class="btn btn-primary btn-submit">Place Order & Send on WhatsApp</button>
+                    <p id="form-status"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (copied from about/index.html) -->
+    <footer class="main-footer">...</footer>
+    
+    <!-- IMPORTANT: Link JavaScript ONLY on this page -->
+    <script src="../js/order-form-handler.js"></script>
+</body>
+</html>
