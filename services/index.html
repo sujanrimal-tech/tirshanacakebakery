@@ -3,7 +3,7 @@
 <head>
     <title>Our Services - Tirshana Cake Bakery</title>
     <meta name="description" content="From custom cake designs to event catering, see what Tirshana Cake Bakery can do for you.">
-    <!-- Fonts and CSS links (same as about/index.html) -->
+  
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -13,8 +13,9 @@
             <a href="../index.html" class="logo">Tirshana</a>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="../about/">About</a></li>
-                    <li><a href="../services/" class="active">Services</a></li>
+                    <!-- NOTE: The 'active' class is added to the current page link -->
+                    <li><a href="../about/" class="active">About</a></li>
+                    <li><a href="../services/">Services</a></li>
                     <li><a href="../products/">Products</a></li>
                     <li><a href="../custom-order/">Custom Order</a></li>
                     <li><a href="../contact/">Contact</a></li>
@@ -50,6 +51,15 @@
         </section>
     </main>
     
-    <footer class="main-footer"><!-- Same footer as about/index.html --></footer>
+    <footer class="main-footer">
+        <div class="container">
+            <a href="../index.html" class="logo-footer">Tirshana</a>
+            <p>Bharatpur-13, Chitwan, Nepal</p>
+            <div class="footer-contact">
+                <a href="mailto:tirshanapoudel0@gmail.com">tirshanapoudel0@gmail.com</a> | <a href="tel:9845645446">9845645446</a>
+            </div>
+            <p class="copyright">© 2025 Tirshana Cake Bakery. All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
