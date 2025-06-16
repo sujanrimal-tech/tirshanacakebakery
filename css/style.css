@@ -1,102 +1,271 @@
-/* Add this class to your existing style.css */
-.page-section {
-    padding-top: 120px; /* Add space below the sticky header on sub-pages */
-    padding-bottom: 80px;
+/* --- "The Celebration" Theme for Tirshana Cake Bakery --- */
+
+/* --- 1. VIBRANT COLOR PALETTE & FONTS --- */
+:root {
+    --primary-color: #FF69B4; /* Hot Pink */
+    --secondary-color: #7FFFD4; /* Aquamarine/Mint */
+    --accent-color: #FFD700; /* Gold */
+    --background-color: #FFF8F0; /* Creamy Off-White */
+    --text-color: #4A4A4A; /* Dark Charcoal */
+    --font-heading: 'Great Vibes', cursive;
+    --font-body: 'Poppins', sans-serif;
 }
-/* ... rest of the CSS is the same as the previous answer ... */
-document.addEventListener("DOMContentLoaded", () => {
-    // --- Section 1: Define all page sections and their paths ---
-    const sections = [
-        { id: 'header-container', path: 'header/header.html' },
-        { id: 'hero-container', path: 'hero/hero.html' },
-        { id: 'about-container', path: 'about/about.html' },
-        { id: 'services-container', path: 'services/services.html' },
-        { id: 'products-container', path: 'products/products.html' },
-        { id: 'custom-design-container', path: 'custom_design/custom_design.html' },
-        { id: 'gallery-container', path: 'gallery/gallery.html' },
-        { id: 'contact-container', path: 'contact/contact.html' },
-        { id: 'footer-container', path: 'footer/footer.html' }
-    ];
 
-    // --- Section 2: Fetch and inject all HTML sections into the page ---
-    Promise.all(sections.map(section => 
-        fetch(section.path)
-            .then(response => {
-                if (!response.ok) throw new Error(`Failed to load ${section.path}`);
-                return response.text();
-            })
-            .then(data => {
-                const container = document.getElementById(section.id);
-                if (container) {
-                    container.innerHTML = data;
-                } else {
-                    console.warn(`Container with id #${section.id} not found.`);
-                }
-            })
-    ))
-    .then(() => {
-        // --- Section 3: After all content is loaded, set up the interactive form ---
-        setupOrderForm();
-    })
-    .catch(error => {
-        console.error("Error loading page sections:", error);
-        document.body.innerHTML = `<div style="text-align: center; padding: 50px; font-family: sans-serif;">
-            <h1>Oops! Something went wrong.</h1><p>The website content could not be loaded. Please check the console for errors or try refreshing the page.</p>
-            <p><i>Error: ${error.message}</i></p></div>`;
-    });
-
-    // --- Section 4: Function to handle form submission (Email + WhatsApp) ---
-    function setupOrderForm() {
-        const form = document.getElementById('order-form');
-        const status = document.getElementById('form-status');
-        const bakeryWhatsAppNumber = '9779845645446'; // Your WhatsApp number with country code
-
-        if (!form) return; // Exit if the form isn't loaded yet
-
-        form.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-
-            let whatsappMessage = `*New Cake Order from Website!* 🎉\n\n` +
-                                  `*Customer:* ${data.name}\n` +
-                                  `*Phone:* ${data.phone}\n` +
-                                  (data.email ? `*Email:* ${data.email}\n` : '') +
-                                  `*Address:* ${data.address}\n\n` +
-                                  `*--- Order Details ---*\n` +
-                                  `*Size:* ${data.cake_size}\n` +
-                                  `*Flavor:* ${data.cake_flavor}\n` +
-                                  (data.cake_message ? `*Message on Cake:* "${data.cake_message}"\n` : '') +
-                                  (data.design_details ? `*Custom Details:* ${data.design_details}\n` : '') +
-                                  (data.design_upload.name ? `*Reference Image:* An image has been sent to the email.\n` : '');
-
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappURL = `https://wa.me/${bakeryWhatsAppNumber}?text=${encodedMessage}`;
-
-            status.textContent = 'Sending your order...';
-            status.style.color = 'gray';
-
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    status.textContent = "Order sent successfully! Redirecting to WhatsApp...";
-                    status.style.color = 'green';
-                    form.reset();
-                    setTimeout(() => { window.open(whatsappURL, '_blank'); }, 1500);
-                } else {
-                    const errorData = await response.json();
-                    throw new Error(errorData.errors ? errorData.errors.map(e => e.message).join(', ') : 'An unknown error occurred.');
-                }
-            } catch (error) {
-                console.error('Submission Error:', error);
-                status.textContent = `Oops! There was a problem: ${error.message}`;
-                status.style.color = 'red';
-            }
-        });
+/* --- 2. GLOBAL STYLES & ANIMATIONS --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-});
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--font-body);
+    line-height: 1.7;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+.container { max-width: 1100px; margin: auto; padding: 0 20px; }
+
+/* --- 3. STYLISH HEADER & NAVIGATION --- */
+.main-header {
+    background: rgba(255, 248, 240, 0.8); /* Semi-transparent cream */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.logo {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+.main-nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+.main-nav ul li { margin-left: 30px; }
+.main-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 5px;
+}
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+.main-nav a:hover::after { width: 100%; }
+.main-header .container { display: flex; justify-content: space-between; align-items: center; }
+
+/* --- 4. FUN SECTION STYLING (TITLES & WAVY DIVIDERS) --- */
+.section-title {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+/* The "Drip" Effect */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 10px;
+    margin: -10px auto 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='10' viewBox='0 0 100 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 5C5.52285 5 10 9.47715 10 15V0H0V5Z' fill='%23FFD700'/%3E%3Cpath d='M10 0C10 5.52285 14.4772 10 20 10C25.5228 10 30 5.52285 30 0' fill='%237FFFD4'/%3E%3Cpath d='M30 5C35.5228 5 40 9.47715 40 15V0H30V5Z' fill='%23FF69B4'/%3E%3Cpath d='M40 0C40 5.52285 44.4772 10 50 10C55.5228 10 60 5.52285 60 0' fill='%23FFD700'/%3E%3Cpath d='M60 5C65.5228 5 70 9.47715 70 15V0H60V5Z' fill='%237FFFD4'/%3E%3Cpath d='M70 0C70 5.52285 74.4772 10 80 10C85.5228 10 90 5.52285 90 0' fill='%23FF69B4'/%3E%3Cpath d='M90 5C95.5228 5 100 9.47715 100 15V0H90V5Z' fill='%23FFD700'/%3E%3C/svg%3E%0A");
+}
+.subtitle { text-align: center; max-width: 600px; margin: -1.5rem auto 3rem auto; color: #777; font-size: 1.1rem; }
+section { padding: 80px 0; position: relative; }
+.page-section { padding-top: 120px; } /* For sub-pages */
+
+/* Wavy Divider - Add this class to sections for a fun transition */
+.wavy-divider {
+    overflow: hidden;
+}
+.wavy-divider::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23FFF8F0' fill-opacity='1' d='M0,96L80,117.3C160,139,320,181,480,181.3C640,181,800,139,960,128C1120,117,1280,139,1360,149.3L1440,160L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.products-section { background-color: #fff; } /* Example usage */
+.services-section { background-color: #fff; }
+
+/* --- 5. HERO SECTION --- */
+.hero-section {
+    background: linear-gradient(45deg, rgba(255, 105, 180, 0.7), rgba(127, 255, 212, 0.7)), url('../assets/images/hero-cake.jpg') no-repeat center center/cover;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+.hero-section h1 {
+    font-family: var(--font-heading);
+    font-size: 5.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+.hero-section p { font-size: 1.3rem; margin-bottom: 2rem; font-weight: 400; }
+
+/* --- 6. MODERN BUTTONS --- */
+.btn {
+    display: inline-block;
+    padding: 15px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.4s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), #ff8ac5);
+    color: #fff;
+}
+.btn-primary:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+}
+.btn-secondary {
+    background: linear-gradient(45deg, var(--secondary-color), #a4ffee);
+    color: var(--text-color);
+}
+.btn-secondary:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(127, 255, 212, 0.5);
+}
+
+/* --- 7. ANIMATED CARDS (PRODUCTS, SERVICES) --- */
+.products-grid, .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+.product-card, .service-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+    text-align: center;
+    overflow: hidden;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+.product-card:hover, .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+.product-card img {
+    width: calc(100% + 40px);
+    margin: -20px -20px 15px -20px;
+    height: 220px;
+    object-fit: cover;
+}
+.service-icon { margin-bottom: 1rem; stroke: var(--primary-color); height: 50px; width: 50px; }
+.product-card h3, .service-card h3 { color: var(--text-color); margin-bottom: 10px; font-size: 1.5rem; }
+.price { font-weight: 700; color: var(--primary-color); margin-bottom: 15px; font-size: 1.1rem; }
+.text-center { text-align: center; }
+
+/* --- 8. CUSTOM ORDER FORM --- */
+.custom-design-section { background-color: #fff; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
+.form-group { display: flex; flex-direction: column; }
+.form-group label { margin-bottom: 10px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    transition: all 0.3s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+}
+.btn-submit { width: 100%; margin-top: 1rem; font-size: 1.2rem; }
+#form-status { text-align: center; margin-top: 1rem; font-weight: 600; }
+
+/* --- 9. CONTACT & ABOUT PAGES --- */
+.contact-grid, .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+    gap: 50px;
+}
+.about-image img { width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.about-text h3, .contact-details h3 { font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem; }
+.contact-details p { margin-bottom: 1rem; font-size: 1.1rem; }
+.contact-details a { color: var(--primary-color); text-decoration: none; font-weight: 600; }
+.map-container { border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); height: 100%; }
+.map-container iframe { width: 100%; height: 100%; border: 0; min-height: 400px; }
+
+/* --- 10. FOOTER --- */
+.main-footer {
+    background-color: var(--text-color);
+    color: #fff;
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 80px;
+    position: relative;
+}
+/* Wavy top for footer */
+.main-footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23FFF8F0' fill-opacity='1' d='M0,96L80,117.3C160,139,320,181,480,181.3C640,181,800,139,960,128C1120,117,1280,139,1360,149.3L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: scaleX(-1);
+}
+.main-footer h3 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--background-color);
+    margin-bottom: 1rem;
+}
+.copyright { margin-top: 1rem; font-size: 0.9rem; color: #aaa; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .section-title { font-size: 3rem; }
+    .hero-section h1 { font-size: 3.5rem; }
+    .main-header .container, .about-content, .contact-grid { flex-direction: column; grid-template-columns: 1fr; }
+    .logo { text-align: center; margin-bottom: 1rem; }
+    .main-nav ul { margin-top: 1rem; padding-left: 0; justify-content: center; flex-wrap: wrap; }
+    .main-nav ul li { margin: 5px 10px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .about-image, .contact-details { margin-bottom: 2rem; }
+}
