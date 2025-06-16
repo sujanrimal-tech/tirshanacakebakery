@@ -227,3 +227,90 @@ section { padding: 80px 0; }
     .about-image { order: -1; margin-bottom: 2rem; }
     .contact-details { margin-bottom: 2rem; }
 }
+/* =========================================
+   Customer Feedback Section Styles
+   ========================================= */
+
+.feedback-section {
+    padding: 60px 0;
+    background-color: #f9f9f9; /* A light background to separate it from other sections */
+}
+
+.feedback-form {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1; /* Makes the element span the full width */
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #d4a373; /* A color that matches your theme */
+    box-shadow: 0 0 5px rgba(212, 163, 115, 0.5);
+}
+
+/* Star Rating Styles */
+.rating-group {
+    grid-column: 1 / -1; 
+    align-items: center;
+    text-align: center;
+}
+
+.rating-stars {
+    display: inline-block;
+    direction: rtl; /* Puts stars in reverse order */
+    font-size: 2.5rem; /* Makes stars bigger */
+}
+
+.rating-stars input[type="radio"] {
+    display: none; /* Hide the actual radio buttons */
+}
+
+.rating-stars label {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+    margin: 0;
+}
+
+.rating-stars label:hover,
+.rating-stars label:hover ~ label,
+.rating-stars input[type="radio"]:checked ~ label {
+    color: #ffc107; /* Gold color for selected/hovered stars */
+}
+
+/* Make the form responsive */
+@media (max-width: 768px) {
+    .feedback-form {
+        grid-template-columns: 1fr; /* Stack elements on smaller screens */
+    }
+}
