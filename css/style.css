@@ -1134,22 +1134,6 @@ footer {
 }
 /* --- Add this to your ../css/style.css (REPLACE your old modal CSS) --- */
 
-/* --- Order Modal Styles --- */
-.order-modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto; /* Allow scroll on small screens */
-    background-color: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-}
-
 /* THIS IS THE CRITICAL FIX */
 .order-modal.active {
     display: flex; /* Use flex to show and center the modal */
@@ -1160,10 +1144,17 @@ footer {
     margin: auto;
     border-radius: 15px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    max-width: 480px; /* Made slightly wider for the two-column layout */
     width: 100%;
     animation: fadeInUp 0.5s ease;
-    overflow: hidden;
+    overflow: hidden; /* This is important for the corner radius */
+
+    /* === CHANGE 1: NARROWER WIDTH & CONTROLLED HEIGHT === */
+    max-width: 440px;      /* Made it a bit narrower for a more compact look */
+    max-height: 90vh;      /* Won't be taller than 90% of the screen height */
+    
+    /* === CHANGE 2: SETUP FOR INTERNAL SCROLLING === */
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-header {
@@ -1173,6 +1164,9 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    /* This prevents the header from shrinking if content is squeezed */
+    flex-shrink: 0; 
 }
 
 .modal-header h3 {
@@ -1188,7 +1182,6 @@ footer {
     cursor: pointer;
     line-height: 1;
     transition: transform 0.2s;
-    /* Added a shadow to make it more readable against the gradient */
     text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 .close-modal:hover {
@@ -1196,20 +1189,16 @@ footer {
 }
 
 .modal-body {
-    padding: 2rem;
+    padding: 1.5rem 2rem; /* Adjusted padding slightly for better spacing */
    
-}
-
-.
-
-#simple-order-form {
-    flex-basis: 60%;
+    /* === CHANGE 3: ENABLE SCROLLING HERE === */
+    overflow-y: auto; /* Adds a scrollbar ONLY if the content is too tall */
 }
 
 
-    .modal-content {
-       max-width: 90%;
-    }
+/* This leftover rule is no longer needed and has been removed */
+/* #simple-order-form { ... } */
+
 
 .floating-action-buttons {
     position: fixed; /* Keeps it on the screen when scrolling */
