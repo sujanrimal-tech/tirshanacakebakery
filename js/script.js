@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Custom Cake Multi-Step Form Logic (with Confirmation Step) ---
     const customCakeForm = document.getElementById('custom-cake-form');
     if (customCakeForm) {
-        const stepIndicators = customCakeForm.querySelectorAll('.custom-steps .step');
+       const stepIndicators = document.querySelectorAll('.custom-steps .step');
         const formSteps = customCakeForm.querySelectorAll('.custom-form');
         const nextButtons = customCakeForm.querySelectorAll('.next-btn');
         const prevButtons = customCakeForm.querySelectorAll('.prev-btn');
