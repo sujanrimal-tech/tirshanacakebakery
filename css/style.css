@@ -1126,10 +1126,8 @@ footer {
     padding: 1rem;
 }
 
-.order-modal.active {
-    display: flex; /* Shown with JS */
-}
-
+.order-modal.active 
+    
 .modal-content {
     background-color: white;
     margin: auto;
