@@ -120,3 +120,69 @@ document.addEventListener('DOMContentLoaded', function() {
             button.addEventListener('click', () => {
                 if (currentStep > 1) { currentStep--; updateCustomFormView(); }
             });
+             customCakeForm.querySelectorAll('.size-option, .flavor-option').forEach(option => {
+        option.addEventListener('click', function() { /* ... radio button selection logic ... */ });
+    });
+    
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => { /* ... reset form logic ... */ });
+    }
+    
+    updateCustomFormView(); // Initial view setup
+}
+
+// --- UNIFIED FORM SUBMISSION HANDLER (Handles ALL forms) ---
+const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formId = form.id;
+    let message = '';
+    
+    const getSafeValue = (selector, defaultValue = '') => {
+        const element = form.querySelector(selector);
+        return element ? element.value.trim() : defaultValue;
+    };
+
+    if (formId === 'contact-form') {
+        message = `New Contact Form Submission:\n\nName: ${getSafeValue('#contact-name')}\nEmail: ${getSafeValue('#contact-email')}\nPhone: ${getSafeValue('#contact-phone')}\nSubject: ${getSafeValue('#contact-subject')}\nMessage: ${getSafeValue('#contact-message')}`;
+    } else if (formId === 'simple-order-form') {
+        const checkedSizeInput = form.querySelector('input[name="cake-size"]:checked');
+        const selectedSize = checkedSizeInput ? checkedSizeInput.value : 'No size selected';
+        message = `New Quick Order:\n\nCake: ${getSafeValue('#modal-cake-name', 'N/A')}\nSize: ${selectedSize}`;
+        const cakeMessage = getSafeValue('#modal-cake-message'); if (cakeMessage) message += `\nMessage on Cake: ${cakeMessage}`;
+        const specialInstructions = getSafeValue('#modal-special-instructions'); if (specialInstructions) message += `\nSpecial Instructions: ${specialInstructions}`;
+        message += `\n\n--- Customer Details ---\nName: ${getSafeValue('#modal-customer-name', 'N/A')}\nPhone: ${getSafeValue('#modal-customer-phone', 'N/A')}\nDelivery Date (BS): ${getSafeValue('#modal-delivery-date', 'Not specified')}\nPreferred Time: ${getSafeValue('#modal-delivery-time', 'Not specified')}`;
+    } else if (formId === 'custom-cake-form') {
+        // Logic for submitting the custom form
+        const customGetSafeValue = (selector, defaultValue = '') => {
+            const element = document.getElementById(selector);
+            return element ? element.value.trim() : defaultValue;
+        };
+        message = `New Custom Cake Order:\n\nCustomer: ${customGetSafeValue('custom-name')}\nPhone: ${customGetSafeValue('custom-phone')}\nEmail: ${customGetSafeValue('custom-email')}\nDelivery Date (BS): ${customGetSafeValue('custom-date', 'Not specified')}\nPreferred Time: ${customGetSafeValue('custom-time', 'Not specified')}\n\n--- Cake Details ---\nSize: ${document.querySelector('#summary-size span').textContent}\nFlavor: ${document.querySelector('#summary-flavor span').textContent}\nFilling: ${document.querySelector('#summary-filling span').textContent}\nOccasion: ${document.querySelector('#summary-occasion span').textContent}\nMessage on Cake: ${document.querySelector('#summary-message span').textContent}\nColors: ${document.querySelector('#summary-colors span').textContent}\nDecoration: ${document.querySelector('#summary-decoration span').textContent}\n\nEstimated Price: NPR ${document.getElementById('summary-price').textContent}`;
+    }
+
+    if (message) {
+        const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+
+        if (formId === 'simple-order-form' && orderModal) {
+            alert('Thank you! Your request has been prepared. Please press send in WhatsApp to confirm.');
+            form.reset();
+            orderModal.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+        } else if (formId === 'custom-cake-form') {
+            // Advance to confirmation step without resetting the form yet
+            // This requires the custom form's variables to be accessible, which they are in this structure.
+            currentStep = 5;
+            updateCustomFormView();
+        } else {
+             alert('Thank you! Your message has been prepared.');
+             form.reset();
+        }
+    }
+};
+
+// Attach the single handler to all forms that might exist
+document.getElementById('contact-form')?.addEventListener('submit', handleFormSubmit);
+document.getElementById('simple-order-form')?.addEventListener('submit', handleFormSubmit);
+document.getElementById('custom-cake-form')?.addEventListener('submit', handleFormSubmit);
