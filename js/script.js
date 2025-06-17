@@ -195,11 +195,28 @@ document.addEventListener('DOMContentLoaded', function() {
         if (formId === 'contact-form') {
             subject = `Contact: ${form.querySelector('#contact-subject').value}`;
             message = `New Contact Form Submission:\n\nName: ${form.querySelector('#contact-name').value}\nEmail: ${form.querySelector('#contact-email').value}\nPhone: ${form.querySelector('#contact-phone').value}\nSubject: ${subject}\nMessage: ${form.querySelector('#contact-message').value}`;
-        } else if (formId === 'simple-order-form') {
-            const cakeName = form.querySelector('#modal-cake-name').value;
-            subject = `Quick Order: ${cakeName}`;
-            message = `New Quick Order:\n\nCake: ${cakeName}\nSize: ${form.querySelector('input[name="cake-size"]:checked').value}\n\n--- Customer Details ---\nName: ${form.querySelector('#modal-customer-name').value}\nPhone: ${form.querySelector('#modal-customer-phone').value}\nDelivery Date (BS): ${form.querySelector('#modal-delivery-date')?.value || 'Not specified'}\nPreferred Time: ${form.querySelector('#modal-delivery-time')?.value || 'Not specified'}`;
-        }
+       } else if (formId === 'simple-order-form') {
+    const cakeName = form.querySelector('#modal-cake-name').value;
+    subject = `Quick Order: ${cakeName}`;
+
+    // Get the values from the new fields
+    const cakeMessage = form.querySelector('#modal-cake-message').value.trim();
+    const specialInstructions = form.querySelector('#modal-special-instructions').value.trim();
+
+    // Start building the message string
+    message = `New Quick Order:\n\nCake: ${cakeName}\nSize: ${form.querySelector('input[name="cake-size"]:checked').value}`;
+
+    // IMPORTANT: Only add the new fields to the message if the user actually typed something
+    if (cakeMessage) {
+        message += `\nMessage on Cake: ${cakeMessage}`;
+    }
+    if (specialInstructions) {
+        message += `\nSpecial Instructions: ${specialInstructions}`;
+    }
+
+    // Add the customer details at the end
+    message += `\n\n--- Customer Details ---\nName: ${form.querySelector('#modal-customer-name').value}\nPhone: ${form.querySelector('#modal-customer-phone').value}\nDelivery Date (BS): ${form.querySelector('#modal-delivery-date')?.value || 'Not specified'}\nPreferred Time: ${form.querySelector('#modal-delivery-time')?.value || 'Not specified'}`;
+}
 
         if (message) {
             const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
