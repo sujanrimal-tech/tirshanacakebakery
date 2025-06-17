@@ -1,38 +1,8 @@
-// FINAL SCRIPT.JS - ROBUST AND CORRECT
+// SCRIPT.JS - CLEAN VERSION (NO DATE PICKER LOGIC)
 document.addEventListener('DOMContentLoaded', function() {
 
     const myEmail = 'sykodada3@gmail.com';
     const myWhatsApp = '9779821183819';
-
-    // --- Function to initialize Date Pickers ---
-    function initializeDatePickers() {
-        const modalDateInput = document.getElementById('modal-delivery-date');
-        if (modalDateInput) {
-            modalDateInput.nepaliDatePicker({
-                ndpYear: true,
-                ndpMonth: true,
-                ndpYearCount: 10
-            });
-        }
-
-        const customDateInput = document.getElementById('custom-date');
-        if (customDateInput) {
-            customDateInput.nepaliDatePicker({
-                ndpYear: true,
-                ndpMonth: true,
-                ndpYearCount: 10
-            });
-            customDateInput.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
-        }
-    }
-
-    // --- Library Loader Check ---
-    let ndpInterval = setInterval(function() {
-        if (typeof window.NepaliFunctions !== 'undefined' && window.NepaliFunctions.ConvertFromEnglishToNepaliDate) {
-            clearInterval(ndpInterval);
-            initializeDatePickers();
-        }
-    }, 100);
 
     // --- General UI Functions ---
     const header = document.getElementById('header');
@@ -68,11 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('modal-cake-title').textContent = `Order: ${cakeName}`;
                 document.getElementById('modal-cake-image').src = cakeImg;
                 document.getElementById('modal-cake-name').value = cakeName;
-
-                const ndp_modal_date = document.getElementById("modal-delivery-date");
-                if (ndp_modal_date && typeof window.NepaliFunctions !== 'undefined') {
-                    ndp_modal_date.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
-                }
 
                 orderModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -130,13 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const basePrice = checkedSize ? parseInt(checkedSize.dataset.price || 0) : 0;
             document.getElementById('summary-price').textContent = basePrice;
         };
-
         const updateCustomForm = () => {
             customSteps.forEach((step, index) => step.classList.toggle('active', index + 1 <= currentStep));
             customForms.forEach(form => form.classList.toggle('active', parseInt(form.dataset.step) === currentStep));
             if (currentStep === 4) updateOrderSummary();
         };
-
         nextButtons.forEach(button => {
             button.addEventListener('click', () => {
                 if (currentStep < customSteps.length) {
@@ -145,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-
         prevButtons.forEach(button => {
             button.addEventListener('click', () => {
                 if (currentStep > 1) {
@@ -154,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-
         const allOptions = customCakeForm.querySelectorAll('.size-option, .flavor-option');
         allOptions.forEach(option => {
             option.addEventListener('click', function() {
@@ -214,7 +175,5 @@ document.addEventListener('DOMContentLoaded', function() {
     if (contactForm) contactForm.addEventListener('submit', handleFormSubmit);
     const simpleOrderForm = document.getElementById('simple-order-form');
     if (simpleOrderForm) simpleOrderForm.addEventListener('submit', handleFormSubmit);
-
-    // *** THIS IS THE CORRECTED LINE ***
     if (customCakeForm) customCakeForm.addEventListener('submit', handleFormSubmit);
 });
