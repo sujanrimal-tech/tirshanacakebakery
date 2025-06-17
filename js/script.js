@@ -1,54 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     const myEmail = 'sykodada3@gmail.com'; // IMPORTANT: REPLACE WITH YOUR EMAIL
-    const myWhatsApp = '9779821183819'; // IMPORTANT: REPLACE WITH YOUR WHATSAPP NUMBER (include country code, no + or spaces)
+    const myWhatsApp = '9779821183819'; // IMPORTANT: REPLACE WITH YOUR WHATSAPP NUMBER
 
-    // --- General UI Functions ---
-
-    // Header scroll effect
+    // --- General UI Functions (These are safe on any page) ---
     const header = document.getElementById('header');
     if (header) {
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
         });
     }
 
-    // Mobile menu toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu');
     const navUl = document.querySelector('nav ul');
     if (mobileMenuBtn && navUl) {
-        mobileMenuBtn.addEventListener('click', function() {
-            navUl.classList.toggle('active');
-        });
+        mobileMenuBtn.addEventListener('click', () => navUl.classList.toggle('active'));
     }
 
-    // Active Navigation Link Highlighter
-    const navLinks = document.querySelectorAll('.nav-link');
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-            link.classList.add('active');
-        }
-    });
-
-    // Dynamic Copyright Year
     const copyrightYear = document.getElementById('copyright-year');
     if (copyrightYear) {
         copyrightYear.textContent = new Date().getFullYear();
     }
 
-
     // --- Quick Order Modal Logic ---
-    
+    // This entire block only runs if an element with id="order-modal" is on the page
     const orderModal = document.getElementById('order-modal');
-    const orderNowButtons = document.querySelectorAll('.order-now-btn');
-    const closeModalBtn = document.getElementById('close-modal');
-
     if (orderModal) {
+        const orderNowButtons = document.querySelectorAll('.order-now-btn');
+        const closeModalBtn = document.getElementById('close-modal');
+
         orderNowButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const cakeName = this.dataset.cakeName;
@@ -58,62 +39,81 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('modal-cake-image').src = cakeImg;
                 document.getElementById('modal-cake-name').value = cakeName;
 
-                // INITIALIZE BS DATE PICKER WHEN MODAL OPENS
-                document.getElementById('modal-delivery-date').nepaliDatePicker();
+                const modalDateInput = document.getElementById('modal-delivery-date');
+                if (modalDateInput && typeof modalDateInput.nepaliDatePicker === 'function') {
+                    modalDateInput.nepaliDatePicker();
+                }
 
                 orderModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             });
         });
 
-        const closeModal = () => {
-            orderModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        };
-
-        closeModalBtn.addEventListener('click', closeModal);
-        orderModal.addEventListener('click', (e) => {
-            if (e.target === orderModal) {
-                closeModal();
-            }
-        });
+        if (closeModalBtn) {
+            const closeModal = () => {
+                orderModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            };
+            closeModalBtn.addEventListener('click', closeModal);
+            orderModal.addEventListener('click', (e) => {
+                if (e.target === orderModal) closeModal();
+            });
+        }
         
-        // Handle size option selection inside modal
-        orderModal.querySelectorAll('.size-option').forEach(option => {
+        const sizeOptions = orderModal.querySelectorAll('.size-option');
+        sizeOptions.forEach(option => {
             option.addEventListener('click', function() {
-                orderModal.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+                sizeOptions.forEach(opt => opt.classList.remove('selected'));
                 this.classList.add('selected');
-                this.querySelector('input').checked = true;
+                const radio = this.querySelector('input');
+                if (radio) radio.checked = true;
             });
         });
     }
 
-
     // --- Custom Cake Multi-Step Form Logic ---
-
+    // This entire block only runs if an element with id="custom-cake-form" is on the page
     const customCakeForm = document.getElementById('custom-cake-form');
     if (customCakeForm) {
+        const customDateInput = document.getElementById('custom-date');
+        if (customDateInput && typeof customDateInput.nepaliDatePicker === 'function') {
+            customDateInput.nepaliDatePicker();
+        }
+
+        const customSteps = customCakeForm.querySelectorAll('.step');
+        const customForms = customCakeForm.querySelectorAll('.custom-form');
+        const nextButtons = customCakeForm.querySelectorAll('.next-btn');
+        const prevButtons = customCakeForm.querySelectorAll('.prev-btn');
         
-        // INITIALIZE BS DATE PICKER FOR THE CUSTOM FORM
-        document.getElementById('custom-date').nepaliDatePicker();
-
-        const customSteps = document.querySelectorAll('.step');
-        const customForms = document.querySelectorAll('.custom-form');
-        const nextButtons = document.querySelectorAll('.next-btn');
-        const prevButtons = document.querySelectorAll('.prev-btn');
-
         let currentStep = 1;
 
+        const updateOrderSummary = () => {
+            const getCheckedVal = (name) => {
+                const checked = customCakeForm.querySelector(`input[name="${name}"]:checked`);
+                return checked ? checked.value : 'N/A';
+            };
+            const getElVal = (id) => {
+                const el = document.getElementById(id);
+                return el ? el.value : 'N/A';
+            };
+
+            document.getElementById('summary-size').querySelector('span').textContent = getCheckedVal('custom-cake-size');
+            document.getElementById('summary-flavor').querySelector('span').textContent = getCheckedVal('cake-flavor');
+            document.getElementById('summary-filling').querySelector('span').textContent = getCheckedVal('cake-filling');
+            document.getElementById('summary-occasion').querySelector('span').textContent = getElVal('custom-occasion');
+            document.getElementById('summary-message').querySelector('span').textContent = getElVal('custom-message') || 'None';
+            document.getElementById('summary-colors').querySelector('span').textContent = getElVal('custom-colors') || 'Default';
+            document.getElementById('summary-decoration').querySelector('span').textContent = getElVal('custom-decoration') || 'None';
+            
+            const checkedSize = customCakeForm.querySelector('input[name="custom-cake-size"]:checked');
+            const basePrice = checkedSize ? parseInt(checkedSize.dataset.price || 0) : 0;
+            document.getElementById('summary-price').textContent = basePrice;
+        };
+
         const updateCustomForm = () => {
-            customSteps.forEach((step, index) => {
-                step.classList.toggle('active', index + 1 <= currentStep);
-            });
-            customForms.forEach(form => {
-                form.classList.toggle('active', parseInt(form.dataset.step) === currentStep);
-            });
-            if (currentStep === 4) {
-                updateOrderSummary();
-            }
+            customSteps.forEach((step, index) => step.classList.toggle('active', index + 1 <= currentStep));
+            customForms.forEach(form => form.classList.toggle('active', parseInt(form.dataset.step) === currentStep));
+            if (currentStep === 4) updateOrderSummary();
         };
 
         nextButtons.forEach(button => {
@@ -133,46 +133,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-
-        document.querySelectorAll('.size-option, .flavor-option').forEach(option => {
+        
+        const allOptions = customCakeForm.querySelectorAll('.size-option, .flavor-option');
+        allOptions.forEach(option => {
             option.addEventListener('click', function() {
                 const input = this.querySelector('input');
+                if (!input) return;
                 const groupName = input.name;
                 
-                document.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
-                    radio.closest('.size-option, .flavor-option').classList.remove('selected');
+                customCakeForm.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
+                    const parentOption = radio.closest('.size-option, .flavor-option');
+                    if (parentOption) parentOption.classList.remove('selected');
                 });
-
                 this.classList.add('selected');
                 input.checked = true;
             });
         });
-
-        const updateOrderSummary = () => {
-            document.getElementById('summary-size').querySelector('span').textContent = document.querySelector('input[name="custom-cake-size"]:checked')?.value || 'N/A';
-            document.getElementById('summary-flavor').querySelector('span').textContent = document.querySelector('input[name="cake-flavor"]:checked')?.value || 'N/A';
-            document.getElementById('summary-filling').querySelector('span').textContent = document.querySelector('input[name="cake-filling"]:checked')?.value || 'N/A';
-            document.getElementById('summary-occasion').querySelector('span').textContent = document.getElementById('custom-occasion')?.value || 'N/A';
-            document.getElementById('summary-message').querySelector('span').textContent = document.getElementById('custom-message')?.value || 'None';
-            document.getElementById('summary-colors').querySelector('span').textContent = document.getElementById('custom-colors')?.value || 'Default';
-            document.getElementById('summary-decoration').querySelector('span').textContent = document.getElementById('custom-decoration')?.value || 'None';
-            const basePrice = parseInt(document.querySelector('input[name="custom-cake-size"]:checked')?.dataset.price || 0);
-            document.getElementById('summary-price').textContent = basePrice;
-        };
         
         updateCustomForm();
     }
 
-
     // --- UNIFIED FORM SUBMISSION HANDLER ---
-
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
         const formId = form.id;
         let subject = 'New Inquiry from Website';
         let message = '';
-
+        
         if (formId === 'contact-form') {
             subject = `Contact: ${form.querySelector('#contact-subject').value}`;
             message = `New Contact Form Submission:\n\n` +
@@ -184,37 +172,29 @@ document.addEventListener('DOMContentLoaded', function() {
         
         } else if (formId === 'simple-order-form') {
             const cakeName = form.querySelector('#modal-cake-name').value;
-            const deliveryTime = form.querySelector('#modal-delivery-time').value; // Get the optional time
+            const deliveryTime = form.querySelector('#modal-delivery-time').value;
             subject = `Quick Order: ${cakeName}`;
             
-            message = `New Quick Order:\n\n`+
+            message = `New Quick Order:\n\n` +
                       `Cake: ${cakeName}\n` +
                       `Size: ${form.querySelector('input[name="cake-size"]:checked').value}\n\n` +
                       `--- Customer Details ---\n` +
                       `Name: ${form.querySelector('#modal-customer-name').value}\n` +
                       `Phone: ${form.querySelector('#modal-customer-phone').value}\n` +
                       `Delivery Date (BS): ${form.querySelector('#modal-delivery-date').value}`;
-
-            // Add time to message ONLY if it was entered
-            if (deliveryTime) {
-                message += `\nPreferred Time: ${deliveryTime}`;
-            }
+            if (deliveryTime) message += `\nPreferred Time: ${deliveryTime}`;
 
         } else if (formId === 'custom-cake-form') {
             subject = 'New Custom Cake Order';
-            const deliveryTime = form.querySelector('#custom-time').value; // Get the optional time
-            updateOrderSummary(); // Ensure summary is latest
+            const deliveryTime = document.getElementById('custom-time')?.value;
+            updateOrderSummary();
             
             message = `New Custom Cake Order:\n\n` +
-                      `Customer: ${form.querySelector('#custom-name').value}\n` +
-                      `Phone: ${form.querySelector('#custom-phone').value}\n` +
-                      `Email: ${form.querySelector('#custom-email').value}\n` +
-                      `Delivery Date (BS): ${form.querySelector('#custom-date').value}`;
-
-            // Add time to message ONLY if it was entered
-            if (deliveryTime) {
-                message += `\nPreferred Time: ${deliveryTime}`;
-            }
+                      `Customer: ${document.getElementById('custom-name').value}\n` +
+                      `Phone: ${document.getElementById('custom-phone').value}\n` +
+                      `Email: ${document.getElementById('custom-email').value}\n` +
+                      `Delivery Date (BS): ${document.getElementById('custom-date').value}`;
+            if (deliveryTime) message += `\nPreferred Time: ${deliveryTime}`;
                       
             message += `\n\n--- Cake Details ---\n` +
                       `Size: ${document.getElementById('summary-size').querySelector('span').textContent}\n` +
@@ -227,51 +207,57 @@ document.addEventListener('DOMContentLoaded', function() {
                       `Estimated Price: NPR ${document.getElementById('summary-price').textContent}`;
         }
 
-        // 1. Send to WhatsApp
-        const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, '_blank');
+        if (message) {
+            const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            const mailtoUrl = `mailto:${myEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+            window.location.href = mailtoUrl;
 
-        // 2. Send to Email
-        const mailtoUrl = `mailto:${myEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
-        window.location.href = mailtoUrl;
-
-        alert('Thank you! Your request has been prepared. Please complete the action in WhatsApp or your email client.');
-        
-        form.reset();
-        if (formId === 'simple-order-form') {
-            orderModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        if (formId === 'custom-cake-form') {
-            currentStep = 1;
-            updateCustomForm();
-        }
-    };
-
-    // Attach the handler to all forms
-    document.getElementById('contact-form')?.addEventListener('submit', handleFormSubmit);
-    document.getElementById('custom-cake-form')?.addEventListener('submit', handleFormSubmit);
-    document.getElementById('simple-order-form')?.addEventListener('submit', handleFormSubmit);
-
-    // Animation on scroll
-    document.querySelectorAll('.section-title, .product-card, .service-card, .gallery-item, .about-content, .about-image').forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-    });
-    
-    const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.section-title, .product-card, .service-card, .gallery-item, .about-content, .about-image');
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.2;
-            if (elementPosition < screenPosition) {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
+            alert('Thank you! Your request has been prepared. Please complete the action in WhatsApp or your email client.');
+            form.reset();
+            
+            if (formId === 'simple-order-form' && orderModal) {
+                orderModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
-        });
+            if (formId === 'custom-cake-form') {
+                // To reset the form, we need a reference to the 'currentStep' variable
+                // This is a bit tricky, so we'll just reload the page for simplicity and robustness
+                window.location.reload(); 
+            }
+        }
     };
     
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll();
+    // Attach handler to all potential forms on the site
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) contactForm.addEventListener('submit', handleFormSubmit);
+
+    const simpleOrderForm = document.getElementById('simple-order-form');
+    if (simpleOrderForm) simpleOrderForm.addEventListener('submit', handleFormSubmit);
+    
+    if (customCakeForm) customCakeForm.addEventListener('submit', handleFormSubmit);
+
+    // --- Animation on scroll (safe on any page) ---
+    const animatedElements = document.querySelectorAll('.section-title, .product-card, .service-card, .gallery-item, .about-content, .about-image');
+    if (animatedElements.length > 0) {
+        animatedElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        });
+
+        const animateOnScroll = () => {
+            animatedElements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Run once on load
+    }
 });
