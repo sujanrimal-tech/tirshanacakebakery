@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const cakeName = this.dataset.cakeName;
                 const cakeImg = this.dataset.cakeImg;
                 document.getElementById('modal-cake-title').textContent = `Order: ${cakeName}`;
-                document.getElementById('modal-cake-image').src = cakeImg;
+                
                 document.getElementById('modal-cake-name').value = cakeName;
                 orderModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
