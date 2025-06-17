@@ -1,47 +1,10 @@
-// FINAL SCRIPT - ROBUST VERSION
+// CLEAN SCRIPT.JS - NO DATE PICKER LOGIC
 document.addEventListener('DOMContentLoaded', function() {
 
     const myEmail = 'sykodada3@gmail.com';
     const myWhatsApp = '9779821183819';
 
-    // --- Function to initialize Date Pickers ---
-    // This function will only be called AFTER we confirm the library is loaded.
-    function initializeDatePickers() {
-        // Initialize for the modal
-        const modalDateInput = document.getElementById('modal-delivery-date');
-        if (modalDateInput) {
-            modalDateInput.nepaliDatePicker({
-                ndpYear: true,
-                ndpMonth: true,
-                ndpYearCount: 10
-            });
-            // Set today's date when modal is opened (logic moved to the click handler)
-        }
-
-        // Initialize for the custom form
-        const customDateInput = document.getElementById('custom-date');
-        if (customDateInput) {
-            customDateInput.nepaliDatePicker({
-                ndpYear: true,
-                ndpMonth: true,
-                ndpYearCount: 10
-            });
-            // Set today's date on page load
-            customDateInput.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
-        }
-    }
-
-    // --- Library Loader Check ---
-    // This waits for the Nepali Date Picker library to be ready before running our function.
-    // This is the key fix to prevent errors.
-    let ndpInterval = setInterval(function() {
-        if (typeof window.NepaliFunctions !== 'undefined' && window.NepaliFunctions.ConvertFromEnglishToNepaliDate) {
-            clearInterval(ndpInterval); // Stop checking
-            initializeDatePickers();    // Now it's safe to run our date picker code
-        }
-    }, 100); // Check every 100ms
-
-    // --- General UI Functions (These run immediately and are safe) ---
+    // --- General UI Functions ---
     const header = document.getElementById('header');
     if (header) {
         window.addEventListener('scroll', function() {
@@ -61,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         copyrightYear.textContent = new Date().getFullYear();
     }
 
-    // --- Quick Order Modal Logic (This runs immediately and is safe) ---
+    // --- Quick Order Modal Logic ---
     const orderModal = document.getElementById('order-modal');
     if (orderModal) {
         const orderNowButtons = document.querySelectorAll('.order-now-btn');
@@ -75,12 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('modal-cake-title').textContent = `Order: ${cakeName}`;
                 document.getElementById('modal-cake-image').src = cakeImg;
                 document.getElementById('modal-cake-name').value = cakeName;
-
-                // Set date to today when modal opens, but only if the library is ready
-                const ndp_modal_date = document.getElementById("modal-delivery-date");
-                if (ndp_modal_date && typeof window.NepaliFunctions !== 'undefined') {
-                    ndp_modal_date.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
-                }
 
                 orderModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -218,5 +175,5 @@ document.addEventListener('DOMContentLoaded', function() {
     if (contactForm) contactForm.addEventListener('submit', handleFormSubmit);
     const simpleOrderForm = document.getElementById('simple-order-form');
     if (simpleOrderForm) simpleOrderForm.addEventListener('submit', handleFormSubmit);
-    if (customCake_form) customCakeForm.addEventListener('submit', handleFormSubmit);
+    if (customCakeForm) customCakeForm.addEventListener('submit', handleFormSubmit);
 });
