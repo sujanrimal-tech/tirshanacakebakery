@@ -195,21 +195,24 @@ const handleOtherForms = (e) => {
     if (formId === 'contact-form') {
         subject = `Contact: ${form.querySelector('#contact-subject').value}`;
         message = `New Contact Form Submission:\n\nName: ${form.querySelector('#contact-name').value}\nEmail: ${form.querySelector('#contact-email').value}\nPhone: ${form.querySelector('#contact-phone').value}\nSubject: ${subject}\nMessage: ${form.querySelector('#contact-message').value}`;
+    
     } else if (formId === 'simple-order-form') {
         const cakeName = form.querySelector('#modal-cake-name').value;
         subject = `Quick Order: ${cakeName}`;
 
-        // === SAFELY GET VALUES FROM NEW FIELDS ===
-        // First, find the element itself.
+        // === SAFELY GET VALUES FROM ALL FIELDS ===
+        // ▼▼▼ THE FIX IS HERE ▼▼▼
+        const checkedSizeInput = form.querySelector('input[name="cake-size"]:checked');
+        const selectedSize = checkedSizeInput ? checkedSizeInput.value : 'No size selected'; // Provide a default if nothing is checked
+        
         const cakeMessageInput = form.querySelector('#modal-cake-message');
         const specialInstructionsInput = form.querySelector('#modal-special-instructions');
-
-        // Now, only get the .value if the element was actually found.
         const cakeMessage = cakeMessageInput ? cakeMessageInput.value.trim() : '';
         const specialInstructions = specialInstructionsInput ? specialInstructionsInput.value.trim() : '';
         // ==========================================
 
-        message = `New Quick Order:\n\nCake: ${cakeName}\nSize: ${form.querySelector('input[name="cake-size"]:checked').value}`;
+        // Now, build the message safely
+        message = `New Quick Order:\n\nCake: ${cakeName}\nSize: ${selectedSize}`;
 
         if (cakeMessage) {
             message += `\nMessage on Cake: ${cakeMessage}`;
@@ -227,8 +230,9 @@ const handleOtherForms = (e) => {
         alert('Thank you! Your request has been prepared for WhatsApp. Please press send to confirm.');
         form.reset();
         if (formId === 'simple-order-form' && orderModal) {
+            // This part will now be reached without crashing
             orderModal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // This will now run!
+            document.body.style.overflow = 'auto'; 
         }
     }
 };
