@@ -6,6 +6,11 @@
     <title>Our Products | Tirshana Cake Bakery</title>
     <meta name="description" content="Explore our signature cakes, from rich Chocolate Fudge to zesty Lemon Raspberry. All handcrafted for your special moments.">
     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nepali-date-picker/dist/nepali-date-picker.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/nepali-date-picker/dist/nepali-date-picker.min.js" defer></script>
+    
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nepali-date-picker/dist/nepali-date-picker.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/nepali-date-picker/dist/nepali-date-picker.min.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
@@ -186,19 +191,33 @@
                         <label>Select Size</label>
                         <div class="size-options">
                              <div class="size-option selected">
-                                <input type="radio" id="modal-size-small" name="cake-size" value="Small (1 lb)" checked>
-                                <label for="modal-size-small">Small (1 lb)</label>
+                                <input type="radio" id="modal-size-small" name="cake-size" value="half Pound" checked>
+                                <label for="modal-size-small">half pound</label>
                             </div>
                             <div class="size-option">
-                                <input type="radio" id="modal-size-medium" name="cake-size" value="Medium (2 lb)">
-                                <label for="modal-size-medium">Medium (2 lb)</label>
+                                <input type="radio" id="modal-size-medium" name="cake-size" value="1 pound ">
+                                <label for="modal-size-medium">1 pound</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="modal-size-large" name="cake-size" value="2 pound ">
+                                <label for="modal-size-large">2 pound</label>
+                            </div>
+                             <div class="size-option">
+                                <input type="radio" id="modal-size-extra large" name="cake-size" value="3 pound ">
+                                <label for="modal-size-extra large size">3 pound</label>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="modal-delivery-date">Delivery/Pickup Date</label>
-                        <input type="date" id="modal-delivery-date" class="form-control" required>
+                  <div class="form-group">
+    <label for="modal-delivery-date">Delivery/Pickup Date (BS)</label>
+    <input type="text" id="modal-delivery-date" class="form-control" placeholder="Select a date..." autocomplete="off" required>
+</div>
+<div class="form-group">
+    <label for="modal-delivery-time">Preferred Time (Optional)</label>
+    <input type="time" id="modal-delivery-time" class="form-control">
+</div>       
+                        
                     </div>
                     
                     <button type="submit" class="submit-btn">Place Quick Order</button>

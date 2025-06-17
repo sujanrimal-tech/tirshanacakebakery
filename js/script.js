@@ -58,6 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('modal-cake-image').src = cakeImg;
                 document.getElementById('modal-cake-name').value = cakeName;
 
+                // INITIALIZE BS DATE PICKER WHEN MODAL OPENS
+                document.getElementById('modal-delivery-date').nepaliDatePicker();
+
                 orderModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             });
@@ -90,7 +93,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const customCakeForm = document.getElementById('custom-cake-form');
     if (customCakeForm) {
-        // ... (The custom cake form logic remains the same as before)
+        
+        // INITIALIZE BS DATE PICKER FOR THE CUSTOM FORM
+        document.getElementById('custom-date').nepaliDatePicker();
+
         const customSteps = document.querySelectorAll('.step');
         const customForms = document.querySelectorAll('.custom-form');
         const nextButtons = document.querySelectorAll('.next-btn');
@@ -178,24 +184,39 @@ document.addEventListener('DOMContentLoaded', function() {
         
         } else if (formId === 'simple-order-form') {
             const cakeName = form.querySelector('#modal-cake-name').value;
+            const deliveryTime = form.querySelector('#modal-delivery-time').value; // Get the optional time
             subject = `Quick Order: ${cakeName}`;
+            
             message = `New Quick Order:\n\n`+
                       `Cake: ${cakeName}\n` +
                       `Size: ${form.querySelector('input[name="cake-size"]:checked').value}\n\n` +
                       `--- Customer Details ---\n` +
                       `Name: ${form.querySelector('#modal-customer-name').value}\n` +
                       `Phone: ${form.querySelector('#modal-customer-phone').value}\n` +
-                      `Delivery Date: ${form.querySelector('#modal-delivery-date').value}`;
+                      `Delivery Date (BS): ${form.querySelector('#modal-delivery-date').value}`;
+
+            // Add time to message ONLY if it was entered
+            if (deliveryTime) {
+                message += `\nPreferred Time: ${deliveryTime}`;
+            }
 
         } else if (formId === 'custom-cake-form') {
             subject = 'New Custom Cake Order';
+            const deliveryTime = form.querySelector('#custom-time').value; // Get the optional time
             updateOrderSummary(); // Ensure summary is latest
+            
             message = `New Custom Cake Order:\n\n` +
                       `Customer: ${form.querySelector('#custom-name').value}\n` +
                       `Phone: ${form.querySelector('#custom-phone').value}\n` +
                       `Email: ${form.querySelector('#custom-email').value}\n` +
-                      `Delivery Date: ${form.querySelector('#custom-date').value}\n\n` +
-                      `--- Cake Details ---\n` +
+                      `Delivery Date (BS): ${form.querySelector('#custom-date').value}`;
+
+            // Add time to message ONLY if it was entered
+            if (deliveryTime) {
+                message += `\nPreferred Time: ${deliveryTime}`;
+            }
+                      
+            message += `\n\n--- Cake Details ---\n` +
                       `Size: ${document.getElementById('summary-size').querySelector('span').textContent}\n` +
                       `Flavor: ${document.getElementById('summary-flavor').querySelector('span').textContent}\n` +
                       `Filling: ${document.getElementById('summary-filling').querySelector('span').textContent}\n` +
@@ -233,7 +254,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('simple-order-form')?.addEventListener('submit', handleFormSubmit);
 
     // Animation on scroll
-    // ... (This part remains the same as before) ...
     document.querySelectorAll('.section-title, .product-card, .service-card, .gallery-item, .about-content, .about-image').forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(30px)';
