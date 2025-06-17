@@ -260,6 +260,27 @@
     </footer>
 
     <script src="../js/script.js"></script>
+    <script type="text/javascript">
+      window.onload = function() {
+        var modalDateInput = document.getElementById("modal-delivery-date");
+        if (modalDateInput) {
+            modalDateInput.nepaliDatePicker({
+                ndpYear: true,
+                ndpMonth: true,
+                ndpYearCount: 10
+            });
+            // Set today's date whenever an order button is clicked
+            var orderButtons = document.querySelectorAll('.order-now-btn');
+            orderButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    if (typeof NepaliFunctions !== 'undefined') {
+                       modalDateInput.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
+                    }
+                });
+            });
+        }
+      };
+    </script>
    
 </body>
 </html>
