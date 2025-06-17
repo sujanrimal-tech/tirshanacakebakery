@@ -172,10 +172,26 @@ document.addEventListener('DOMContentLoaded', function() {
         if (formId === 'contact-form') {
             subject = `Contact: ${form.querySelector('#contact-subject').value}`;
             message = `New Contact Form Submission:\n\nName: ${form.querySelector('#contact-name').value}\nEmail: ${form.querySelector('#contact-email').value}\nPhone: ${form.querySelector('#contact-phone').value}\nSubject: ${subject}\nMessage: ${form.querySelector('#contact-message').value}`;
-        } else if (formId === 'simple-order-form') {
+       } else if (formId === 'simple-order-form') {
             const cakeName = form.querySelector('#modal-cake-name').value;
             subject = `Quick Order: ${cakeName}`;
-            message = `New Quick Order:\n\nCake: ${cakeName}\nSize: ${form.querySelector('input[name="cake-size"]:checked').value}\n\n--- Customer Details ---\nName: ${form.querySelector('#modal-customer-name').value}\nPhone: ${form.querySelector('#modal-customer-phone').value}\nDelivery Date (BS): ${form.querySelector('#modal-delivery-date')?.value || 'Not specified'}\nPreferred Time: ${form.querySelector('#modal-delivery-time')?.value || 'Not specified'}`;
+            
+            // Get values from the new and updated fields
+            const cakeSize = form.querySelector('#modal-cake-size').value;
+            const cakeMessage = form.querySelector('#modal-message-on-cake').value || 'None';
+            const allergies = form.querySelector('#modal-allergies').value || 'None';
+
+            // Construct the new, more detailed message
+            message = `New Quick Order:\n\n` +
+                      `🎂 Cake: ${cakeName}\n` +
+                      `📏 Size: ${cakeSize}\n` +
+                      `✍️ Message on Cake: ${cakeMessage}\n` +
+                      `⚠️ Allergies/Instructions: ${allergies}\n\n` +
+                      `--- Customer Details ---\n` +
+                      `👤 Name: ${form.querySelector('#modal-customer-name').value}\n` +
+                      `📞 Phone: ${form.querySelector('#modal-customer-phone').value}\n` +
+                      `📅 Delivery Date: ${form.querySelector('#modal-delivery-date')?.value || 'Not specified'}\n` +
+                      `⏰ Preferred Time: ${form.querySelector('#modal-delivery-time')?.value || 'Not specified'}`;
         }
 
         if (message) {
