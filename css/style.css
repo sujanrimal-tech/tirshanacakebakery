@@ -1134,9 +1134,9 @@ footer {
 }
 /* --- Add this to your ../css/style.css (REPLACE your old modal CSS) --- */
 
-/* THIS IS THE CRITICAL FIX */
+/* This rule shows the modal when the .active class is added by JavaScript */
 .order-modal.active {
-    display: flex; /* Use flex to show and center the modal */
+    display: flex; 
 }
     
 .modal-content {
@@ -1146,13 +1146,11 @@ footer {
     box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     width: 100%;
     animation: fadeInUp 0.5s ease;
-    overflow: hidden; /* This is important for the corner radius */
+    overflow: hidden;
 
-    /* === CHANGE 1: NARROWER WIDTH & CONTROLLED HEIGHT === */
-    max-width: 440px;      /* Made it a bit narrower for a more compact look */
-    max-height: 90vh;      /* Won't be taller than 90% of the screen height */
-    
-    /* === CHANGE 2: SETUP FOR INTERNAL SCROLLING === */
+    /* Styles for compact size and internal scrolling */
+    max-width: 440px;      
+    max-height: 90vh;      
     display: flex;
     flex-direction: column;
 }
@@ -1164,8 +1162,6 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    /* This prevents the header from shrinking if content is squeezed */
     flex-shrink: 0; 
 }
 
@@ -1189,16 +1185,9 @@ footer {
 }
 
 .modal-body {
-    padding: 1.5rem 2rem; /* Adjusted padding slightly for better spacing */
-   
-    /* === CHANGE 3: ENABLE SCROLLING HERE === */
-    overflow-y: auto; /* Adds a scrollbar ONLY if the content is too tall */
+    padding: 1.5rem 2rem;
+    overflow-y: auto; /* Enables scrolling inside the form */
 }
-
-
-/* This leftover rule is no longer needed and has been removed */
-/* #simple-order-form { ... } */
-
 
 .floating-action-buttons {
     position: fixed; /* Keeps it on the screen when scrolling */
