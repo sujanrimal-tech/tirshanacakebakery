@@ -1,8 +1,28 @@
-// FINAL ROBUST SCRIPT.JS
+// FINAL SCRIPT.JS - USING THE NEW, RELIABLE NEPALI DATE PICKER LIBRARY
 document.addEventListener('DOMContentLoaded', function() {
 
     const myEmail = 'sykodada3@gmail.com';
     const myWhatsApp = '9779821183819';
+
+    // --- Initialize Date Pickers (if they exist on the page) ---
+    // This new library is robust and can be initialized at the start.
+    const modalDateInput = document.getElementById('modal-delivery-date');
+    if (modalDateInput) {
+        modalDateInput.nepaliDatePicker({
+            ndpYear: true,
+            ndpMonth: true,
+            ndpYearCount: 10
+        });
+    }
+
+    const customDateInput = document.getElementById('custom-date');
+    if (customDateInput) {
+        customDateInput.nepaliDatePicker({
+            ndpYear: true,
+            ndpMonth: true,
+            ndpYearCount: 10
+        });
+    }
 
     // --- General UI Functions ---
     const header = document.getElementById('header');
@@ -39,13 +59,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('modal-cake-image').src = cakeImg;
                 document.getElementById('modal-cake-name').value = cakeName;
 
-                // ** ADDED TIMEOUT FOR RELIABILITY **
-                setTimeout(function() {
-                    const modalDateInput = document.getElementById('modal-delivery-date');
-                    if (modalDateInput && typeof modalDateInput.nepaliDatePicker === 'function') {
-                        modalDateInput.nepaliDatePicker();
-                    }
-                }, 100); // Wait 100ms for library to load
+                // Set date to today when modal opens
+                const ndp_modal_date = document.getElementById("modal-delivery-date");
+                if(ndp_modal_date) {
+                    ndp_modal_date.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
+                }
 
                 orderModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -77,13 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Custom Cake Multi-Step Form Logic ---
     const customCakeForm = document.getElementById('custom-cake-form');
     if (customCakeForm) {
-        // ** ADDED TIMEOUT FOR RELIABILITY **
-        setTimeout(function() {
-            const customDateInput = document.getElementById('custom-date');
-            if (customDateInput && typeof customDateInput.nepaliDatePicker === 'function') {
-                customDateInput.nepaliDatePicker();
-            }
-        }, 100); // Wait 100ms for library to load
+        // Set date to today on page load
+        const ndp_custom_date = document.getElementById("custom-date");
+        if(ndp_custom_date) {
+            ndp_custom_date.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
+        }
 
         const customSteps = customCakeForm.querySelectorAll('.step');
         const customForms = customCakeForm.querySelectorAll('.custom-form');
