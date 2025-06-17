@@ -185,51 +185,53 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- UNIFIED FORM SUBMISSION HANDLER for other forms ---
-    const handleOtherForms = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const formId = form.id;
-        let subject = 'New Inquiry from Website';
-        let message = '';
+const handleOtherForms = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formId = form.id;
+    let subject = 'New Inquiry from Website';
+    let message = '';
 
-        if (formId === 'contact-form') {
-            subject = `Contact: ${form.querySelector('#contact-subject').value}`;
-            message = `New Contact Form Submission:\n\nName: ${form.querySelector('#contact-name').value}\nEmail: ${form.querySelector('#contact-email').value}\nPhone: ${form.querySelector('#contact-phone').value}\nSubject: ${subject}\nMessage: ${form.querySelector('#contact-message').value}`;
-       } else if (formId === 'simple-order-form') {
-    const cakeName = form.querySelector('#modal-cake-name').value;
-    subject = `Quick Order: ${cakeName}`;
+    if (formId === 'contact-form') {
+        subject = `Contact: ${form.querySelector('#contact-subject').value}`;
+        message = `New Contact Form Submission:\n\nName: ${form.querySelector('#contact-name').value}\nEmail: ${form.querySelector('#contact-email').value}\nPhone: ${form.querySelector('#contact-phone').value}\nSubject: ${subject}\nMessage: ${form.querySelector('#contact-message').value}`;
+    } else if (formId === 'simple-order-form') {
+        const cakeName = form.querySelector('#modal-cake-name').value;
+        subject = `Quick Order: ${cakeName}`;
 
-    // Get the values from the new fields
-    const cakeMessage = form.querySelector('#modal-cake-message').value.trim();
-    const specialInstructions = form.querySelector('#modal-special-instructions').value.trim();
+        // === SAFELY GET VALUES FROM NEW FIELDS ===
+        // First, find the element itself.
+        const cakeMessageInput = form.querySelector('#modal-cake-message');
+        const specialInstructionsInput = form.querySelector('#modal-special-instructions');
 
-    // Start building the message string
-    message = `New Quick Order:\n\nCake: ${cakeName}\nSize: ${form.querySelector('input[name="cake-size"]:checked').value}`;
+        // Now, only get the .value if the element was actually found.
+        const cakeMessage = cakeMessageInput ? cakeMessageInput.value.trim() : '';
+        const specialInstructions = specialInstructionsInput ? specialInstructionsInput.value.trim() : '';
+        // ==========================================
 
-    // IMPORTANT: Only add the new fields to the message if the user actually typed something
-    if (cakeMessage) {
-        message += `\nMessage on Cake: ${cakeMessage}`;
-    }
-    if (specialInstructions) {
-        message += `\nSpecial Instructions: ${specialInstructions}`;
-    }
+        message = `New Quick Order:\n\nCake: ${cakeName}\nSize: ${form.querySelector('input[name="cake-size"]:checked').value}`;
 
-    // Add the customer details at the end
-    message += `\n\n--- Customer Details ---\nName: ${form.querySelector('#modal-customer-name').value}\nPhone: ${form.querySelector('#modal-customer-phone').value}\nDelivery Date (BS): ${form.querySelector('#modal-delivery-date')?.value || 'Not specified'}\nPreferred Time: ${form.querySelector('#modal-delivery-time')?.value || 'Not specified'}`;
-}
-
-        if (message) {
-            const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-            alert('Thank you! Your request has been prepared for WhatsApp. Please press send to confirm.');
-            form.reset();
-            if (formId === 'simple-order-form' && orderModal) {
-                orderModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
+        if (cakeMessage) {
+            message += `\nMessage on Cake: ${cakeMessage}`;
         }
-    };
-    
+        if (specialInstructions) {
+            message += `\nSpecial Instructions: ${specialInstructions}`;
+        }
+
+        message += `\n\n--- Customer Details ---\nName: ${form.querySelector('#modal-customer-name').value}\nPhone: ${form.querySelector('#modal-customer-phone').value}\nDelivery Date (BS): ${form.querySelector('#modal-delivery-date')?.value || 'Not specified'}\nPreferred Time: ${form.querySelector('#modal-delivery-time')?.value || 'Not specified'}`;
+    }
+
+    if (message) {
+        const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+        alert('Thank you! Your request has been prepared for WhatsApp. Please press send to confirm.');
+        form.reset();
+        if (formId === 'simple-order-form' && orderModal) {
+            orderModal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // This will now run!
+        }
+    }
+};
     const contactForm = document.getElementById('contact-form');
     if (contactForm) contactForm.addEventListener('submit', handleOtherForms);
     
