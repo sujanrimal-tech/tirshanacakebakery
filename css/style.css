@@ -357,7 +357,29 @@ main {
     color: var(--primary);
     font-size: 1.2rem;
 }
+/* --- Add this to your style.css inside the Products Section --- */
 
+/* Style for the "Order Now" button on the PRODUCT CARD */
+.product-card .order-now-btn {
+    background-color: var(--primary); /* Your theme's main pink color */
+    color: white;
+    border: none;
+    padding: 0.6rem 1.3rem; /* Small padding for a compact button */
+    border-radius: 30px;      /* This creates the pill shape */
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: auto; /* IMPORTANT: This prevents it from becoming full-width */
+    display: inline-block; /* Ensures it behaves like a standard button */
+}
+
+/* Hover effect for the product card button */
+.product-card .order-now-btn:hover {
+    background-color: var(--dark); /* Changes to dark color on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 .order-now {
     background-color: var(--primary);
     color: white;
