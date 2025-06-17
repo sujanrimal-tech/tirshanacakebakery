@@ -240,28 +240,22 @@
         </div>
     </footer>
 
-    <!-- External JS -->
-    <script src="js/script.js"></script>
-<script type="text/javascript">
+   <script type="text/javascript">
       window.onload = function() {
-        var modalDateInput = document.getElementById("modal-delivery-date");
-        if (modalDateInput) {
-            modalDateInput.nepaliDatePicker({
-                ndpYear: true,
-                ndpMonth: true,
-                ndpYearCount: 10
+        var modalDate = document.getElementById("modal-delivery-date");
+        modalDate.nepaliDatePicker({
+            ndpYear: true,
+            ndpMonth: true
+        });
+        // Set today's date whenever the modal is shown
+        var orderButtons = document.querySelectorAll('.order-now-btn');
+        orderButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                modalDate.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
             });
-            // Set today's date whenever an order button is clicked
-            var orderButtons = document.querySelectorAll('.order-now-btn');
-            orderButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    if (typeof NepaliFunctions !== 'undefined') {
-                       modalDateInput.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
-                    }
-                });
-            });
-        }
+        });
       };
+
     </script>
   
 </body>
