@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         nextButtons.forEach(button => {
             button.addEventListener('click', () => {
+                 alert("The 'Next' button was clicked!"); 
                 if (currentStep < customSteps.length) {
                     currentStep++;
                     updateCustomForm();
