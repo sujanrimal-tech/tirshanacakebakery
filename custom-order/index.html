@@ -146,7 +146,14 @@
                             <div class="form-group" style="margin-top: 2rem;"><label for="custom-name">Your Name</label><input type="text" id="custom-name" class="form-control" name="name" required></div>
                             <div class="form-group"><label for="custom-phone">Phone Number</label><input type="tel" id="custom-phone" class="form-control" name="phone" required></div>
                             <div class="form-group"><label for="custom-email">Email Address</label><input type="email" id="custom-email" class="form-control" name="email" required></div>
-                            <div class="form-group"><label for="custom-date">Delivery/Pickup Date</label><input type="date" id="custom-date" class="form-control" name="date" required></div>
+                            <div class="form-group">
+    <label for="custom-date">Delivery/Pickup Date (BS)</label>
+    <input type="text" id="custom-date" class="form-control" name="date" placeholder="Select a date..." autocomplete="off" required>
+</div>
+<div class="form-group">
+    <label for="custom-time">Preferred Time (Optional)</label>
+    <input type="time" id="custom-time" class="form-control" name="time">
+</div>
                             <div class="form-navigation">
                                 <button type="button" class="prev-btn">Back</button>
                                 <button type="submit" class="submit-btn">Place Order</button>
