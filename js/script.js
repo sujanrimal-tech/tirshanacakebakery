@@ -1,4 +1,4 @@
-// SCRIPT.JS - CLEAN VERSION (NO DATE PICKER LOGIC)
+// FINAL SCRIPT - MULTI-STEP FORM LOGIC CORRECTED
 document.addEventListener('DOMContentLoaded', function() {
 
     const myEmail = 'sykodada3@gmail.com';
@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Custom Cake Multi-Step Form Logic ---
     const customCakeForm = document.getElementById('custom-cake-form');
     if (customCakeForm) {
+        // *** MOVED VARIABLE DEFINITIONS TO THE TOP - THIS IS THE FIX ***
         const customSteps = customCakeForm.querySelectorAll('.step');
         const customForms = customCakeForm.querySelectorAll('.custom-form');
         const nextButtons = customCakeForm.querySelectorAll('.next-btn');
@@ -95,11 +96,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const basePrice = checkedSize ? parseInt(checkedSize.dataset.price || 0) : 0;
             document.getElementById('summary-price').textContent = basePrice;
         };
+
         const updateCustomForm = () => {
             customSteps.forEach((step, index) => step.classList.toggle('active', index + 1 <= currentStep));
             customForms.forEach(form => form.classList.toggle('active', parseInt(form.dataset.step) === currentStep));
-            if (currentStep === 4) updateOrderSummary();
+            if (currentStep === 4) {
+                updateOrderSummary();
+            }
         };
+
+        // *** MOVED EVENT LISTENERS AFTER FUNCTION DEFINITIONS - THIS IS THE FIX ***
         nextButtons.forEach(button => {
             button.addEventListener('click', () => {
                 if (currentStep < customSteps.length) {
@@ -108,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+
         prevButtons.forEach(button => {
             button.addEventListener('click', () => {
                 if (currentStep > 1) {
@@ -116,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+
         const allOptions = customCakeForm.querySelectorAll('.size-option, .flavor-option');
         allOptions.forEach(option => {
             option.addEventListener('click', function() {
@@ -130,6 +138,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 input.checked = true;
             });
         });
+        
+        // Initial call to set up the form view correctly
         updateCustomForm();
     }
 
@@ -152,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (formId === 'custom-cake-form') {
             subject = 'New Custom Cake Order';
             const deliveryTime = document.getElementById('custom-time')?.value;
-            updateOrderSummary();
+            updateOrderSummary(); // Run one last time to get final details
             message = `New Custom Cake Order:\n\nCustomer: ${document.getElementById('custom-name').value}\nPhone: ${document.getElementById('custom-phone').value}\nEmail: ${document.getElementById('custom-email').value}\nDelivery Date (BS): ${document.getElementById('custom-date').value}`;
             if (deliveryTime) message += `\nPreferred Time: ${deliveryTime}`;
             message += `\n\n--- Cake Details ---\nSize: ${document.getElementById('summary-size').querySelector('span').textContent}\nFlavor: ${document.getElementById('summary-flavor').querySelector('span').textContent}\nFilling: ${document.getElementById('summary-filling').querySelector('span').textContent}\nOccasion: ${document.getElementById('summary-occasion').querySelector('span').textContent}\nMessage on Cake: ${document.getElementById('summary-message').querySelector('span').textContent}\nColors: ${document.getElementById('summary-colors').querySelector('span').textContent}\nDecoration: ${document.getElementById('summary-decoration').querySelector('span').textContent}\n\nEstimated Price: NPR ${document.getElementById('summary-price').textContent}`;
