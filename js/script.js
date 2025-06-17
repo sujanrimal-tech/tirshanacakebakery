@@ -30,17 +30,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const orderNowButtons = document.querySelectorAll('.order-now-btn');
         const closeModalBtn = document.getElementById('close-modal');
 
-        orderNowButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const cakeName = this.dataset.cakeName;
-                const cakeImg = this.dataset.cakeImg;
-                document.getElementById('modal-cake-title').textContent = `Order: ${cakeName}`;
-                document.getElementById('modal-cake-image').src = cakeImg;
-                document.getElementById('modal-cake-name').value = cakeName;
-                orderModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
+       orderNowButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Get the cake name from the button's data attribute
+            const cakeName = this.dataset.cakeName;
+            
+            // We REMOVED the line that gets the cake image.
+            
+            // Update the modal's title and the hidden input
+            document.getElementById('modal-cake-title').textContent = `Order: ${cakeName}`;
+            document.getElementById('modal-cake-name').value = cakeName;
+
+            // We REMOVED the line that tries to update the non-existent image element.
+            // This was the line causing the error.
+            
+            // Now, these lines will execute without any errors
+            orderModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
+    });
 
         if (closeModalBtn) {
             const closeModal = () => {
