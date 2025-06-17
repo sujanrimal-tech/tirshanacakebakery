@@ -1,5 +1,5 @@
 // FILE: ../js/script.js
-// This is the complete, corrected script for your entire site.
+// This is the complete, final script with all features correctly merged.
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -10,26 +10,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.getElementById('header');
     if (header) {
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
         });
     }
-
     const mobileMenuBtn = document.querySelector('.mobile-menu');
-    const navUl = document.querySelector('header nav ul'); // Corrected selector for header nav
+    const navUl = document.querySelector('header nav ul');
     if (mobileMenuBtn && navUl) {
         mobileMenuBtn.addEventListener('click', () => navUl.classList.toggle('active'));
     }
-
     const copyrightYear = document.getElementById('copyright-year');
     if (copyrightYear) {
         copyrightYear.textContent = new Date().getFullYear();
     }
 
-    // --- Quick Order Modal Logic ---
+    // --- Quick Order Modal Logic (RESTORED) ---
     const orderModal = document.getElementById('order-modal');
     if (orderModal) {
         const orderNowButtons = document.querySelectorAll('.order-now-btn');
@@ -69,22 +64,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Custom Cake Multi-Step Form Logic ---
+    // --- Custom Cake Multi-Step Form Logic (with Confirmation Step) ---
     const customCakeForm = document.getElementById('custom-cake-form');
     if (customCakeForm) {
         const stepIndicators = customCakeForm.querySelectorAll('.custom-steps .step');
         const formSteps = customCakeForm.querySelectorAll('.custom-form');
         const nextButtons = customCakeForm.querySelectorAll('.next-btn');
         const prevButtons = customCakeForm.querySelectorAll('.prev-btn');
+        const resetBtn = document.getElementById('reset-form-btn');
         let currentStep = 1;
 
+        const updateCustomFormView = () => {
+            formSteps.forEach(form => {
+                form.classList.toggle('active', parseInt(form.dataset.step) === currentStep);
+            });
+            stepIndicators.forEach(step => {
+                const stepNum = parseInt(step.dataset.step);
+                step.classList.remove('active', 'completed');
+                if (stepNum < currentStep) step.classList.add('completed');
+                if (stepNum === currentStep) step.classList.add('active');
+            });
+        };
+        
         const updateOrderSummary = () => {
-            const getCheckedVal = (name) => {
-                const checked = customCakeForm.querySelector(`input[name="${name}"]:checked`);
-                return checked ? checked.value : 'N/A';
-            };
+            const getCheckedVal = (name) => customCakeForm.querySelector(`input[name="${name}"]:checked`)?.value || 'N/A';
             const getElVal = (id) => document.getElementById(id)?.value || 'N/A';
-            
             document.querySelector('#summary-size span').textContent = getCheckedVal('custom-cake-size');
             document.querySelector('#summary-flavor span').textContent = getCheckedVal('cake-flavor');
             document.querySelector('#summary-filling span').textContent = getCheckedVal('cake-filling');
@@ -92,38 +96,16 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('#summary-message span').textContent = getElVal('custom-message') || 'None';
             document.querySelector('#summary-colors span').textContent = getElVal('custom-colors') || 'Default';
             document.querySelector('#summary-decoration span').textContent = getElVal('custom-decoration') || 'None';
-            
             const checkedSize = customCakeForm.querySelector('input[name="custom-cake-size"]:checked');
             const basePrice = checkedSize ? parseInt(checkedSize.dataset.price || 0) : 0;
             document.getElementById('summary-price').textContent = basePrice.toLocaleString();
         };
 
-        const updateCustomFormView = () => {
-            // Update the form step content
-            formSteps.forEach(form => {
-                form.classList.toggle('active', parseInt(form.dataset.step) === currentStep);
-            });
-            // Update the step indicators at the top
-            stepIndicators.forEach(step => {
-                const stepNum = parseInt(step.dataset.step);
-                step.classList.remove('active', 'completed'); // Reset classes
-                if (stepNum < currentStep) {
-                    step.classList.add('completed');
-                }
-                if (stepNum === currentStep) {
-                    step.classList.add('active');
-                }
-            });
-            // If on the final step, refresh the summary
-            if (currentStep === 4) {
-                updateOrderSummary();
-            }
-        };
-
         nextButtons.forEach(button => {
             button.addEventListener('click', () => {
-                if (currentStep < formSteps.length) {
+                if (currentStep < 4) { // Only advance up to step 4
                     currentStep++;
+                    if (currentStep === 4) updateOrderSummary();
                     updateCustomFormView();
                 }
             });
@@ -138,31 +120,49 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Handle clicking on size/flavor options
-        const formOptions = customCakeForm.querySelectorAll('.size-option, .flavor-option');
-        formOptions.forEach(option => {
+        customCakeForm.querySelectorAll('.size-option, .flavor-option').forEach(option => {
             option.addEventListener('click', function() {
                 const input = this.querySelector('input[type="radio"]');
                 if (!input) return;
-
-                // Deselect all other options in the same group (e.g., all 'cake-flavor' options)
                 const groupName = input.name;
-                const optionsInGroup = customCakeForm.querySelectorAll(`input[name="${groupName}"]`);
-                optionsInGroup.forEach(radio => {
+                customCakeForm.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
                     radio.closest('.size-option, .flavor-option').classList.remove('selected');
                 });
-                
-                // Select the clicked option
                 this.classList.add('selected');
                 input.checked = true;
             });
         });
         
-        updateCustomFormView(); // Initial call to set the correct view on page load
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                customCakeForm.reset();
+                customCakeForm.querySelectorAll('.size-option, .flavor-option').forEach(opt => opt.classList.remove('selected'));
+                document.getElementById('custom-size-small').checked = true;
+                document.getElementById('custom-size-small').closest('.size-option').classList.add('selected');
+                document.getElementById('flavor-vanilla').checked = true;
+                document.getElementById('flavor-vanilla').closest('.flavor-option').classList.add('selected');
+                document.getElementById('filling-vanilla').checked = true;
+                document.getElementById('filling-vanilla').closest('.flavor-option').classList.add('selected');
+                currentStep = 1;
+                updateCustomFormView();
+            });
+        }
+        
+        customCakeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            updateOrderSummary();
+            let message = `New Custom Cake Order:\n\nCustomer: ${document.getElementById('custom-name').value}\nPhone: ${document.getElementById('custom-phone').value}\nEmail: ${document.getElementById('custom-email').value}\nDelivery Date (BS): ${document.getElementById('custom-date')?.value || 'Not specified'}\nPreferred Time: ${document.getElementById('custom-time')?.value || 'Not specified'}\n\n--- Cake Details ---\nSize: ${document.querySelector('#summary-size span').textContent}\nFlavor: ${document.querySelector('#summary-flavor span').textContent}\nFilling: ${document.querySelector('#summary-filling span').textContent}\nOccasion: ${document.querySelector('#summary-occasion span').textContent}\nMessage on Cake: ${document.querySelector('#summary-message span').textContent}\nColors: ${document.querySelector('#summary-colors span').textContent}\nDecoration: ${document.querySelector('#summary-decoration span').textContent}\n\nEstimated Price: NPR ${document.getElementById('summary-price').textContent}`;
+            const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            currentStep = 5;
+            updateCustomFormView();
+        });
+        
+        updateCustomFormView();
     }
 
-    // --- UNIFIED FORM SUBMISSION HANDLER ---
-    const handleFormSubmit = (e) => {
+    // --- UNIFIED FORM SUBMISSION HANDLER for other forms ---
+    const handleOtherForms = (e) => {
         e.preventDefault();
         const form = e.target;
         const formId = form.id;
@@ -176,42 +176,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const cakeName = form.querySelector('#modal-cake-name').value;
             subject = `Quick Order: ${cakeName}`;
             message = `New Quick Order:\n\nCake: ${cakeName}\nSize: ${form.querySelector('input[name="cake-size"]:checked').value}\n\n--- Customer Details ---\nName: ${form.querySelector('#modal-customer-name').value}\nPhone: ${form.querySelector('#modal-customer-phone').value}\nDelivery Date (BS): ${form.querySelector('#modal-delivery-date')?.value || 'Not specified'}\nPreferred Time: ${form.querySelector('#modal-delivery-time')?.value || 'Not specified'}`;
-        } else if (formId === 'custom-cake-form') {
-            subject = 'New Custom Cake Order';
-            updateOrderSummary(); // Make sure summary is up-to-date before sending
-            message = `New Custom Cake Order:\n\nCustomer: ${document.getElementById('custom-name').value}\nPhone: ${document.getElementById('custom-phone').value}\nEmail: ${document.getElementById('custom-email').value}\nDelivery Date (BS): ${document.getElementById('custom-date')?.value || 'Not specified'}\nPreferred Time: ${document.getElementById('custom-time')?.value || 'Not specified'}\n\n--- Cake Details ---\nSize: ${document.querySelector('#summary-size span').textContent}\nFlavor: ${document.querySelector('#summary-flavor span').textContent}\nFilling: ${document.querySelector('#summary-filling span').textContent}\nOccasion: ${document.querySelector('#summary-occasion span').textContent}\nMessage on Cake: ${document.querySelector('#summary-message span').textContent}\nColors: ${document.querySelector('#summary-colors span').textContent}\nDecoration: ${document.querySelector('#summary-decoration span').textContent}\n\nEstimated Price: NPR ${document.getElementById('summary-price').textContent}`;
         }
 
         if (message) {
             const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
-            
-            // Optional: You can also keep the mailto link if you want both
-            // const mailtoUrl = `mailto:${myEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
-            // window.location.href = mailtoUrl;
-
-            alert('Thank you! Your order has been prepared for WhatsApp. Please press send to confirm.');
+            alert('Thank you! Your request has been prepared for WhatsApp. Please press send to confirm.');
             form.reset();
-
-            // Handle post-submission UI changes
             if (formId === 'simple-order-form' && orderModal) {
                 orderModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
-            if (formId === 'custom-cake-form') {
-                // Reset to the first step after submission
-                currentStep = 1;
-                updateCustomFormView();
-            }
         }
     };
-
-    // Attach the single handler to all relevant forms
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) contactForm.addEventListener('submit', handleFormSubmit);
-
-    const simpleOrderForm = document.getElementById('simple-order-form');
-    if (simpleOrderForm) simpleOrderForm.addEventListener('submit', handleFormSubmit);
     
-    if (customCakeForm) customCakeForm.addEventListener('submit', handleFormSubmit);
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) contactForm.addEventListener('submit', handleOtherForms);
+    
+    const simpleOrderForm = document.getElementById('simple-order-form');
+    if (simpleOrderForm) simpleOrderForm.addEventListener('submit', handleOtherForms);
 });
