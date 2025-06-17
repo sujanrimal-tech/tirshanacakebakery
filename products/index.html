@@ -104,69 +104,66 @@
         </section>
     </main>
     
-    <!-- MODAL (POPUP) CODE -->
     <div id="order-modal" class="order-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-cake-title">Order Your Cake</h3>
-                <button id="close-modal" class="close-modal">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="cake-preview">
-                    <img id="modal-cake-image" src="" alt="Cake Preview">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modal-cake-title">Order Your Cake</h3>
+            <button id="close-modal" class="close-modal">×</button>
+        </div>
+        <div class="modal-body">
+            <!-- The image preview has been REMOVED -->
+            <form id="simple-order-form" novalidate>
+                <!-- Hidden input to store the cake name -->
+                <input type="hidden" id="modal-cake-name" name="cake-name">
+                
+                <div class="form-group">
+                    <label for="modal-customer-name">Your Name</label>
+                    <input type="text" id="modal-customer-name" class="form-control" required>
                 </div>
-                <form id="simple-order-form" novalidate>
-                    <!-- Hidden input to store the cake name for submission -->
-                    <input type="hidden" id="modal-cake-name" name="cake-name">
-                    
-                    <div class="form-group">
-                        <label for="modal-customer-name">Your Name</label>
-                        <input type="text" id="modal-customer-name" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="modal-customer-phone">Phone Number</label>
-                        <input type="tel" id="modal-customer-phone" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Select Size</label>
-                        <div class="size-options">
-                             <div class="size-option">
-                                <input type="radio" id="modal-size-small" name="cake-size" value="half Pound" checked>
-                                <label for="modal-size-small">Half Pound</label>
-                            </div>
-                            <div class="size-option">
-                                <input type="radio" id="modal-size-medium" name="cake-size" value="1 pound">
-                                <label for="modal-size-medium">1 Pound</label>
-                            </div>
-                            <div class="size-option">
-                                <input type="radio" id="modal-size-large" name="cake-size" value="2 pound">
-                                <label for="modal-size-large">2 Pounds</label>
-                            </div>
-                             <div class="size-option">
-                                <input type="radio" id="modal-size-extra-large" name="cake-size" value="3 pound">
-                                <label for="modal-size-extra-large">3 Pounds</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="modal-delivery-date">Delivery/Pickup Date</label>
-                        <input type="date" id="modal-delivery-date" class="form-control" placeholder="Select a date..." required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="modal-delivery-time">Preferred Time (Optional)</label>
-                        <input type="time" id="modal-delivery-time" class="form-control">
-                    </div>       
-                    
-                    <button type="submit" class="submit-btn">Place Quick Order</button>
-                </form>
-            </div>
+                
+                <div class="form-group">
+                    <label for="modal-customer-phone">Phone Number</label>
+                    <input type="tel" id="modal-customer-phone" class="form-control" required>
+                </div>
+                
+                <!-- NEW: Size selection as a compact dropdown -->
+                <div class="form-group">
+                    <label for="modal-cake-size">Select Size</label>
+                    <select id="modal-cake-size" name="cake-size" class="form-control">
+                        <option value="Half Pound">Half Pound</option>
+                        <option value="1 Pound">1 Pound</option>
+                        <option value="2 Pounds">2 Pounds</option>
+                        <option value="3 Pounds">3 Pounds</option>
+                    </select>
+                </div>
+
+                <!-- NEW: Field for message on cake -->
+                <div class="form-group">
+                    <label for="modal-message-on-cake">Message on Cake (Optional)</label>
+                    <input type="text" id="modal-message-on-cake" class="form-control" placeholder="e.g., Happy Birthday, Anjali!">
+                </div>
+                
+                <!-- NEW: Field for allergies/instructions -->
+                 <div class="form-group">
+                    <label for="modal-allergies">Allergies or Special Instructions (Optional)</label>
+                    <textarea id="modal-allergies" class="form-control" rows="3" placeholder="e.g., Please make it eggless, no nuts."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal-delivery-date">Delivery/Pickup Date</label>
+                    <input type="date" id="modal-delivery-date" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="modal-delivery-time">Preferred Time (Optional)</label>
+                    <input type="time" id="modal-delivery-time" class="form-control">
+                </div>       
+                
+                <button type="submit" class="submit-btn">Place Quick Order</button>
+            </form>
         </div>
     </div>
-    
+</div>
    
     <div class="floating-action-buttons">
         <a href="/products/" class="floating-btn order-now-float"><i class="fas fa-birthday-cake"></i><span>Order Now</span></a>
