@@ -1,262 +1,70 @@
-// FILE: ../js/script.js
-// This is the complete, final script with all features correctly merged.
+<!-- ▼▼▼ REPLACE YOUR MODAL HTML WITH THIS ▼▼▼ -->
+<div id="order-modal" class="order-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modal-cake-title">Order Your Cake</h3>
+            <button id="close-modal" class="close-modal">×</button>
+        </div>
+        <div class="modal-body">
+            <form id="simple-order-form" novalidate>
+                <!-- Hidden input to store the cake name -->
+                <input type="hidden" id="modal-cake-name" name="cake-name">
+                
+                <div class="form-group">
+                    <label>Select Size</label>
+                    <div class="size-options">
+                        <div class="size-option selected">
+                            <input type="radio" id="modal-size-small" name="cake-size" value="half Pound" checked>
+                            <label for="modal-size-small">half pound</label>
+                        </div>
+                        <div class="size-option">
+                            <input type="radio" id="modal-size-medium" name="cake-size" value="1 pound">
+                            <label for="modal-size-medium">1 pound</label>
+                        </div>
+                        <div class="size-option">
+                            <input type="radio" id="modal-size-large" name="cake-size" value="2 pound">
+                            <label for="modal-size-large">2 pound</label>
+                        </div>
+                        <div class="size-option">
+                            <input type="radio" id="modal-size-extra-large" name="cake-size" value="3 pound">
+                            <label for="modal-size-extra-large">3 pound</label>
+                        </div>
+                    </div>
+                </div>
 
-document.addEventListener('DOMContentLoaded', function() {
+                <div class="form-group">
+                    <label for="modal-cake-message">Message on Cake (Optional)</label>
+                    <input type="text" id="modal-cake-message" name="cake-message" class="form-control" placeholder="e.g., Happy Birthday, Ashish!">
+                </div>
 
-    const myEmail = 'sykodada3@gmail.com';
-    const myWhatsApp = '9779821183819';
+                <div class="form-group">
+                    <label for="modal-special-instructions">Allergies or Special Instructions (Optional)</label>
+                    <textarea id="modal-special-instructions" name="special-instructions" class="form-control" rows="3" placeholder="e.g., Please make it eggless, less sugar, etc."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal-customer-name">Your Name</label>
+                    <input type="text" id="modal-customer-name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal-customer-phone">Phone Number</label>
+                    <input type="tel" id="modal-customer-phone" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal-delivery-date">Delivery/Pickup Date (BS)</label>
+                    <input type="text" id="modal-delivery-date" class="form-control" placeholder="Select a date..." autocomplete="off" required>
+                </div>
 
-    // --- General UI Functions ---
-    const header = document.getElementById('header');
-    if (header) {
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        });
-    }
-    const mobileMenuBtn = document.querySelector('.mobile-menu');
-    const navUl = document.querySelector('header nav ul');
-    if (mobileMenuBtn && navUl) {
-        mobileMenuBtn.addEventListener('click', () => navUl.classList.toggle('active'));
-    }
-    const copyrightYear = document.getElementById('copyright-year');
-    if (copyrightYear) {
-        copyrightYear.textContent = new Date().getFullYear();
-    }
-
-     // --- Floating Action Button Logic ---
-    const floatingOrderBtn = document.getElementById('floating-order-button');
-    const closeFloatingBtn = document.getElementById('close-order-float');
-
-    if (floatingOrderBtn && closeFloatingBtn) {
-        // Check if the user has already closed the button in this session
-        if (sessionStorage.getItem('hideFloatingOrderBtn') === 'true') {
-            floatingOrderBtn.classList.add('hidden');
-        }
-
-        // Add event listener to the close button
-        closeFloatingBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent the link from being followed
-            e.stopPropagation(); // Stop the click from bubbling to the link
-            
-            floatingOrderBtn.classList.add('hidden'); // Hide the button
-            
-            // Remember this choice for the current browser session
-            sessionStorage.setItem('hideFloatingOrderBtn', 'true');
-        });
-    }
-    // ▲▲▲ END OF NEW SECTION ▲▲▲
-    
-    // --- Quick Order Modal Logic ---
-const orderModal = document.getElementById('order-modal');
-if (orderModal) {
-    const orderNowButtons = document.querySelectorAll('.order-now-btn');
-    const closeModalBtn = document.getElementById('close-modal');
-    const modalDateInput = document.getElementById("modal-delivery-date");
-
-    // Initialize the datepicker ONCE when the page loads
-    if (modalDateInput) {
-        modalDateInput.nepaliDatePicker({
-            ndpYear: true,
-            ndpMonth: true,
-            ndpYearCount: 10
-        });
-    }
-
-    // This handles what happens when you click ANY "Order Now" button
-    orderNowButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Get cake info from the button
-            const cakeName = this.dataset.cakeName;
-            document.getElementById('modal-cake-title').textContent = `Order: ${cakeName}`;
-            document.getElementById('modal-cake-name').value = cakeName;
-
-            // Set the date input's value to today's date
-            if (modalDateInput && typeof NepaliFunctions !== 'undefined' && NepaliFunctions.ConvertFromEnglishToNepaliDate) {
-                modalDateInput.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
-            }
-            
-            // Show the modal and lock the page
-            orderModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
-
-    // This part handles closing the modal
-    if (closeModalBtn) {
-        const closeModal = () => {
-            orderModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        };
-        closeModalBtn.addEventListener('click', closeModal);
-        orderModal.addEventListener('click', (e) => {
-            if (e.target === orderModal) closeModal();
-        });
-    }
-    
-    // This part handles selecting a size option
-    const modalSizeOptions = orderModal.querySelectorAll('.size-option');
-    modalSizeOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            modalSizeOptions.forEach(opt => opt.classList.remove('selected'));
-            this.classList.add('selected');
-            const radio = this.querySelector('input');
-            if (radio) radio.checked = true;
-        });
-    });
-}
-    // --- Custom Cake Multi-Step Form Logic (with Confirmation Step) ---
-    const customCakeForm = document.getElementById('custom-cake-form');
-    if (customCakeForm) {
-        const stepIndicators = customCakeForm.querySelectorAll('.custom-steps .step');
-        const formSteps = customCakeForm.querySelectorAll('.custom-form');
-        const nextButtons = customCakeForm.querySelectorAll('.next-btn');
-        const prevButtons = customCakeForm.querySelectorAll('.prev-btn');
-        const resetBtn = document.getElementById('reset-form-btn');
-        let currentStep = 1;
-
-        const updateCustomFormView = () => {
-            formSteps.forEach(form => {
-                form.classList.toggle('active', parseInt(form.dataset.step) === currentStep);
-            });
-            stepIndicators.forEach(step => {
-                const stepNum = parseInt(step.dataset.step);
-                step.classList.remove('active', 'completed');
-                if (stepNum < currentStep) step.classList.add('completed');
-                if (stepNum === currentStep) step.classList.add('active');
-            });
-        };
-        
-        const updateOrderSummary = () => {
-            const getCheckedVal = (name) => customCakeForm.querySelector(`input[name="${name}"]:checked`)?.value || 'N/A';
-            const getElVal = (id) => document.getElementById(id)?.value || 'N/A';
-            document.querySelector('#summary-size span').textContent = getCheckedVal('custom-cake-size');
-            document.querySelector('#summary-flavor span').textContent = getCheckedVal('cake-flavor');
-            document.querySelector('#summary-filling span').textContent = getCheckedVal('cake-filling');
-            document.querySelector('#summary-occasion span').textContent = getElVal('custom-occasion');
-            document.querySelector('#summary-message span').textContent = getElVal('custom-message') || 'None';
-            document.querySelector('#summary-colors span').textContent = getElVal('custom-colors') || 'Default';
-            document.querySelector('#summary-decoration span').textContent = getElVal('custom-decoration') || 'None';
-            const checkedSize = customCakeForm.querySelector('input[name="custom-cake-size"]:checked');
-            const basePrice = checkedSize ? parseInt(checkedSize.dataset.price || 0) : 0;
-            document.getElementById('summary-price').textContent = basePrice.toLocaleString();
-        };
-
-        nextButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                if (currentStep < 4) { // Only advance up to step 4
-                    currentStep++;
-                    if (currentStep === 4) updateOrderSummary();
-                    updateCustomFormView();
-                }
-            });
-        });
-
-        prevButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                if (currentStep > 1) {
-                    currentStep--;
-                    updateCustomFormView();
-                }
-            });
-        });
-        
-        customCakeForm.querySelectorAll('.size-option, .flavor-option').forEach(option => {
-            option.addEventListener('click', function() {
-                const input = this.querySelector('input[type="radio"]');
-                if (!input) return;
-                const groupName = input.name;
-                customCakeForm.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
-                    radio.closest('.size-option, .flavor-option').classList.remove('selected');
-                });
-                this.classList.add('selected');
-                input.checked = true;
-            });
-        });
-        
-        if (resetBtn) {
-            resetBtn.addEventListener('click', () => {
-                customCakeForm.reset();
-                customCakeForm.querySelectorAll('.size-option, .flavor-option').forEach(opt => opt.classList.remove('selected'));
-                document.getElementById('custom-size-small').checked = true;
-                document.getElementById('custom-size-small').closest('.size-option').classList.add('selected');
-                document.getElementById('flavor-vanilla').checked = true;
-                document.getElementById('flavor-vanilla').closest('.flavor-option').classList.add('selected');
-                document.getElementById('filling-vanilla').checked = true;
-                document.getElementById('filling-vanilla').closest('.flavor-option').classList.add('selected');
-                currentStep = 1;
-                updateCustomFormView();
-            });
-        }
-        
-        customCakeForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            updateOrderSummary();
-            let message = `New Custom Cake Order:\n\nCustomer: ${document.getElementById('custom-name').value}\nPhone: ${document.getElementById('custom-phone').value}\nEmail: ${document.getElementById('custom-email').value}\nDelivery Date (BS): ${document.getElementById('custom-date')?.value || 'Not specified'}\nPreferred Time: ${document.getElementById('custom-time')?.value || 'Not specified'}\n\n--- Cake Details ---\nSize: ${document.querySelector('#summary-size span').textContent}\nFlavor: ${document.querySelector('#summary-flavor span').textContent}\nFilling: ${document.querySelector('#summary-filling span').textContent}\nOccasion: ${document.querySelector('#summary-occasion span').textContent}\nMessage on Cake: ${document.querySelector('#summary-message span').textContent}\nColors: ${document.querySelector('#summary-colors span').textContent}\nDecoration: ${document.querySelector('#summary-decoration span').textContent}\n\nEstimated Price: NPR ${document.getElementById('summary-price').textContent}`;
-            const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-            currentStep = 5;
-            updateCustomFormView();
-        });
-        
-        updateCustomFormView();
-    }
-
-    // --- UNIFIED FORM SUBMISSION HANDLER for other forms ---
-const handleOtherForms = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const formId = form.id;
-    let subject = 'New Inquiry from Website';
-    let message = '';
-
-    if (formId === 'contact-form') {
-        subject = `Contact: ${form.querySelector('#contact-subject').value}`;
-        message = `New Contact Form Submission:\n\nName: ${form.querySelector('#contact-name').value}\nEmail: ${form.querySelector('#contact-email').value}\nPhone: ${form.querySelector('#contact-phone').value}\nSubject: ${subject}\nMessage: ${form.querySelector('#contact-message').value}`;
-    
-    } else if (formId === 'simple-order-form') {
-        const cakeName = form.querySelector('#modal-cake-name').value;
-        subject = `Quick Order: ${cakeName}`;
-
-        // === SAFELY GET VALUES FROM ALL FIELDS ===
-        // ▼▼▼ THE FIX IS HERE ▼▼▼
-        const checkedSizeInput = form.querySelector('input[name="cake-size"]:checked');
-        const selectedSize = checkedSizeInput ? checkedSizeInput.value : 'No size selected'; // Provide a default if nothing is checked
-        
-        const cakeMessageInput = form.querySelector('#modal-cake-message');
-        const specialInstructionsInput = form.querySelector('#modal-special-instructions');
-        const cakeMessage = cakeMessageInput ? cakeMessageInput.value.trim() : '';
-        const specialInstructions = specialInstructionsInput ? specialInstructionsInput.value.trim() : '';
-        // ==========================================
-
-        // Now, build the message safely
-        message = `New Quick Order:\n\nCake: ${cakeName}\nSize: ${selectedSize}`;
-
-        if (cakeMessage) {
-            message += `\nMessage on Cake: ${cakeMessage}`;
-        }
-        if (specialInstructions) {
-            message += `\nSpecial Instructions: ${specialInstructions}`;
-        }
-
-        message += `\n\n--- Customer Details ---\nName: ${form.querySelector('#modal-customer-name').value}\nPhone: ${form.querySelector('#modal-customer-phone').value}\nDelivery Date (BS): ${form.querySelector('#modal-delivery-date')?.value || 'Not specified'}\nPreferred Time: ${form.querySelector('#modal-delivery-time')?.value || 'Not specified'}`;
-    }
-
-    if (message) {
-        const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, '_blank');
-        alert('Thank you! Your request has been prepared for WhatsApp. Please press send to confirm.');
-        form.reset();
-        if (formId === 'simple-order-form' && orderModal) {
-            // This part will now be reached without crashing
-            orderModal.classList.remove('active');
-            document.body.style.overflow = 'auto'; 
-        }
-    }
-};
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) contactForm.addEventListener('submit', handleOtherForms);
-    
-    const simpleOrderForm = document.getElementById('simple-order-form');
-    if (simpleOrderForm) simpleOrderForm.addEventListener('submit', handleOtherForms);
-});
+                <div class="form-group">
+                    <label for="modal-delivery-time">Preferred Time (Optional)</label>
+                    <input type="time" id="modal-delivery-time" class="form-control">
+                </div>       
+                
+                <button type="submit" class="submit-btn">Place Quick Order</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- ▲▲▲ END OF REPLACEMENT BLOCK ▲▲▲ -->
