@@ -47,46 +47,64 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // ▲▲▲ END OF NEW SECTION ▲▲▲
     
-    // --- Quick Order Modal Logic (RESTORED) ---
-    const orderModal = document.getElementById('order-modal');
-    if (orderModal) {
-        const orderNowButtons = document.querySelectorAll('.order-now-btn');
-        const closeModalBtn = document.getElementById('close-modal');
+    // --- Quick Order Modal Logic ---
+const orderModal = document.getElementById('order-modal');
+if (orderModal) {
+    const orderNowButtons = document.querySelectorAll('.order-now-btn');
+    const closeModalBtn = document.getElementById('close-modal');
+    const modalDateInput = document.getElementById("modal-delivery-date");
 
-        orderNowButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const cakeName = this.dataset.cakeName;
-                const cakeImg = this.dataset.cakeImg;
-                document.getElementById('modal-cake-title').textContent = `Order: ${cakeName}`;
-                
-                document.getElementById('modal-cake-name').value = cakeName;
-                orderModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        if (closeModalBtn) {
-            const closeModal = () => {
-                orderModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            };
-            closeModalBtn.addEventListener('click', closeModal);
-            orderModal.addEventListener('click', (e) => {
-                if (e.target === orderModal) closeModal();
-            });
-        }
-        
-        const modalSizeOptions = orderModal.querySelectorAll('.size-option');
-        modalSizeOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                modalSizeOptions.forEach(opt => opt.classList.remove('selected'));
-                this.classList.add('selected');
-                const radio = this.querySelector('input');
-                if (radio) radio.checked = true;
-            });
+    // Initialize the datepicker ONCE when the page loads
+    if (modalDateInput) {
+        modalDateInput.nepaliDatePicker({
+            ndpYear: true,
+            ndpMonth: true,
+            ndpYearCount: 10
         });
     }
 
+    // This handles what happens when you click ANY "Order Now" button
+    orderNowButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Get cake info from the button
+            const cakeName = this.dataset.cakeName;
+            document.getElementById('modal-cake-title').textContent = `Order: ${cakeName}`;
+            document.getElementById('modal-cake-name').value = cakeName;
+
+            // Set the date input's value to today's date
+            if (modalDateInput && typeof NepaliFunctions !== 'undefined' && NepaliFunctions.ConvertFromEnglishToNepaliDate) {
+                modalDateInput.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
+            }
+            
+            // Show the modal and lock the page
+            orderModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // This part handles closing the modal
+    if (closeModalBtn) {
+        const closeModal = () => {
+            orderModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+        closeModalBtn.addEventListener('click', closeModal);
+        orderModal.addEventListener('click', (e) => {
+            if (e.target === orderModal) closeModal();
+        });
+    }
+    
+    // This part handles selecting a size option
+    const modalSizeOptions = orderModal.querySelectorAll('.size-option');
+    modalSizeOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            modalSizeOptions.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            const radio = this.querySelector('input');
+            if (radio) radio.checked = true;
+        });
+    });
+}
     // --- Custom Cake Multi-Step Form Logic (with Confirmation Step) ---
     const customCakeForm = document.getElementById('custom-cake-form');
     if (customCakeForm) {
