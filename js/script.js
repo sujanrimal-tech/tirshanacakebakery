@@ -24,6 +24,29 @@ document.addEventListener('DOMContentLoaded', function() {
         copyrightYear.textContent = new Date().getFullYear();
     }
 
+     // --- Floating Action Button Logic ---
+    const floatingOrderBtn = document.getElementById('floating-order-button');
+    const closeFloatingBtn = document.getElementById('close-order-float');
+
+    if (floatingOrderBtn && closeFloatingBtn) {
+        // Check if the user has already closed the button in this session
+        if (sessionStorage.getItem('hideFloatingOrderBtn') === 'true') {
+            floatingOrderBtn.classList.add('hidden');
+        }
+
+        // Add event listener to the close button
+        closeFloatingBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent the link from being followed
+            e.stopPropagation(); // Stop the click from bubbling to the link
+            
+            floatingOrderBtn.classList.add('hidden'); // Hide the button
+            
+            // Remember this choice for the current browser session
+            sessionStorage.setItem('hideFloatingOrderBtn', 'true');
+        });
+    }
+    // ▲▲▲ END OF NEW SECTION ▲▲▲
+    
     // --- Quick Order Modal Logic (RESTORED) ---
     const orderModal = document.getElementById('order-modal');
     if (orderModal) {
