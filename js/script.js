@@ -1,9 +1,10 @@
+// FINAL SCRIPT.JS WITH BS DATE PICKER
 document.addEventListener('DOMContentLoaded', function() {
 
-    const myEmail = 'sykodada3@gmail.com'; // IMPORTANT: REPLACE WITH YOUR EMAIL
-    const myWhatsApp = '9779821183819'; // IMPORTANT: REPLACE WITH YOUR WHATSAPP NUMBER
+    const myEmail = 'sykodada3@gmail.com';
+    const myWhatsApp = '9779821183819';
 
-    // --- General UI Functions (These are safe on any page) ---
+    // --- General UI Functions ---
     const header = document.getElementById('header');
     if (header) {
         window.addEventListener('scroll', function() {
@@ -24,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Quick Order Modal Logic ---
-    // This entire block only runs if an element with id="order-modal" is on the page
     const orderModal = document.getElementById('order-modal');
     if (orderModal) {
         const orderNowButtons = document.querySelectorAll('.order-now-btn');
@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('modal-cake-image').src = cakeImg;
                 document.getElementById('modal-cake-name').value = cakeName;
 
+                // INITIALIZE BS DATE PICKER WHEN MODAL OPENS
                 const modalDateInput = document.getElementById('modal-delivery-date');
                 if (modalDateInput && typeof modalDateInput.nepaliDatePicker === 'function') {
                     modalDateInput.nepaliDatePicker();
@@ -72,9 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Custom Cake Multi-Step Form Logic ---
-    // This entire block only runs if an element with id="custom-cake-form" is on the page
     const customCakeForm = document.getElementById('custom-cake-form');
     if (customCakeForm) {
+        // INITIALIZE BS DATE PICKER FOR THE CUSTOM FORM
         const customDateInput = document.getElementById('custom-date');
         if (customDateInput && typeof customDateInput.nepaliDatePicker === 'function') {
             customDateInput.nepaliDatePicker();
@@ -172,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         } else if (formId === 'simple-order-form') {
             const cakeName = form.querySelector('#modal-cake-name').value;
-            const deliveryTime = form.querySelector('#modal-delivery-time').value;
+            const deliveryTime = form.querySelector('#modal-delivery-time')?.value;
             subject = `Quick Order: ${cakeName}`;
             
             message = `New Quick Order:\n\n` +
@@ -221,14 +222,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.style.overflow = 'auto';
             }
             if (formId === 'custom-cake-form') {
-                // To reset the form, we need a reference to the 'currentStep' variable
-                // This is a bit tricky, so we'll just reload the page for simplicity and robustness
                 window.location.reload(); 
             }
         }
     };
     
-    // Attach handler to all potential forms on the site
     const contactForm = document.getElementById('contact-form');
     if (contactForm) contactForm.addEventListener('submit', handleFormSubmit);
 
@@ -237,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (customCakeForm) customCakeForm.addEventListener('submit', handleFormSubmit);
 
-    // --- Animation on scroll (safe on any page) ---
+    // --- Animation on scroll ---
     const animatedElements = document.querySelectorAll('.section-title, .product-card, .service-card, .gallery-item, .about-content, .about-image');
     if (animatedElements.length > 0) {
         animatedElements.forEach(element => {
@@ -258,6 +256,6 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         window.addEventListener('scroll', animateOnScroll);
-        animateOnScroll(); // Run once on load
+        animateOnScroll();
     }
 });
