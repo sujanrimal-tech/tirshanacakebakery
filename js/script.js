@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Quick Order Modal Logic ---
     const orderModal = document.getElementById('order-modal');
     if (orderModal) {
+         console.log("Checkpoint 1: Modal HTML found. Script is running.");
         const orderNowButtons = document.querySelectorAll('.order-now-btn');
         const closeModalBtn = document.getElementById('close-modal');
         const modalDateInput = document.getElementById("modal-delivery-date");
@@ -52,12 +53,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 ndpYear: true,
                 ndpMonth: true,
                 ndpYearCount: 10
-            });
+         console.log(`Checkpoint 2: Found ${orderNowButtons.length} 'Order Now' buttons.`);
         }
 
         // This handles what happens when you click ANY "Order Now" button
         orderNowButtons.forEach(button => {
             button.addEventListener('click', function() {
+                console.log("Checkpoint 3: 'Order Now' button was CLICKED!");
                 // Get cake info from the button's data attributes
                 const cakeName = this.dataset.cakeName;
                 document.getElementById('modal-cake-title').textContent = `Order: ${cakeName}`;
