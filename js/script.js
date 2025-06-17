@@ -1,10 +1,44 @@
-// CLEAN SCRIPT.JS - NO DATE PICKER LOGIC
+// FINAL SCRIPT.JS - ROBUST AND CORRECT
 document.addEventListener('DOMContentLoaded', function() {
 
     const myEmail = 'sykodada3@gmail.com';
     const myWhatsApp = '9779821183819';
 
-    // --- General UI Functions ---
+    // --- Function to initialize Date Pickers ---
+    // This function is designed to run only after the external library is confirmed to be loaded.
+    function initializeDatePickers() {
+        const modalDateInput = document.getElementById('modal-delivery-date');
+        if (modalDateInput) {
+            modalDateInput.nepaliDatePicker({
+                ndpYear: true,
+                ndpMonth: true,
+                ndpYearCount: 10
+            });
+        }
+
+        const customDateInput = document.getElementById('custom-date');
+        if (customDateInput) {
+            customDateInput.nepaliDatePicker({
+                ndpYear: true,
+                ndpMonth: true,
+                ndpYearCount: 10
+            });
+            // Set today's date on page load for the custom form
+            customDateInput.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
+        }
+    }
+
+    // --- Library Loader Check ---
+    // This robust check waits for the Nepali Date Picker library to be ready.
+    let ndpInterval = setInterval(function() {
+        // The library is ready when its 'NepaliFunctions' object is available
+        if (typeof window.NepaliFunctions !== 'undefined' && window.NepaliFunctions.ConvertFromEnglishToNepaliDate) {
+            clearInterval(ndpInterval); // Stop checking, the library is loaded
+            initializeDatePickers();    // Now it's safe to run our date picker code
+        }
+    }, 100); // Check for the library every 100ms
+
+    // --- General UI Functions (These run immediately and are safe) ---
     const header = document.getElementById('header');
     if (header) {
         window.addEventListener('scroll', function() {
@@ -38,6 +72,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('modal-cake-title').textContent = `Order: ${cakeName}`;
                 document.getElementById('modal-cake-image').src = cakeImg;
                 document.getElementById('modal-cake-name').value = cakeName;
+
+                // Set date to today when modal opens, but only if the library is ready
+                const ndp_modal_date = document.getElementById("modal-delivery-date");
+                if (ndp_modal_date && typeof window.NepaliFunctions !== 'undefined') {
+                    ndp_modal_date.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
+                }
 
                 orderModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -95,11 +135,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const basePrice = checkedSize ? parseInt(checkedSize.dataset.price || 0) : 0;
             document.getElementById('summary-price').textContent = basePrice;
         };
+
         const updateCustomForm = () => {
             customSteps.forEach((step, index) => step.classList.toggle('active', index + 1 <= currentStep));
             customForms.forEach(form => form.classList.toggle('active', parseInt(form.dataset.step) === currentStep));
             if (currentStep === 4) updateOrderSummary();
         };
+
         nextButtons.forEach(button => {
             button.addEventListener('click', () => {
                 if (currentStep < customSteps.length) {
@@ -108,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+
         prevButtons.forEach(button => {
             button.addEventListener('click', () => {
                 if (currentStep > 1) {
@@ -116,6 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+
         const allOptions = customCakeForm.querySelectorAll('.size-option, .flavor-option');
         allOptions.forEach(option => {
             option.addEventListener('click', function() {
