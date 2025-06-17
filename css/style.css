@@ -1126,10 +1126,11 @@ footer {
     padding: 1rem;
 }
 
+/* THIS IS THE SYNTAX FIX */
 .order-modal.active {
     display: flex; 
 }
-
+    
 .modal-content {
     background-color: white;
     margin: auto;
@@ -1140,6 +1141,8 @@ footer {
     animation: fadeInUp 0.5s ease;
     overflow: hidden;
 }
+
+/* --- END OF REPLACEMENT --- */
 
 .modal-header {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -1183,4 +1186,60 @@ footer {
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.floating-btn {
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #e83e8c; /* A nice pink, matching your theme */
+color: #fff;
+text-decoration: none;
+border-radius: 50px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+transition: all 0.3s ease;
+position: relative;
+}
+.floating-btn:hover {
+transform: scale(1.1);
+box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+/* Specific style for the "Order Now" button /
+.order-now-float {
+padding: 10px 20px 10px 15px; / More padding for text */
+}
+.order-now-float i {
+margin-right: 8px;
+}
+/* Specific style for the smaller Facebook button /
+.facebook-float {
+width: 45px;
+height: 45px;
+font-size: 1.2rem;
+align-self: flex-end; / Aligns it to the right */
+}
+/* The close button on the "Order Now" icon /
+.close-float-btn {
+position: absolute;
+top: -8px;
+right: -5px;
+background-color: #333;
+color: #fff;
+border: 2px solid #fff;
+border-radius: 50%;
+width: 24px;
+height: 24px;
+font-size: 16px;
+line-height: 20px;
+text-align: center;
+cursor: pointer;
+opacity: 0; / Hidden by default */
+transition: opacity 0.3s ease;
+}
+/* Show the close button on hover */
+.order-now-float:hover .close-float-btn {
+opacity: 1;
+}
+/* A class to hide the button when closed */
+.floating-btn.hidden {
+display: none;
 }
