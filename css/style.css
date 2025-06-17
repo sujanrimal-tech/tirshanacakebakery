@@ -1160,7 +1160,7 @@ footer {
     margin: auto;
     border-radius: 15px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    max-width: 650px; /* Made slightly wider for the two-column layout */
+    max-width: 480px; /* Made slightly wider for the two-column layout */
     width: 100%;
     animation: fadeInUp 0.5s ease;
     overflow: hidden;
@@ -1197,35 +1197,20 @@ footer {
 
 .modal-body {
     padding: 2rem;
-    display: flex;
-    gap: 2rem;
+   
 }
 
-.cake-preview {
-    flex-basis: 40%;
-}
-
-.cake-preview img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
+.
 
 #simple-order-form {
     flex-basis: 60%;
 }
 
-/* Responsive adjustments for modal */
-@media (max-width: 600px) {
-    .modal-body {
-        flex-direction: column;
-    }
+
     .modal-content {
        max-width: 90%;
     }
-}
+
 .floating-action-buttons {
     position: fixed; /* Keeps it on the screen when scrolling */
     right: 20px;
