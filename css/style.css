@@ -1127,7 +1127,7 @@ footer {
 }
 
 .order-modal.active {
-    display: flex; /* Shown with JS */
+    display: flex; 
 }
 
 .modal-content {
