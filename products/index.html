@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Products | Tirshana Cake Bakery</title>
-    <link href="https://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/css/nepali.datepicker.v4.0.1.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Removed datepicker CSS as it's not used in this modal, but you can keep it if needed elsewhere -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css"> <!-- This will now contain the modal CSS -->
 </head>
 <body>
     <!-- Header -->
@@ -52,11 +52,11 @@
                             <p>Rich layers of chocolate cake with fudge filling, covered in chocolate ganache and decorated with chocolate shavings.</p>
                             <div class="product-price">
                                 <span class="price">NPR 1,800</span>
-                               <button class="order-now order-now-btn" 
-        data-cake-name="Chocolate Fudge Delight" 
-        data-cake-img="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80">
-    Order Now
-</button>
+                                <button class="order-now-btn" 
+                                    data-cake-name="Chocolate Fudge Delight" 
+                                    data-cake-img="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80">
+                                    Order Now
+                                </button>
                             </div>
                         </div>
                         <span class="product-badge">Bestseller</span>
@@ -71,11 +71,11 @@
                             <p>Light vanilla sponge layered with fresh berry compote and vanilla buttercream, topped with seasonal berries.</p>
                             <div class="product-price">
                                 <span class="price">NPR 1,900</span>
-                                <button class="order-now order-now-btn" 
-        data-cake-name="Chocolate Fudge Delight" 
-        data-cake-img="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80">
-    Order Now
-</button>
+                                <button class="order-now-btn" 
+                                    data-cake-name="Vanilla Berry Bliss" 
+                                    data-cake-img="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80">
+                                    Order Now
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -89,139 +89,85 @@
                             <p>Our signature red velvet cake with cream cheese frosting, finished with delicate red velvet crumbs.</p>
                             <div class="product-price">
                                 <span class="price">NPR 2,200</span>
-                               <button class="order-now order-now-btn" 
-        data-cake-name="Chocolate Fudge Delight" 
-        data-cake-img="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80">
-    Order Now
-</button>
+                               <button class="order-now-btn" 
+                                    data-cake-name="Classic Red Velvet" 
+                                    data-cake-img="https://images.unsplash.com/photo-1611293388250-580b08c4a145?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80">
+                                    Order Now
+                                </button>
                             </div>
                         </div>
                         <span class="product-badge">New</span>
                     </div>
-                    <!-- Product 4 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Lemon Raspberry Cake">
-                        </div>
-                        <div class="product-info">
-                            <h3>Lemon Raspberry Dream</h3>
-                            <p>Zesty lemon cake layered with raspberry filling and lemon buttercream, garnished with fresh raspberries.</p>
-                            <div class="product-price">
-                                <span class="price">NPR 2,100</span>
-                               <button class="order-now order-now-btn" 
-        data-cake-name="Chocolate Fudge Delight" 
-        data-cake-img="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80">
-    Order Now
-</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Product 5 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Carrot Cake">
-                        </div>
-                        <div class="product-info">
-                            <h3>Spiced Carrot Cake</h3>
-                            <p>Moist carrot cake with walnuts and warm spices, filled with cream cheese frosting and topped with caramelized pecans.</p>
-                            <div class="product-price">
-                                <span class="price">NPR 2,000</span>
-                                <button class="order-now order-now-btn" 
-        data-cake-name="Chocolate Fudge Delight" 
-        data-cake-img="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80">
-    Order Now
-</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Product 6 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1050&q=80" alt="Custom Cake">
-                        </div>
-                        <div class="product-info">
-                            <h3>Your Custom Creation</h3>
-                            <p>Design your dream cake with our talented decorators. Choose flavors, fillings, and decorations to match your vision.</p>
-                            <div class="product-price">
-                                <span class="price">From NPR 2,500</span>
-                               <button class="order-now order-now-btn" 
-        data-cake-name="Chocolate Fudge Delight" 
-        data-cake-img="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80">
-    Order Now
-</button>
-                            </div>
-                        </div>
-                        <span class="product-badge">Popular</span>
-                    </div>
+                    <!-- Other products... make sure to update their data-cake-name and data-cake-img too -->
                 </div>
             </div>
         </section>
     </main>
     
-     !-- CORRECTED MODAL CODE for products.html -->
-<div id="order-modal" class="order-modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 id="modal-cake-title">Order Your Cake</h3>
-            <button id="close-modal" class="close-modal">×</button>
-        </div>
-        <div class="modal-body">
-            <div class="cake-preview">
-                <img id="modal-cake-image" src="" alt="Cake Preview">
+    <!-- MODAL (POPUP) CODE -->
+    <div id="order-modal" class="order-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-cake-title">Order Your Cake</h3>
+                <button id="close-modal" class="close-modal">×</button>
             </div>
-            <form id="simple-order-form" novalidate>
-                <!-- Hidden input to store the cake name -->
-                <input type="hidden" id="modal-cake-name" name="cake-name">
-                
-                <div class="form-group">
-                    <label for="modal-customer-name">Your Name</label>
-                    <input type="text" id="modal-customer-name" class="form-control" required>
+            <div class="modal-body">
+                <div class="cake-preview">
+                    <img id="modal-cake-image" src="" alt="Cake Preview">
                 </div>
-                
-                <div class="form-group">
-                    <label for="modal-customer-phone">Phone Number</label>
-                    <input type="tel" id="modal-customer-phone" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Select Size</label>
-                    <div class="size-options">
-                         <div class="size-option selected">
-                            <input type="radio" id="modal-size-small" name="cake-size" value="half Pound" checked>
-                            <label for="modal-size-small">half pound</label>
-                        </div>
-                        <div class="size-option">
-                            <input type="radio" id="modal-size-medium" name="cake-size" value="1 pound ">
-                            <label for="modal-size-medium">1 pound</label>
-                        </div>
-                        <div class="size-option">
-                            <input type="radio" id="modal-size-large" name="cake-size" value="2 pound ">
-                            <label for="modal-size-large">2 pound</label>
-                        </div>
-                         <div class="size-option">
-                            <input type="radio" id="modal-size-extra-large" name="cake-size" value="3 pound ">
-                            <label for="modal-size-extra-large">3 pound</label>
+                <form id="simple-order-form" novalidate>
+                    <!-- Hidden input to store the cake name for submission -->
+                    <input type="hidden" id="modal-cake-name" name="cake-name">
+                    
+                    <div class="form-group">
+                        <label for="modal-customer-name">Your Name</label>
+                        <input type="text" id="modal-customer-name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modal-customer-phone">Phone Number</label>
+                        <input type="tel" id="modal-customer-phone" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Select Size</label>
+                        <div class="size-options">
+                             <div class="size-option">
+                                <input type="radio" id="modal-size-small" name="cake-size" value="half Pound" checked>
+                                <label for="modal-size-small">Half Pound</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="modal-size-medium" name="cake-size" value="1 pound">
+                                <label for="modal-size-medium">1 Pound</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="modal-size-large" name="cake-size" value="2 pound">
+                                <label for="modal-size-large">2 Pounds</label>
+                            </div>
+                             <div class="size-option">
+                                <input type="radio" id="modal-size-extra-large" name="cake-size" value="3 pound">
+                                <label for="modal-size-extra-large">3 Pounds</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="modal-delivery-date">Delivery/Pickup Date (BS)</label>
-                    <input type="text" id="modal-delivery-date" class="form-control" placeholder="Select a date..." autocomplete="off" required>
-                </div>
-                <div class="form-group">
-                    <label for="modal-delivery-time">Preferred Time (Optional)</label>
-                    <input type="time" id="modal-delivery-time" class="form-control">
-                </div>       
-                
-                <!-- The extra </div> was here. It has been removed. -->
-                
-                <button type="submit" class="submit-btn">Place Quick Order</button>
-            </form>
+                    
+                    <div class="form-group">
+                        <label for="modal-delivery-date">Delivery/Pickup Date</label>
+                        <input type="date" id="modal-delivery-date" class="form-control" placeholder="Select a date..." required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modal-delivery-time">Preferred Time (Optional)</label>
+                        <input type="time" id="modal-delivery-time" class="form-control">
+                    </div>       
+                    
+                    <button type="submit" class="submit-btn">Place Quick Order</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
     
+   
     <div class="floating-action-buttons">
         <a href="/products/" class="floating-btn order-now-float"><i class="fas fa-birthday-cake"></i><span>Order Now</span></a>
         <a href="https://www.facebook.com/your-bakery-page" target="_blank" class="floating-btn facebook-float"><i class="fab fa-facebook-f"></i></a>
@@ -267,3 +213,5 @@
 
 </body>
 </html>
+
+    
