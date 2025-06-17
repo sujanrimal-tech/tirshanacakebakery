@@ -261,24 +261,9 @@
             <p>© <span id="copyright-year">2024</span> Tirshana Cake Bakery. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
         </div>
     </footer>
-    <script src="https://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/js/nepali.datepicker.v4.0.1.min.js"></script>
+    
     <script src="../js/script.js"></script>
 
-    <script type="text/javascript">
-      window.onload = function() {
-        var modalDate = document.getElementById("modal-delivery-date");
-        modalDate.nepaliDatePicker({
-            ndpYear: true,
-            ndpMonth: true
-        });
-        // Set today's date whenever the modal is shown
-        var orderButtons = document.querySelectorAll('.order-now-btn');
-        orderButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                modalDate.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
-            });
-        });
-      };
-    </script>
+
 </body>
 </html>
