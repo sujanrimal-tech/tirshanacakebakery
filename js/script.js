@@ -1,4 +1,4 @@
-// FINAL SCRIPT - MULTI-STEP FORM LOGIC CORRECTED
+// FINAL SCRIPT - DEFINITIVE FIX FOR MULTI-STEP FORM
 document.addEventListener('DOMContentLoaded', function() {
 
     const myEmail = 'sykodada3@gmail.com';
@@ -34,11 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
             button.addEventListener('click', function() {
                 const cakeName = this.dataset.cakeName;
                 const cakeImg = this.dataset.cakeImg;
-
                 document.getElementById('modal-cake-title').textContent = `Order: ${cakeName}`;
                 document.getElementById('modal-cake-image').src = cakeImg;
                 document.getElementById('modal-cake-name').value = cakeName;
-
                 orderModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             });
@@ -55,10 +53,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        const sizeOptions = orderModal.querySelectorAll('.size-option');
-        sizeOptions.forEach(option => {
+        const modalSizeOptions = orderModal.querySelectorAll('.size-option');
+        modalSizeOptions.forEach(option => {
             option.addEventListener('click', function() {
-                sizeOptions.forEach(opt => opt.classList.remove('selected'));
+                modalSizeOptions.forEach(opt => opt.classList.remove('selected'));
                 this.classList.add('selected');
                 const radio = this.querySelector('input');
                 if (radio) radio.checked = true;
@@ -69,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Custom Cake Multi-Step Form Logic ---
     const customCakeForm = document.getElementById('custom-cake-form');
     if (customCakeForm) {
-        // *** MOVED VARIABLE DEFINITIONS TO THE TOP - THIS IS THE FIX ***
         const customSteps = customCakeForm.querySelectorAll('.step');
         const customForms = customCakeForm.querySelectorAll('.custom-form');
         const nextButtons = customCakeForm.querySelectorAll('.next-btn');
@@ -98,14 +95,17 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         const updateCustomForm = () => {
-            customSteps.forEach((step, index) => step.classList.toggle('active', index + 1 <= currentStep));
-            customForms.forEach(form => form.classList.toggle('active', parseInt(form.dataset.step) === currentStep));
+            customSteps.forEach((step, index) => {
+                step.classList.toggle('active', index + 1 === currentStep);
+            });
+            customForms.forEach(form => {
+                form.classList.toggle('active', parseInt(form.dataset.step) === currentStep);
+            });
             if (currentStep === 4) {
                 updateOrderSummary();
             }
         };
 
-        // *** MOVED EVENT LISTENERS AFTER FUNCTION DEFINITIONS - THIS IS THE FIX ***
         nextButtons.forEach(button => {
             button.addEventListener('click', () => {
                 if (currentStep < customSteps.length) {
@@ -123,24 +123,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-
-        const allOptions = customCakeForm.querySelectorAll('.size-option, .flavor-option');
-        allOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const input = this.querySelector('input');
+        
+        // ** THIS WAS THE BUGGY SECTION - IT IS NOW FIXED **
+        const formOptions = customCakeForm.querySelectorAll('.size-option, .flavor-option');
+        formOptions.forEach(option => {
+            option.addEventListener('click', function(event) {
+                // This prevents the click from bubbling up and causing issues
+                event.stopPropagation(); 
+                
+                const input = this.querySelector('input[type="radio"]');
                 if (!input) return;
+
+                // Deselect all other options in the same group
                 const groupName = input.name;
-                customCakeForm.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
-                    const parentOption = radio.closest('.size-option, .flavor-option');
-                    if (parentOption) parentOption.classList.remove('selected');
+                const optionsInGroup = customCakeForm.querySelectorAll(`input[name="${groupName}"]`);
+                optionsInGroup.forEach(radio => {
+                    radio.closest('.size-option, .flavor-option').classList.remove('selected');
                 });
+                
+                // Select the clicked option
                 this.classList.add('selected');
                 input.checked = true;
             });
         });
         
-        // Initial call to set up the form view correctly
-        updateCustomForm();
+        updateCustomForm(); // Initial call to set the view
     }
 
     // --- UNIFIED FORM SUBMISSION HANDLER ---
@@ -156,14 +163,16 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (formId === 'simple-order-form') {
             const cakeName = form.querySelector('#modal-cake-name').value;
             const deliveryTime = form.querySelector('#modal-delivery-time')?.value;
+            const deliveryDate = form.querySelector('#modal-delivery-date')?.value;
             subject = `Quick Order: ${cakeName}`;
-            message = `New Quick Order:\n\nCake: ${cakeName}\nSize: ${form.querySelector('input[name="cake-size"]:checked').value}\n\n--- Customer Details ---\nName: ${form.querySelector('#modal-customer-name').value}\nPhone: ${form.querySelector('#modal-customer-phone').value}\nDelivery Date (BS): ${form.querySelector('#modal-delivery-date').value}`;
+            message = `New Quick Order:\n\nCake: ${cakeName}\nSize: ${form.querySelector('input[name="cake-size"]:checked').value}\n\n--- Customer Details ---\nName: ${form.querySelector('#modal-customer-name').value}\nPhone: ${form.querySelector('#modal-customer-phone').value}\nDelivery Date (BS): ${deliveryDate}`;
             if (deliveryTime) message += `\nPreferred Time: ${deliveryTime}`;
         } else if (formId === 'custom-cake-form') {
             subject = 'New Custom Cake Order';
             const deliveryTime = document.getElementById('custom-time')?.value;
-            updateOrderSummary(); // Run one last time to get final details
-            message = `New Custom Cake Order:\n\nCustomer: ${document.getElementById('custom-name').value}\nPhone: ${document.getElementById('custom-phone').value}\nEmail: ${document.getElementById('custom-email').value}\nDelivery Date (BS): ${document.getElementById('custom-date').value}`;
+            const deliveryDate = document.getElementById('custom-date')?.value;
+            updateOrderSummary();
+            message = `New Custom Cake Order:\n\nCustomer: ${document.getElementById('custom-name').value}\nPhone: ${document.getElementById('custom-phone').value}\nEmail: ${document.getElementById('custom-email').value}\nDelivery Date (BS): ${deliveryDate}`;
             if (deliveryTime) message += `\nPreferred Time: ${deliveryTime}`;
             message += `\n\n--- Cake Details ---\nSize: ${document.getElementById('summary-size').querySelector('span').textContent}\nFlavor: ${document.getElementById('summary-flavor').querySelector('span').textContent}\nFilling: ${document.getElementById('summary-filling').querySelector('span').textContent}\nOccasion: ${document.getElementById('summary-occasion').querySelector('span').textContent}\nMessage on Cake: ${document.getElementById('summary-message').querySelector('span').textContent}\nColors: ${document.getElementById('summary-colors').querySelector('span').textContent}\nDecoration: ${document.getElementById('summary-decoration').querySelector('span').textContent}\n\nEstimated Price: NPR ${document.getElementById('summary-price').textContent}`;
         }
