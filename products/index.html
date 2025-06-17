@@ -263,21 +263,7 @@
     </footer>
     <script src="https://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/js/nepali.datepicker.v4.0.1.min.js"></script>
     <script src="../js/script.js"></script>
-    <script>
-        // Simplified datepicker initialization for this page
-        document.addEventListener('DOMContentLoaded', function() {
-            const orderButtons = document.querySelectorAll('.order-now-btn');
-            orderButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const modalDateInput = document.getElementById("modal-delivery-date");
-                    if (modalDateInput && !modalDateInput.hasAttribute('data-nepali-datepicker-initialized')) {
-                        modalDateInput.nepaliDatePicker({ ndpYear: true, ndpMonth: true, ndpYearCount: 10 });
-                        modalDateInput.setAttribute('data-nepali-datepicker-initialized', 'true');
-                    }
-                });
-            });
-        });
-    </script>
+
     <script type="text/javascript">
       window.onload = function() {
         var modalDate = document.getElementById("modal-delivery-date");
