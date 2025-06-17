@@ -220,18 +220,17 @@
     <!-- This script path is correct for a file inside the /custom-order/ folder -->
     <script src="../js/script.js"></script>
 
-    <script type="text/javascript">
-      window.onload = function() {
-        var customDateInput = document.getElementById("custom-date");
-        if (customDateInput) {
-            customDateInput.nepaliDatePicker({
-                ndpYear: true,
-                ndpMonth: true,
-                ndpYearCount: 10
-            });
-            if (typeof NepaliFunctions !== 'undefined') {
-                customDateInput.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
-            }
+  <script type="text/javascript">
+  window.onload = function() {
+    var customDateInput = document.getElementById("custom-date");
+    if (customDateInput) {
+        customDateInput.nepaliDatePicker({
+            ndpYear: true,
+            ndpMonth: true,
+            ndpYearCount: 10
+        });
+           
+        
         }
       };
     </script>
