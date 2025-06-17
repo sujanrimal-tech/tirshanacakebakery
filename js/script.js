@@ -1,4 +1,4 @@
-// FINAL SCRIPT.JS WITH BS DATE PICKER
+// FINAL ROBUST SCRIPT.JS
 document.addEventListener('DOMContentLoaded', function() {
 
     const myEmail = 'sykodada3@gmail.com';
@@ -39,11 +39,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('modal-cake-image').src = cakeImg;
                 document.getElementById('modal-cake-name').value = cakeName;
 
-                // INITIALIZE BS DATE PICKER WHEN MODAL OPENS
-                const modalDateInput = document.getElementById('modal-delivery-date');
-                if (modalDateInput && typeof modalDateInput.nepaliDatePicker === 'function') {
-                    modalDateInput.nepaliDatePicker();
-                }
+                // ** ADDED TIMEOUT FOR RELIABILITY **
+                setTimeout(function() {
+                    const modalDateInput = document.getElementById('modal-delivery-date');
+                    if (modalDateInput && typeof modalDateInput.nepaliDatePicker === 'function') {
+                        modalDateInput.nepaliDatePicker();
+                    }
+                }, 100); // Wait 100ms for library to load
 
                 orderModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -75,11 +77,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Custom Cake Multi-Step Form Logic ---
     const customCakeForm = document.getElementById('custom-cake-form');
     if (customCakeForm) {
-        // INITIALIZE BS DATE PICKER FOR THE CUSTOM FORM
-        const customDateInput = document.getElementById('custom-date');
-        if (customDateInput && typeof customDateInput.nepaliDatePicker === 'function') {
-            customDateInput.nepaliDatePicker();
-        }
+        // ** ADDED TIMEOUT FOR RELIABILITY **
+        setTimeout(function() {
+            const customDateInput = document.getElementById('custom-date');
+            if (customDateInput && typeof customDateInput.nepaliDatePicker === 'function') {
+                customDateInput.nepaliDatePicker();
+            }
+        }, 100); // Wait 100ms for library to load
 
         const customSteps = customCakeForm.querySelectorAll('.step');
         const customForms = customCakeForm.querySelectorAll('.custom-form');
@@ -97,7 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const el = document.getElementById(id);
                 return el ? el.value : 'N/A';
             };
-
             document.getElementById('summary-size').querySelector('span').textContent = getCheckedVal('custom-cake-size');
             document.getElementById('summary-flavor').querySelector('span').textContent = getCheckedVal('cake-flavor');
             document.getElementById('summary-filling').querySelector('span').textContent = getCheckedVal('cake-filling');
@@ -105,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('summary-message').querySelector('span').textContent = getElVal('custom-message') || 'None';
             document.getElementById('summary-colors').querySelector('span').textContent = getElVal('custom-colors') || 'Default';
             document.getElementById('summary-decoration').querySelector('span').textContent = getElVal('custom-decoration') || 'None';
-            
             const checkedSize = customCakeForm.querySelector('input[name="custom-cake-size"]:checked');
             const basePrice = checkedSize ? parseInt(checkedSize.dataset.price || 0) : 0;
             document.getElementById('summary-price').textContent = basePrice;
@@ -141,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const input = this.querySelector('input');
                 if (!input) return;
                 const groupName = input.name;
-                
                 customCakeForm.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
                     const parentOption = radio.closest('.size-option, .flavor-option');
                     if (parentOption) parentOption.classList.remove('selected');
@@ -150,7 +151,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 input.checked = true;
             });
         });
-        
         updateCustomForm();
     }
 
@@ -161,78 +161,41 @@ document.addEventListener('DOMContentLoaded', function() {
         const formId = form.id;
         let subject = 'New Inquiry from Website';
         let message = '';
-        
         if (formId === 'contact-form') {
             subject = `Contact: ${form.querySelector('#contact-subject').value}`;
-            message = `New Contact Form Submission:\n\n` +
-                      `Name: ${form.querySelector('#contact-name').value}\n` +
-                      `Email: ${form.querySelector('#contact-email').value}\n` +
-                      `Phone: ${form.querySelector('#contact-phone').value}\n` +
-                      `Subject: ${subject}\n` +
-                      `Message: ${form.querySelector('#contact-message').value}`;
-        
+            message = `New Contact Form Submission:\n\nName: ${form.querySelector('#contact-name').value}\nEmail: ${form.querySelector('#contact-email').value}\nPhone: ${form.querySelector('#contact-phone').value}\nSubject: ${subject}\nMessage: ${form.querySelector('#contact-message').value}`;
         } else if (formId === 'simple-order-form') {
             const cakeName = form.querySelector('#modal-cake-name').value;
             const deliveryTime = form.querySelector('#modal-delivery-time')?.value;
             subject = `Quick Order: ${cakeName}`;
-            
-            message = `New Quick Order:\n\n` +
-                      `Cake: ${cakeName}\n` +
-                      `Size: ${form.querySelector('input[name="cake-size"]:checked').value}\n\n` +
-                      `--- Customer Details ---\n` +
-                      `Name: ${form.querySelector('#modal-customer-name').value}\n` +
-                      `Phone: ${form.querySelector('#modal-customer-phone').value}\n` +
-                      `Delivery Date (BS): ${form.querySelector('#modal-delivery-date').value}`;
+            message = `New Quick Order:\n\nCake: ${cakeName}\nSize: ${form.querySelector('input[name="cake-size"]:checked').value}\n\n--- Customer Details ---\nName: ${form.querySelector('#modal-customer-name').value}\nPhone: ${form.querySelector('#modal-customer-phone').value}\nDelivery Date (BS): ${form.querySelector('#modal-delivery-date').value}`;
             if (deliveryTime) message += `\nPreferred Time: ${deliveryTime}`;
-
         } else if (formId === 'custom-cake-form') {
             subject = 'New Custom Cake Order';
             const deliveryTime = document.getElementById('custom-time')?.value;
             updateOrderSummary();
-            
-            message = `New Custom Cake Order:\n\n` +
-                      `Customer: ${document.getElementById('custom-name').value}\n` +
-                      `Phone: ${document.getElementById('custom-phone').value}\n` +
-                      `Email: ${document.getElementById('custom-email').value}\n` +
-                      `Delivery Date (BS): ${document.getElementById('custom-date').value}`;
+            message = `New Custom Cake Order:\n\nCustomer: ${document.getElementById('custom-name').value}\nPhone: ${document.getElementById('custom-phone').value}\nEmail: ${document.getElementById('custom-email').value}\nDelivery Date (BS): ${document.getElementById('custom-date').value}`;
             if (deliveryTime) message += `\nPreferred Time: ${deliveryTime}`;
-                      
-            message += `\n\n--- Cake Details ---\n` +
-                      `Size: ${document.getElementById('summary-size').querySelector('span').textContent}\n` +
-                      `Flavor: ${document.getElementById('summary-flavor').querySelector('span').textContent}\n` +
-                      `Filling: ${document.getElementById('summary-filling').querySelector('span').textContent}\n` +
-                      `Occasion: ${document.getElementById('summary-occasion').querySelector('span').textContent}\n` +
-                      `Message on Cake: ${document.getElementById('summary-message').querySelector('span').textContent}\n` +
-                      `Colors: ${document.getElementById('summary-colors').querySelector('span').textContent}\n` +
-                      `Decoration: ${document.getElementById('summary-decoration').querySelector('span').textContent}\n\n` +
-                      `Estimated Price: NPR ${document.getElementById('summary-price').textContent}`;
+            message += `\n\n--- Cake Details ---\nSize: ${document.getElementById('summary-size').querySelector('span').textContent}\nFlavor: ${document.getElementById('summary-flavor').querySelector('span').textContent}\nFilling: ${document.getElementById('summary-filling').querySelector('span').textContent}\nOccasion: ${document.getElementById('summary-occasion').querySelector('span').textContent}\nMessage on Cake: ${document.getElementById('summary-message').querySelector('span').textContent}\nColors: ${document.getElementById('summary-colors').querySelector('span').textContent}\nDecoration: ${document.getElementById('summary-decoration').querySelector('span').textContent}\n\nEstimated Price: NPR ${document.getElementById('summary-price').textContent}`;
         }
-
         if (message) {
             const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
             const mailtoUrl = `mailto:${myEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
             window.location.href = mailtoUrl;
-
             alert('Thank you! Your request has been prepared. Please complete the action in WhatsApp or your email client.');
             form.reset();
-            
             if (formId === 'simple-order-form' && orderModal) {
                 orderModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
-            if (formId === 'custom-cake-form') {
-                window.location.reload(); 
-            }
+            if (formId === 'custom-cake-form') window.location.reload();
         }
     };
-    
     const contactForm = document.getElementById('contact-form');
     if (contactForm) contactForm.addEventListener('submit', handleFormSubmit);
-
     const simpleOrderForm = document.getElementById('simple-order-form');
     if (simpleOrderForm) simpleOrderForm.addEventListener('submit', handleFormSubmit);
-    
     if (customCakeForm) customCakeForm.addEventListener('submit', handleFormSubmit);
 
     // --- Animation on scroll ---
@@ -243,7 +206,6 @@ document.addEventListener('DOMContentLoaded', function() {
             element.style.transform = 'translateY(30px)';
             element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         });
-
         const animateOnScroll = () => {
             animatedElements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
@@ -254,7 +216,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         };
-        
         window.addEventListener('scroll', animateOnScroll);
         animateOnScroll();
     }
