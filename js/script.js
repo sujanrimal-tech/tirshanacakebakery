@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const myWhatsApp = '9779821183819';
 
     // --- Function to initialize Date Pickers ---
-    // This function is designed to run only after the external library is confirmed to be loaded.
     function initializeDatePickers() {
         const modalDateInput = document.getElementById('modal-delivery-date');
         if (modalDateInput) {
@@ -23,22 +22,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 ndpMonth: true,
                 ndpYearCount: 10
             });
-            // Set today's date on page load for the custom form
             customDateInput.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
         }
     }
 
     // --- Library Loader Check ---
-    // This robust check waits for the Nepali Date Picker library to be ready.
     let ndpInterval = setInterval(function() {
-        // The library is ready when its 'NepaliFunctions' object is available
         if (typeof window.NepaliFunctions !== 'undefined' && window.NepaliFunctions.ConvertFromEnglishToNepaliDate) {
-            clearInterval(ndpInterval); // Stop checking, the library is loaded
-            initializeDatePickers();    // Now it's safe to run our date picker code
+            clearInterval(ndpInterval);
+            initializeDatePickers();
         }
-    }, 100); // Check for the library every 100ms
+    }, 100);
 
-    // --- General UI Functions (These run immediately and are safe) ---
+    // --- General UI Functions ---
     const header = document.getElementById('header');
     if (header) {
         window.addEventListener('scroll', function() {
@@ -73,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('modal-cake-image').src = cakeImg;
                 document.getElementById('modal-cake-name').value = cakeName;
 
-                // Set date to today when modal opens, but only if the library is ready
                 const ndp_modal_date = document.getElementById("modal-delivery-date");
                 if (ndp_modal_date && typeof window.NepaliFunctions !== 'undefined') {
                     ndp_modal_date.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
@@ -219,5 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (contactForm) contactForm.addEventListener('submit', handleFormSubmit);
     const simpleOrderForm = document.getElementById('simple-order-form');
     if (simpleOrderForm) simpleOrderForm.addEventListener('submit', handleFormSubmit);
+
+    // *** THIS IS THE CORRECTED LINE ***
     if (customCakeForm) customCakeForm.addEventListener('submit', handleFormSubmit);
 });
