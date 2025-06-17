@@ -1126,7 +1126,9 @@ footer {
     padding: 1rem;
 }
 
-.order-modal.active 
+.order-modal.active {
+    display: flex; /* This is the missing line that makes the modal visible */
+}
     
 .modal-content {
     background-color: white;
@@ -1138,6 +1140,7 @@ footer {
     animation: fadeInUp 0.5s ease;
     overflow: hidden;
 }
+
 
 .modal-header {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
