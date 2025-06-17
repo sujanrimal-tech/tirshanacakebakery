@@ -203,6 +203,22 @@
     </footer>
 
     <script src="../js/script.js"></script>
+    <script type="text/javascript">
+      window.onload = function() {
+        var customDateInput = document.getElementById("custom-date");
+        if (customDateInput) {
+            customDateInput.nepaliDatePicker({
+                ndpYear: true,
+                ndpMonth: true,
+                ndpYearCount: 10
+            });
+            // Set today's date on page load
+             if (typeof NepaliFunctions !== 'undefined') {
+                customDateInput.value = NepaliFunctions.ConvertFromEnglishToNepaliDate(new Date());
+             }
+        }
+      };
+    </script>
     
 </body>
 </html>
