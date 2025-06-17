@@ -3,65 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Story - Tirshana Cake Bakery</title>
-    <meta name="description" content="Learn about the passion and dedication behind Tirshana Cake Bakery.">
+    <title>About Us | Tirshana Cake Bakery</title>
+    <meta name="description" content="Learn the story behind Tirshana Cake Bakery, our passion for baking, and our commitment to using the finest local ingredients.">
     
-    <!-- Google Fonts: Playfair Display & Montserrat -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    
-    <!-- Main Stylesheet (Note the ../ path) -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="main-header">
-        <div class="container">
-            <a href="../index.html" class="logo">Tirshana</a>
-            <nav class="main-nav">
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-birthday-cake"></i> Tirshana Bakery
+            </a>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
                 <ul>
-                    <li><a href="../about/" class="active">About</a></li>
-                    <li><a href="../services/">Services</a></li>
-                    <li><a href="../products/">Products</a></li>
-                    <li><a href="../custom-order/">Custom Order</a></li>
-                    <li><a href="../contact/">Contact</a></li>
+                  <li><a class="nav-link" href="/">Home</a></li>
+                    <li><a class="nav-link" href="/about/">About</a></li>
+                    <li><a class="nav-link" href="/products">Products</a></li>
+                    <li><a class="nav-link" href="/services/">Services</a></li>
+                    <li><a class="nav-link" href="/gallery/">Gallery</a></li>
+                    <li><a class="nav-link" href="/contact/">Contact</a></li>
+                    <li><a href="/custom-order/" class="cta-button">Custom Order</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="page-header">
-            <div class="container">
-                <h1>Our Sweet Story</h1>
-            </div>
-        </section>
-        
-        <section class="about-section">
-            <div class="container">
+        <!-- Full About Section -->
+        <section class="about section" id="about">
+            <div class="section-container about-grid">
                 <div class="about-content">
-                    <div class="about-image">
-                        <img src="../assets/images/about-us.jpg" alt="Tirshana the baker with a beautiful cake">
-                    </div>
-                    <div class="about-text">
-                        <h3>A Passion for Baking</h3>
-                        <p>Welcome to Tirshana Cake Bakery, a place where passion meets perfection. Our journey began with a simple love for creating beautiful, delicious things. Located in the heart of Bharatpur, we believe that a cake isn't just a dessert—it's a centerpiece of joy, celebration, and precious memories.</p>
-                        <p>We pour our hearts into every creation, using only the finest ingredients, time-honored techniques, and a touch of modern artistry. Thank you for choosing us to be a part of your special moments. We look forward to baking for you!</p>
-                    </div>
+                    <h2 class="section-title">Our Story</h2>
+                    <p>Tirshana Cake Bakery was founded in 2078 with a simple mission: to create extraordinary cakes that bring joy to every celebration. What began as a small home bakery has blossomed into a beloved local institution.</p>
+                    <p>Our master bakers combine traditional techniques with innovative flavors to create cakes that are as beautiful as they are delicious. Every cake is made from scratch using premium ingredients sourced from local farmers whenever possible.</p>
+                    <p>We believe that cakes are more than just desserts - they're the centerpiece of life's sweetest moments. That's why we pour our hearts into every creation that leaves our kitchen. From elegant wedding cakes to fun and whimsical birthday designs, our passion is evident in every slice.</p>
+                    <a href="custom-order.html" class="cta-button">Order Your Custom Cake</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Baker decorating cake">
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div class="container">
-            <a href="../index.html" class="logo-footer">Tirshana</a>
-            <p>Bharatpur-13, Chitwan, Nepal</p>
-            <div class="footer-contact">
-                <a href="mailto:tirshanapoudel0@gmail.com">tirshanapoudel0@gmail.com</a> | <a href="tel:9845645446">9845645446</a>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <a href="index.html" class="footer-logo">
+                    <i class="fas fa-birthday-cake"></i> Tirshana Bakery
+                </a>
+                <p>Creating sweet memories since 2078. Our artisan bakery specializes in custom cakes for all occasions.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
             </div>
-            <p class="copyright">© 2025 Tirshana Cake Bakery. All Rights Reserved.</p>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                       <li><a href="/about/">About Us</a></li>
+                    <li><a href="/products/">Our Cakes</a></li>
+                    <li><a href="/custom-order/">Custom Order</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Sweet Newsletter</h3>
+                <p>Subscribe to receive updates and special offers!</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="copyright-year">2024</span> Tirshana Cake Bakery. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
         </div>
     </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

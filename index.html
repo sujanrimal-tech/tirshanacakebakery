@@ -3,30 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tirshana Cake Bakery - Artisan Cakes in Bharatpur, Chitwan</title>
-    <meta name="description" content="Welcome to Tirshana Cake Bakery! We create delicious custom cakes and baked goods for all occasions in Bharatpur, Chitwan.">
+    <title>Tirshana Cake Bakery | Handcrafted Cakes</title>
+    <meta name="description" content="Welcome to Tirshana Cake Bakery. We create delicious, handcrafted cakes with the finest ingredients for birthdays, weddings, and all special occasions.">
     
-    <!-- Google Fonts: Playfair Display & Montserrat -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    
-    <!-- Main Stylesheet -->
+    <!-- External CSS & Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
     <!-- Header -->
-    <header class="main-header">
-        <div class="container">
-            <a href="index.html" class="logo">Tirshana</a>
-            <nav class="main-nav">
+    <header id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-birthday-cake"></i> Tirshana Bakery
+            </a>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
                 <ul>
-                    <li><a href="about/">About</a></li>
-                    <li><a href="services/">Services</a></li>
-                    <li><a href="products/">Products</a></li>
-                    <li><a href="custom-order/">Custom Order</a></li>
-                    <li><a href="contact/">Contact</a></li>
+                    <li><a class="nav-link" href="/">Home</a></li>
+                    <li><a class="nav-link" href="/about/">About</a></li>
+                    <li><a class="nav-link" href="/products/">Products</a></li>
+                    <li><a class="nav-link" href="/services/">Services</a></li>
+                    <li><a class="nav-link" href="/gallery/">Gallery</a></li>
+                    <li><a class="nav-link" href="/contact/">Contact</a></li>
+                    <li><a href="/custom-order/" class="cta-button">Custom Order</a></li>
                 </ul>
             </nav>
         </div>
@@ -34,145 +37,189 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="container">
-                <h1>Artistry in Every Slice</h1>
-                <p>Exquisite, handcrafted cakes for moments you'll always cherish.</p>
-                <a href="custom-order/" class="btn btn-primary">Design Your Cake</a>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Tirshana Cakes Crafted with Love</h1>
+                <p>Indulge in our handcrafted cakes made with the finest ingredients. Perfect for birthdays, weddings, and all your special occasions.</p>
+                <a href="#products" class="hero-button">Explore Our Cakes</a>
             </div>
         </section>
 
-        <!-- Featured Products Section -->
-        <section id="products" class="products-section">
-            <div class="container">
-                <h2 class="section-title">Our Signature Creations</h2>
-                <div class="products-grid">
-                    <div class="product-card">
-                        <img src="assets/images/cake1.jpg" alt="Chocolate Fudge Cake">
-                        <div class="card-content">
-                            <h3>Chocolate Fudge Cake</h3>
-                            <p class="price">Starts at NPR 1200</p>
-                            <a href="custom-order/" class="btn btn-secondary">Order Now</a>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="assets/images/cake2.jpg" alt="Red Velvet Delight">
-                        <div class="card-content">
-                            <h3>Red Velvet Delight</h3>
-                            <p class="price">Starts at NPR 1400</p>
-                            <a href="custom-order/" class="btn btn-secondary">Order Now</a>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="assets/images/cake3.jpg" alt="Fruity Fresh Cream">
-                        <div class="card-content">
-                            <h3>Fruity Fresh Cream</h3>
-                            <p class="price">Starts at NPR 1500</p>
-                            <a href="custom-order/" class="btn btn-secondary">Order Now</a>
-                        </div>
-                    </div>
+        <!-- About Section (Snippet) -->
+        <section class="about section" id="about">
+            <div class="section-container about-grid">
+                <div class="about-content">
+                    <h2 class="section-title">Our Story</h2>
+                    <p>Tirshana Cake Bakery was founded in 2078 with a simple mission: to create extraordinary cakes that bring joy to every celebration. What began as a small home bakery has blossomed into a beloved local institution.</p>
+                    <p>We believe that cakes are more than just desserts - they're the centerpiece of life's sweetest moments. That's why we pour our hearts into every creation.</p>
+                    <a href="about.html" class="cta-button">Learn More About Us</a>
                 </div>
-                 <div class="text-center" style="margin-top: 3rem;">
-                    <a href="products/" class="btn btn-primary">View All Products</a>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Baker decorating cake">
                 </div>
             </div>
         </section>
-                <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials-section">
-            <div class="container">
-                <h2 class="section-title">What Our Customers Say</h2>
-                <div class="testimonials-grid">
-                    
-                    <!-- Testimonial 1 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-rating">
-                            ★★★★★
-                        </div>
-                        <blockquote>
-                            "The chocolate fudge cake was absolutely divine! The best I've had in Chitwan. The texture was perfect and it was so rich. Will definitely be ordering again!"
-                        </blockquote>
-                        <cite>— Anjali S.</cite>
-                    </div>
 
-                    <!-- Testimonial 2 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-rating">
-                            ★★★★★
+        <!-- Products Section (Featured) -->
+        <section class="products section" id="products">
+            <div class="section-container">
+                <h2 class="section-title center">Our Signature Cakes</h2>
+                <p style="text-align: center; max-width: 600px; margin: 0 auto 3rem;">Discover our collection of handcrafted cakes, each designed to make your celebrations unforgettable.</p>
+                
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Chocolate Fudge Cake">
                         </div>
-                        <blockquote>
-                            "I ordered a custom Fruity Fresh Cream cake for a birthday, and it was a huge hit! It looked stunning and tasted even better. Thank you, Tirshana Bakery!"
-                        </blockquote>
-                        <cite>— Ramesh P.</cite>
-                    </div>
-
-                    <!-- Testimonial 3 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-rating">
-                            ★★★★☆
+                        <div class="product-info">
+                            <h3>Chocolate Fudge Delight</h3>
+                            <p>Rich layers of chocolate cake with fudge filling, covered in chocolate ganache.</p>
                         </div>
-                        <blockquote>
-                            "The Red Velvet Delight was delicious and the cream cheese frosting was spot on. Delivery was on time. I'm giving 4 stars only because I wish it was a little bigger."
-                        </blockquote>
-                        <cite>— Sunita G.</cite>
+                        <span class="product-badge">Bestseller</span>
                     </div>
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Vanilla Berry Cake">
+                        </div>
+                        <div class="product-info">
+                            <h3>Vanilla Berry Bliss</h3>
+                            <p>Light vanilla sponge layered with fresh berry compote and vanilla buttercream.</p>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1611293388250-580b08c4a145?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80" alt="Red Velvet Cake">
+                        </div>
+                        <div class="product-info">
+                            <h3>Classic Red Velvet</h3>
+                            <p>Our signature red velvet cake with cream cheese frosting and delicate crumbs.</p>
+                        </div>
+                        <span class="product-badge">New</span>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="products.html" class="hero-button">View All Products</a>
+                </div>
+            </div>
+        </section>
 
+        <!-- Testimonials Section -->
+        <section class="testimonials section">
+            <div class="section-container">
+                <h2 class="section-title center">Sweet Words From Our Customers</h2>
+                <div class="testimonial-slider">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"The birthday cake I ordered for my daughter was absolutely stunning! Not only did it look beautiful, but it tasted even better than I could have imagined. The entire party was raving about it!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah Johnson">
+                            </div>
+                            <div class="author-info">
+                                <h4>Anjali S.</h4>
+                                <p>Mother of the Birthday Girl</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-            <!-- Customer Feedback Section -->
-        <section id="feedback" class="feedback-section">
-            <div class="container">
-                <h2 class="section-title">Share Your Feedback</h2>
-                <p style="text-align: center; margin-bottom: 2rem;">We value your opinion! Please let us know what you think and rate your experience.</p>
-                
-                <!-- NOTE: This is a frontend-only form. To make it work, you will need backend code (like PHP or Node.js) to process the submission. -->
-                <form action="#" method="POST" class="feedback-form">
+        <!-- Order Modal -->
+    <div id="order-modal" class="order-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-cake-title">Order Your Cake</h3>
+                <button id="close-modal" class="close-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="cake-preview">
+                    <img id="modal-cake-image" src="" alt="Cake Preview">
+                </div>
+                <form id="simple-order-form" novalidate>
+                    <!-- Hidden input to store the cake name -->
+                    <input type="hidden" id="modal-cake-name" name="cake-name">
+                    
                     <div class="form-group">
-                        <label for="customer-name">Your Name</label>
-                        <input type="text" id="customer-name" name="customerName" placeholder="e.g., Jane Doe" required>
+                        <label for="modal-customer-name">Your Name</label>
+                        <input type="text" id="modal-customer-name" class="form-control" required>
                     </div>
-
+                    
                     <div class="form-group">
-                        <label for="customer-email">Your Email (Optional)</label>
-                        <input type="email" id="customer-email" name="customerEmail" placeholder="e.g., jane.doe@example.com">
+                        <label for="modal-customer-phone">Phone Number</label>
+                        <input type="tel" id="modal-customer-phone" class="form-control" required>
                     </div>
-
-                    <div class="form-group rating-group">
-                        <label>Your Rating</label>
-                        <div class="rating-stars">
-                            <!-- The inputs are in reverse order to make the CSS work with the ~ selector -->
-                            <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="5 stars">★</label>
-                            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">★</label>
-                            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">★</label>
-                            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">★</label>
-                            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">★</label>
+                    
+                    <div class="form-group">
+                        <label>Select Size</label>
+                        <div class="size-options">
+                             <div class="size-option selected">
+                                <input type="radio" id="modal-size-small" name="cake-size" value="Small (1 lb)" checked>
+                                <label for="modal-size-small">Small (1 lb)</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="modal-size-medium" name="cake-size" value="Medium (2 lb)">
+                                <label for="modal-size-medium">Medium (2 lb)</label>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="form-group full-width">
-                        <label for="customer-feedback">Your Feedback</label>
-                        <textarea id="customer-feedback" name="customerFeedback" rows="6" placeholder="Tell us about your cake and your experience..." required></textarea>
+                    <div class="form-group">
+                        <label for="modal-delivery-date">Delivery/Pickup Date</label>
+                        <input type="date" id="modal-delivery-date" class="form-control" required>
                     </div>
-
-                    <div class="form-group full-width text-center">
-                        <button type="submit" class="btn btn-primary">Submit Feedback</button>
-                    </div>
+                    
+                    <button type="submit" class="submit-btn">Place Quick Order</button>
                 </form>
             </div>
-        </section>
+        </div>
+    </div>
 
     <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <a href="index.html" class="logo-footer">Tirshana</a>
-            <p>Bharatpur-13, Chitwan, Nepal</p>
-            <div class="footer-contact">
-                <a href="mailto:tirshanapoudel0@gmail.com">tirshanapoudel0@gmail.com</a> | <a href="tel:9845645446">9845645446</a>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <a href="/" class="footer-logo">
+                    <i class="fas fa-birthday-cake"></i> Tirshana Bakery
+                </a>
+                <p>Creating sweet memories since 2078. Our artisan bakery specializes in custom cakes for all occasions.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
             </div>
-            <p class="copyright">© 2024 Tirshana Cake Bakery. All Rights Reserved.</p>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/about/">About Us</a></li>
+                    <li><a href="/products/">Our Cakes</a></li>
+                    <li><a href="/custom-order/">Custom Order</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Sweet Newsletter</h3>
+                <p>Subscribe to receive updates and special offers!</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="copyright-year">2025</span> Tirshana Cake Bakery. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
         </div>
     </footer>
 
+    <!-- External JS -->
+    <script src="js/script.js"></script>
 </body>
 </html>

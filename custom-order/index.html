@@ -1,69 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Custom Order - Tirshana Cake Bakery</title>
-    <meta name="description" content="Design your dream cake! Fill out our form to begin your custom order.">
-   
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Your Custom Cake | Tirshana Cake Bakery</title>
+    <meta name="description" content="Create a completely custom cake for your special occasion. Choose your size, flavor, filling, and design with our easy-to-use form.">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-     <header class="main-header">
-        <div class="container">
-            <a href="../index.html" class="logo">Tirshana</a>
-            <nav class="main-nav">
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-birthday-cake"></i> Tirshana Bakery
+            </a>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
                 <ul>
-                    <!-- NOTE: The 'active' class is added to the current page link -->
-                    <li><a href="../about/" class="active">About</a></li>
-                    <li><a href="../services/">Services</a></li>
-                    <li><a href="../products/">Products</a></li>
-                    <li><a href="../custom-order/">Custom Order</a></li>
-                    <li><a href="../contact/">Contact</a></li>
+                    <li><a class="nav-link" href="/">Home</a></li>
+                    <li><a class="nav-link" href="/about/">About</a></li>
+                    <li><a class="nav-link" href="/products">Products</a></li>
+                    <li><a class="nav-link" href="/services/">Services</a></li>
+                    <li><a class="nav-link" href="/gallery/">Gallery</a></li>
+                    <li><a class="nav-link" href="/contact/">Contact</a></li>
+                    <li><a href="/custom-order/" class="cta-button">Custom Order</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    
     <main>
-        <section class="page-header">
-            <div class="container"><h1>Design Your Masterpiece</h1></div>
-        </section>
-        <section class="custom-design-section">
-            <div class="container form-container">
-                <p class="subtitle">Use this form to tell us your ideas. We'll contact you to confirm details and pricing. No online payment required.</p>
-                <!-- IMPORTANT: Replace with your Formspree Endpoint -->
-                <form id="order-form" action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST" enctype="multipart/form-data">
-                    <div class="form-grid">
-                        <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" required></div>
-                        <div class="form-group"><label for="phone">Phone Number (For WhatsApp)</label><input type="tel" id="phone" name="phone" required></div>
-                        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email"></div>
-                        <div class="form-group"><label for="address">Delivery Address</label><input type="text" id="address" name="address" required></div>
-                        <div class="form-group"><label for="cake-size">Cake Size / Weight</label><select id="cake-size" name="cake_size" required><option value="1 Pound">1 Pound</option><option value="2 Pounds">2 Pounds</option><option value="3 Pounds">3 Pounds</option><option value="Custom">Custom Size (describe below)</option></select></div>
-                        <div class="form-group"><label for="cake-flavor">Cake Flavor</label><input type="text" id="cake-flavor" name="cake_flavor" required placeholder="e.g., Chocolate Truffle"></div>
+        <!-- Custom Cake Section -->
+        <section class="custom-cake section" id="custom">
+            <div class="section-container">
+                <h2 class="section-title center">Design Your Dream Cake</h2>
+                <p style="text-align: center; max-width: 600px; margin: 0 auto;">Create a completely custom cake tailored to your special occasion.</p>
+                
+                <div class="custom-cake-container">
+                    <div class="custom-steps">
+                        <div class="step active" data-step="1">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Choose Size</div>
+                        </div>
+                        <div class="step" data-step="2">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Select Flavor</div>
+                        </div>
+                        <div class="step" data-step="3">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Add Details</div>
+                        </div>
+                        <div class="step" data-step="4">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Review & Order</div>
+                        </div>
                     </div>
-                    <div class="form-group full-width"><label for="cake-message">Message on Cake</label><input type="text" id="cake-message" name="cake_message" placeholder="e.g., Happy Birthday Tirshana!"></div>
-                    <div class="form-group full-width"><label for="design-details">Custom Design Details & Special Requests</label><textarea id="design-details" name="design_details" rows="5" placeholder="Describe the colors, theme, or attach a reference image below."></textarea></div>
-                    <div class="form-group full-width"><label for="design-upload">Upload a Reference Image (Optional)</label><input type="file" id="design-upload" name="design_upload" accept="image/*"></div>
-                    <button type="submit" class="btn btn-primary btn-submit">Place Your Order Inquiry</button>
-                    <p id="form-status"></p>
-                </form>
+                    
+                    <form id="custom-cake-form" novalidate>
+                        <!-- Step 1: Choose Size -->
+                        <div class="custom-form active" data-step="1">
+                            <h3>Select Your Cake Size</h3>
+                            <p>Choose the perfect size for your celebration.</p>
+                            
+                            <div class="size-options">
+                                <div class="size-option selected">
+                                    <input type="radio" id="custom-size-small" name="custom-cake-size" value="Small (6-inch)" data-price="2000" checked>
+                                    <label for="custom-size-small"><strong>Small (6")</strong><br>Serves 8-10<br>NPR 2,000</label>
+                                </div>
+                                <div class="size-option">
+                                    <input type="radio" id="custom-size-medium" name="custom-cake-size" value="Medium (8-inch)" data-price="3000">
+                                    <label for="custom-size-medium"><strong>Medium (8")</strong><br>Serves 12-16<br>NPR 3,000</label>
+                                </div>
+                                <div class="size-option">
+                                    <input type="radio" id="custom-size-large" name="custom-cake-size" value="Large (10-inch)" data-price="4000">
+                                    <label for="custom-size-large"><strong>Large (10")</strong><br>Serves 20-25<br>NPR 4,000</label>
+                                </div>
+                                <div class="size-option">
+                                    <input type="radio" id="custom-size-xlarge" name="custom-cake-size" value="Extra Large (12-inch)" data-price="5000">
+                                    <label for="custom-size-xlarge"><strong>XL (12")</strong><br>Serves 30-40<br>NPR 5,000</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-navigation">
+                                <button type="button" class="prev-btn" disabled>Back</button>
+                                <button type="button" class="next-btn">Next: Select Flavor</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Select Flavor -->
+                        <div class="custom-form" data-step="2">
+                            <h3>Choose Your Cake Flavor & Filling</h3>
+                            <div class="flavor-options">
+                                <div class="flavor-option selected"><input type="radio" id="flavor-vanilla" name="cake-flavor" value="Classic Vanilla" checked><label for="flavor-vanilla"><strong>Classic Vanilla</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="flavor-chocolate" name="cake-flavor" value="Rich Chocolate"><label for="flavor-chocolate"><strong>Rich Chocolate</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="flavor-redvelvet" name="cake-flavor" value="Red Velvet"><label for="flavor-redvelvet"><strong>Red Velvet</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="flavor-lemon" name="cake-flavor" value="Lemon"><label for="flavor-lemon"><strong>Lemon</strong></label></div>
+                            </div>
+                            <h4 style="margin-top: 2rem;">Filling Options</h4>
+                            <div class="flavor-options">
+                                <div class="flavor-option selected"><input type="radio" id="filling-vanilla" name="cake-filling" value="Vanilla Buttercream" checked><label for="filling-vanilla"><strong>Vanilla Buttercream</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="filling-chocolate" name="cake-filling" value="Chocolate Ganache"><label for="filling-chocolate"><strong>Chocolate Ganache</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="filling-fruit" name="cake-filling" value="Fresh Fruit"><label for="filling-fruit"><strong>Fresh Fruit</strong></label></div>
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="prev-btn">Back</button>
+                                <button type="button" class="next-btn">Next: Add Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Add Details -->
+                        <div class="custom-form" data-step="3">
+                            <h3>Personalize Your Cake</h3>
+                            <div class="form-group"><label for="custom-occasion">Occasion</label><select id="custom-occasion" name="occasion" class="form-control"><option>Birthday</option><option>Wedding</option><option>Anniversary</option><option>Other</option></select></div>
+                            <div class="form-group"><label for="custom-message">Message on Cake (optional)</label><input type="text" id="custom-message" name="message" class="form-control" placeholder="e.g., Happy Birthday!"></div>
+                            <div class="form-group"><label for="custom-colors">Color Scheme (optional)</label><input type="text" id="custom-colors" name="colors" class="form-control" placeholder="e.g., Pink and gold"></div>
+                            <div class="form-group"><label for="custom-decoration">Decoration Ideas (optional)</label><textarea id="custom-decoration" name="decoration" class="form-control" placeholder="Describe any specific decorations"></textarea></div>
+                            <div class="form-navigation">
+                                <button type="button" class="prev-btn">Back</button>
+                                <button type="button" class="next-btn">Next: Review & Order</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4: Review & Order -->
+                        <div class="custom-form" data-step="4">
+                            <h3>Review Your Custom Cake</h3>
+                            <div class="order-summary">
+                                <h4>Order Summary</h4>
+                                <div id="summary-size" class="summary-item"><strong>Size:</strong> <span></span></div>
+                                <div id="summary-flavor" class="summary-item"><strong>Flavor:</strong> <span></span></div>
+                                <div id="summary-filling" class="summary-item"><strong>Filling:</strong> <span></span></div>
+                                <div id="summary-occasion" class="summary-item"><strong>Occasion:</strong> <span></span></div>
+                                <div id="summary-message" class="summary-item"><strong>Message:</strong> <span></span></div>
+                                <div id="summary-colors" class="summary-item"><strong>Colors:</strong> <span></span></div>
+                                <div id="summary-decoration" class="summary-item"><strong>Decoration:</strong> <span></span></div>
+                                <div class="summary-total"><strong>Estimated Price:</strong> NPR <span id="summary-price">0</span></div>
+                            </div>
+                            <div class="form-group" style="margin-top: 2rem;"><label for="custom-name">Your Name</label><input type="text" id="custom-name" class="form-control" name="name" required></div>
+                            <div class="form-group"><label for="custom-phone">Phone Number</label><input type="tel" id="custom-phone" class="form-control" name="phone" required></div>
+                            <div class="form-group"><label for="custom-email">Email Address</label><input type="email" id="custom-email" class="form-control" name="email" required></div>
+                            <div class="form-group"><label for="custom-date">Delivery/Pickup Date</label><input type="date" id="custom-date" class="form-control" name="date" required></div>
+                            <div class="form-navigation">
+                                <button type="button" class="prev-btn">Back</button>
+                                <button type="submit" class="submit-btn">Place Order</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
 
-   <footer class="main-footer">
-        <div class="container">
-            <a href="../index.html" class="logo-footer">Tirshana</a>
-            <p>Bharatpur-13, Chitwan, Nepal</p>
-            <div class="footer-contact">
-                <a href="mailto:tirshanapoudel0@gmail.com">tirshanapoudel0@gmail.com</a> | <a href="tel:9845645446">9845645446</a>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <a href="index.html" class="footer-logo">
+                    <i class="fas fa-birthday-cake"></i> Tirshana Bakery
+                </a>
+                <p>Creating sweet memories since 2078. Our artisan bakery specializes in custom cakes for all occasions.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
             </div>
-            <p class="copyright">© 2025 Tirshana Cake Bakery. All Rights Reserved.</p>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/about/">About Us</a></li>
+                    <li><a href="/products/">Our Cakes</a></li>
+                    <li><a href="/custom-order/">Custom Order</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Sweet Newsletter</h3>
+                <p>Subscribe to receive updates and special offers!</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="copyright-year">2024</span> Tirshana Cake Bakery. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
         </div>
     </footer>
-    
-  
-    <script src="../js/order-form-handler.js"></script>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
