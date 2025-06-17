@@ -24,19 +24,22 @@ document.addEventListener('DOMContentLoaded', function() {
         copyrightYear.textContent = new Date().getFullYear();
     }
 
-    // --- Quick Order Modal Logic ---
-const orderModal = document.getElementById('order-modal');
-if (orderModal) {
-    const orderNowButtons = document.querySelectorAll('.order-now-btn');
-    const closeModalBtn = document.getElementById('close-modal');
-
     orderNowButtons.forEach(button => {
         button.addEventListener('click', function() {
+            // Get the cake name from the button's data attribute
             const cakeName = this.dataset.cakeName;
+            
+            // We REMOVED the line that gets the cake image.
+            
+            // Update the modal's title and the hidden input
             document.getElementById('modal-cake-title').textContent = `Order: ${cakeName}`;
             document.getElementById('modal-cake-name').value = cakeName;
+
+            // We REMOVED the line that tries to update the non-existent image element.
+            // This was the line causing the error.
             
-            orderModal.classList.add('active'); // This line shows the modal
+            // Now, these lines will execute without any errors
+            orderModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
     });
