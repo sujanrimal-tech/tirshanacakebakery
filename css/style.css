@@ -1333,11 +1333,10 @@ footer {
     }
 }
 
-.home-page main {
-    padding-top: 0;
+body.home-page main {
+    padding-top: 0 !important;
 }
 
-/* We also no longer need the negative margin on the hero section */
-.home-page .hero {
-    margin-top: 0;
+body.home-page .hero {
+    margin-top: 0 !important;
 }
