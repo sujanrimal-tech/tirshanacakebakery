@@ -1341,20 +1341,20 @@ body.home-page .hero {
     margin-top: 0 !important;
 }
 /* FILE: ../css/style.css */
-/* --- ADD THIS CODE TO THE END OF THE FILE --- */
+/* --- ADD THIS NEW CODE BLOCK TO THE END OF THE FILE --- */
 
-/* --- Map Styles for Contact Page --- */
-.map-container-contact {
-    margin-top: 2rem; /* Adds space above the map */
-    width: 40%;
-    height: 300px; /* A good height for a column layout */
-    border-radius: 15px; /* Matches your other theme styles */
-    overflow: hidden; /* Ensures the map stays inside the rounded corners */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+/* --- Contact Page Embedded Map Style --- */
+.contact-map-container {
+    margin-top: 2rem; /* Adds space between social links and the map */
+    width: 100%;
+    height: 300px; /* A good height for a map in a column */
+    border-radius: 15px; /* Matches your theme's rounded corners */
+    overflow: hidden;    /* Ensures the map stays inside the rounded corners */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* A subtle shadow */
 }
 
-.map-container-contact iframe {
-    width: 40%;
+.contact-map-container iframe {
+    width: 100%;
     height: 100%;
-    border: none;
+    border: none; /* Remove the default iframe border */
 }
