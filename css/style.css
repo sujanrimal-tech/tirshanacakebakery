@@ -1333,12 +1333,10 @@ footer {
     }
 }
 
-/* If the first section inside 'main' has the class 'hero'... */
-main > .section:first-child.hero {
-  margin-top: -80px; /* Then apply the negative margin to pull it up */
+body.home-page main {
+    padding-top: 0 !important;
 }
 
-/* ... and for that same scenario, remove the padding from 'main' */
-main:has(> .section:first-child.hero) {
-  padding-top: 0;
+body.home-page .hero {
+    margin-top: 0 !important;
 }
