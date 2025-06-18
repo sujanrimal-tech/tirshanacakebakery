@@ -1332,6 +1332,7 @@ footer {
         text-align: center;
     }
 }
+/* This rule only applies on the page with <body class="home-page"> */
 .home-page main {
     padding-top: 0; /* Removes the fixed top padding on the home page */
 }
