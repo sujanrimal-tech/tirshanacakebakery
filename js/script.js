@@ -3,6 +3,9 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+
+     alert("SUCCESS: The script.js file is loading!"); 
+    
     const myWhatsApp = '9779821183819';
 
     // --- General UI Functions (Run on all pages) ---
