@@ -1256,3 +1256,78 @@ footer {
 .floating-btn.hidden {
     display: none;
 }
+/* --- Add this to your style.css file --- */
+
+/* --- Owner Message Section --- */
+.owner-message-section {
+    background-color: white; /* A clean background to make the card pop */
+}
+
+.owner-card {
+    max-width: 800px;
+    margin: 3rem auto 0;
+    background: var(--light);
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.07);
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    position: relative;
+}
+
+.owner-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0; /* Prevents the image from shrinking */
+    border: 6px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.owner-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.owner-message blockquote {
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: #555;
+    margin: 0 0 1.5rem 0;
+    border-left: 3px solid var(--primary);
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.owner-signature h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--dark);
+    margin: 0;
+}
+
+.owner-signature p {
+    color: var(--secondary);
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Responsive styles for the owner message section */
+@media (max-width: 768px) {
+    .owner-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    .owner-message blockquote {
+        border-left: none;
+        padding-left: 0;
+        text-align: center;
+    }
+}
