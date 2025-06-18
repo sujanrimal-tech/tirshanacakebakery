@@ -1340,3 +1340,21 @@ body.home-page main {
 body.home-page .hero {
     margin-top: 0 !important;
 }
+/* FILE: ../css/style.css */
+/* --- ADD THIS CODE TO THE END OF THE FILE --- */
+
+/* --- Map Styles for Contact Page --- */
+.map-container-contact {
+    margin-top: 2rem; /* Adds space above the map */
+    width: 100%;
+    height: 300px; /* A good height for a column layout */
+    border-radius: 15px; /* Matches your other theme styles */
+    overflow: hidden; /* Ensures the map stays inside the rounded corners */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.map-container-contact iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
