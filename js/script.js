@@ -3,9 +3,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-
-     alert("SUCCESS: The script.js file is loading!"); 
-    
     const myWhatsApp = '9779821183819';
 
     // --- General UI Functions (Run on all pages) ---
@@ -57,8 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Custom Cake Multi-Step Form Logic (for custom-order.html) ---
     const customCakeForm = document.getElementById('custom-cake-form');
     if (customCakeForm) {
-        // ... (This section is long, so I've collapsed it for clarity, but it is included in the final code)
-        // Your existing custom cake form logic is correct and will be here.
         const stepIndicators = document.querySelectorAll('.custom-steps .step');
         const formSteps = customCakeForm.querySelectorAll('.custom-form');
         const nextButtons = customCakeForm.querySelectorAll('.next-btn');
@@ -158,22 +153,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (formStatus) {
                         formStatus.textContent = 'Thank you! Your message has been sent successfully.';
                         formStatus.className = 'success';
+                        formStatus.style.display = 'block';
                     }
                     ajaxContactForm.reset();
                 } else {
                     response.json().then(data => {
+                        formStatus.textContent = 'Oops! Something went wrong on the server.';
                         if (Object.hasOwn(data, 'errors')) {
                              formStatus.textContent = data["errors"].map(error => error["message"]).join(", ")
-                        } else {
-                            formStatus.textContent = 'Oops! Something went wrong on the server.';
                         }
                         formStatus.className = 'error';
+                        formStatus.style.display = 'block';
                     })
                 }
             }).catch(error => {
                 if (formStatus) {
                     formStatus.textContent = 'Oops! There was a problem with your submission. Please check your internet connection.';
                     formStatus.className = 'error';
+                    formStatus.style.display = 'block';
                 }
             }).finally(() => {
                 if (submitButton) {
