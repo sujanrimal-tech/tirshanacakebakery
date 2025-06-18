@@ -1332,12 +1332,13 @@ footer {
         text-align: center;
     }
 }
-/* This rule only applies on the page with <body class="home-page"> */
-.home-page main {
-    padding-top: 0; /* Removes the fixed top padding on the home page */
+
+/* If the first section inside 'main' has the class 'hero'... */
+main > .section:first-child.hero {
+  margin-top: -80px; /* Then apply the negative margin to pull it up */
 }
 
-/* We also no longer need the negative margin on the hero section */
-.home-page .hero {
-    margin-top: 0; /* Resets the negative margin to 0 */
+/* ... and for that same scenario, remove the padding from 'main' */
+main:has(> .section:first-child.hero) {
+  padding-top: 0;
 }
