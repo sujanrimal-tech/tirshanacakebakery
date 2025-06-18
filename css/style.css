@@ -1343,18 +1343,25 @@ body.home-page .hero {
 /* FILE: ../css/style.css */
 /* --- ADD THIS NEW CODE BLOCK TO THE END OF THE FILE --- */
 
-/* --- Contact Page Embedded Map Style --- */
-.contact-map-container {
-    margin-top: 2rem; /* Adds space between social links and the map */
-    width: 100%;
-    height: 300px; /* A good height for a map in a column */
-    border-radius: 15px; /* Matches your theme's rounded corners */
-    overflow: hidden;    /* Ensures the map stays inside the rounded corners */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* A subtle shadow */
+/* --- Full-Width Map Section on Contact Page --- */
+
+.map-section {
+    background-color: white; /* Or var(--light) to match other sections */
+    padding-top: 4rem; /* Adjust spacing as needed */
 }
 
-.contact-map-container iframe {
+/* This is the container for the map iframe */
+.map-container-full {
+    width: 100%;
+    height: 450px; /* A good height for a full-width map */
+    margin-top: 3rem; /* Space below the "Find Our Bakery" title */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.map-container-full iframe {
     width: 100%;
     height: 100%;
-    border: none; /* Remove the default iframe border */
+    border: none;
 }
