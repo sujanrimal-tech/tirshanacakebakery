@@ -1332,3 +1332,11 @@ footer {
         text-align: center;
     }
 }
+.home-page main {
+    padding-top: 0; /* Removes the fixed top padding on the home page */
+}
+
+/* We also no longer need the negative margin on the hero section */
+.home-page .hero {
+    margin-top: 0; /* Resets the negative margin to 0 */
+}
