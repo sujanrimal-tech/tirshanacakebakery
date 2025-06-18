@@ -67,10 +67,11 @@
                             <a href="#"><i class="fab fa-pinterest-p"></i></a>
                         </div>
                     </div>
+                    
                     <div class="contact-form">
     <h3>Send Us a Message</h3>
  
-    <form action="https://submit-form.com/nan3UUtms" method="POST">
+  <form id="contact-form-ajax" action="https://submit-form.com/nan3UUtms" method="POST">
         
         <div class="form-group">
             <label for="contact-name">Your Name</label>
@@ -101,6 +102,7 @@
             <label for="contact-message">Your Message</label>
             <textarea id="contact-message" name="Message" class="form-control" required></textarea>
         </div>
+ <div id="form-status-message"></div>
 
         <button type="submit" class="submit-btn">Send Message</button>
     </form>
