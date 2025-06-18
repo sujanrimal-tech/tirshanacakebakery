@@ -5,6 +5,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const myWhatsApp = '9779821183819';
 
+      // --- AJAX Contact Form Submission ---
+    const ajaxForm = document.getElementById('contact-form-ajax');
+    if (ajaxForm) {
+        const formStatus = document.getElementById('form-status-message');
+        const submitButton = ajaxForm.querySelector('button[type="submit"]');
+
+        ajaxForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent the default redirect
+
+            // Show a "Sending..." message and disable the button
+            if (formStatus) formStatus.style.display = 'none'; // Hide old message
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+            }
+
+            const formData = new FormData(this);
+            const formAction = this.action;
+
+            // Use the Fetch API to send the data in the background
+            fetch(formAction, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Success!
+                    if (formStatus) {
+                        formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+                        formStatus.className = 'success'; // Apply green success style
+                    }
+                    ajaxForm.reset(); // Clear the form fields
+                } else {
+                    // Handle server errors
+                    throw new Error('Network response was not ok.');
+                }
+            }).catch(error => {
+                // Handle network errors
+                if (formStatus) {
+                    formStatus.textContent = 'Oops! Something went wrong. Please try again later.';
+                    formStatus.className = 'error'; // Apply red error style
+                }
+                console.error('Form submission error:', error);
+            }).finally(() => {
+                // Re-enable the button after success or failure
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Message';
+                }
+            });
+        });
+    }
+
     // --- General UI Functions (Run on all pages) ---
     const header = document.getElementById('header');
     if (header) {
