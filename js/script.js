@@ -126,61 +126,62 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCustomFormView();
     }
 
-    // --- AJAX Contact Form Submission (for contact.html) ---
-    const ajaxContactForm = document.getElementById('contact-form-ajax');
-    if (ajaxContactForm) {
-        const formStatus = document.getElementById('form-status-message');
-        const submitButton = ajaxContactForm.querySelector('button[type="submit"]');
+  // FILE: js/script.js
+// --- REPLACE the existing AJAX block with this simpler one ---
 
-        ajaxContactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
+const ajaxContactForm = document.getElementById('contact-form-ajax');
+if (ajaxContactForm) {
+    const formStatus = document.getElementById('form-status-message');
+    const submitButton = ajaxContactForm.querySelector('button[type="submit"]');
 
-            if (formStatus) formStatus.style.display = 'none';
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.textContent = 'Sending...';
-            }
+    ajaxContactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-            const formData = new FormData(this);
-            const formAction = this.action;
+        const formData = new FormData(this);
+        const formAction = this.action;
 
-            fetch(formAction, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    if (formStatus) {
-                        formStatus.textContent = 'Thank you! Your message has been sent successfully.';
-                        formStatus.className = 'success';
-                        formStatus.style.display = 'block';
-                    }
-                    ajaxContactForm.reset();
-                } else {
-                    response.json().then(data => {
-                        formStatus.textContent = 'Oops! Something went wrong on the server.';
-                        if (Object.hasOwn(data, 'errors')) {
-                             formStatus.textContent = data["errors"].map(error => error["message"]).join(", ")
-                        }
-                        formStatus.className = 'error';
-                        formStatus.style.display = 'block';
-                    })
-                }
-            }).catch(error => {
+        // Display "Sending..." message
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+        }
+        if (formStatus) formStatus.style.display = 'none';
+
+        // Simplified Fetch Request
+        fetch(formAction, {
+            method: 'POST',
+            body: formData,
+            // The 'headers' object has been removed
+        })
+        .then(response => {
+            if (response.ok) {
+                // SUCCESS
                 if (formStatus) {
-                    formStatus.textContent = 'Oops! There was a problem with your submission. Please check your internet connection.';
-                    formStatus.className = 'error';
+                    formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+                    formStatus.className = 'success';
                     formStatus.style.display = 'block';
                 }
-            }).finally(() => {
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Send Message';
-                }
-            });
+                ajaxContactForm.reset();
+            } else {
+                // ERROR
+                throw new Error('Server responded with an error.');
+            }
+        })
+        .catch(error => {
+            if (formStatus) {
+                formStatus.textContent = 'Oops! Something went wrong. Please try again.';
+                formStatus.className = 'error';
+                formStatus.style.display = 'block';
+            }
+        })
+        .finally(() => {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+            }
         });
-    }
-
+    });
+}
     // --- Simple Order Form Submission (WhatsApp Redirect) ---
     const simpleOrderForm = document.getElementById('simple-order-form');
     if (simpleOrderForm) {
