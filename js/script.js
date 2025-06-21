@@ -182,28 +182,50 @@ if (ajaxContactForm) {
         });
     });
 }
-    // --- Simple Order Form Submission (WhatsApp Redirect) ---
     const simpleOrderForm = document.getElementById('simple-order-form');
-    if (simpleOrderForm) {
-        simpleOrderForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = e.target;
-            
-            const cakeName = form.querySelector('#modal-cake-name').value;
-            const cakeType = document.querySelector('input[name="cake-type"]:checked').value;
-            const cakeSize = form.querySelector('#modal-cake-size').value;
-            const cakeMessage = form.querySelector('#modal-message-on-cake').value || 'None';
-            const allergies = form.querySelector('#modal-allergies').value || 'None';
-            const message = `*New Quick Order:*\n\n🎂 Cake: ${cakeName}\ntype: ${caketype}\n📏 Size: ${cakeSize}\n✍️ Message on Cake: ${cakeMessage}\n⚠️ Allergies/Instructions: ${allergies}\n\n*--- Customer Details ---*\n👤 Name: ${form.querySelector('#modal-customer-name').value}\n📞 Phone: ${form.querySelector('#modal-customer-phone').value}\n📅 Delivery Date: ${form.querySelector('#modal-delivery-date')?.value || 'Not specified'}\n⏰ Preferred Time: ${form.querySelector('#modal-delivery-time')?.value || 'Not specified'}`;
+if (simpleOrderForm) {
+    simpleOrderForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const form = e.target;
+        
+        // --- Data Collection ---
+        const cakeName = form.querySelector('#modal-cake-name').value;
+        // This querySelector gets the value from the checked radio button
+        const cakeType = document.querySelector('input[name="cake-type"]:checked').value;
+        const cakeSize = form.querySelector('#modal-cake-size').value;
+        const cakeMessage = form.querySelector('#modal-message-on-cake').value || 'None';
+        const allergies = form.querySelector('#modal-allergies').value || 'None';
+        const customerName = form.querySelector('#modal-customer-name').value;
+        const customerPhone = form.querySelector('#modal-customer-phone').value;
+        const deliveryDate = form.querySelector('#modal-delivery-date')?.value || 'Not specified';
+        const deliveryTime = form.querySelector('#modal-delivery-time')?.value || 'Not specified';
 
-            const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-            alert('Thank you! Your request has been received. Please press any to continue looking pages.');
-            form.reset();
-            if (orderModal) {
-                orderModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-    }
-});
+        // --- Message Construction (CORRECTED) ---
+        // Changed `caketype` to `cakeType` to match the variable name
+        const message = `*New Quick Order:*\n\n` +
+                        `🎂 Cake: *${cakeName}*\n` +
+                        `⭐ Type: *${cakeType}*\n` +
+                        `📏 Size: *${cakeSize}*\n` +
+                        `✍️ Message on Cake: ${cakeMessage}\n` +
+                        `⚠️ Allergies/Instructions: ${allergies}\n\n` +
+                        `*--- Customer Details ---*\n` +
+                        `👤 Name: ${customerName}\n` +
+                        `📞 Phone: ${customerPhone}\n` +
+                        `📅 Delivery Date: ${deliveryDate}\n` +
+                        `⏰ Preferred Time: ${deliveryTime}`;
+
+        // --- Action ---
+        const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+        
+        alert('Thank you! Your request has been received. Please continue in WhatsApp to send the message.');
+        
+        form.reset();
+        
+        // Close the modal after submission
+        if (orderModal) {
+            orderModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
