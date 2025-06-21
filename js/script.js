@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const myWhatsApp = '9779845883222';
 
+    
     // --- General UI Functions (Run on all pages) ---
     const header = document.getElementById('header');
     if (header) {
@@ -23,6 +24,23 @@ document.addEventListener('DOMContentLoaded', function() {
         copyrightYear.textContent = new Date().getFullYear();
     }
 
+
+        // --- Floating Action Button Close Logic ---
+    const closeFloatBtn = document.querySelector('.close-float-btn');
+    const orderNowFloatBtn = document.querySelector('.order-now-float');
+
+    if (closeFloatBtn && orderNowFloatBtn) {
+        closeFloatBtn.addEventListener('click', function(event) {
+            // This stops the click from also triggering the link on the parent button
+            event.preventDefault();
+            event.stopPropagation();
+            
+            // This adds the .hidden class to make the button disappear
+            orderNowFloatBtn.classList.add('hidden');
+        });
+    }
+
+    
     // --- Quick Order Modal Logic ---
     const orderModal = document.getElementById('order-modal');
     if (orderModal) {
