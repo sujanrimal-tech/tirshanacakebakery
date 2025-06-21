@@ -61,23 +61,38 @@ document.addEventListener('DOMContentLoaded', function() {
         const resetBtn = document.getElementById('reset-form-btn');
         let currentStep = 1;
 
-        // MODIFIED: Added .type-option and .filling-option to handle clicks
+        // ================================================================= //
+        // ===== START: CORRECTED CODE FOR CUSTOM OPTION SELECTION ===== //
+        // ================================================================= //
         const customOptions = customCakeForm.querySelectorAll('.size-option, .type-option, .flavor-option, .filling-option');
 
         customOptions.forEach(option => {
             option.addEventListener('click', function() {
-                const parentContainer = this.parentElement;
-                // Use a general selector that matches any of the option types within the same group
-                parentContainer.querySelectorAll(this.className.split(' ')[0]).forEach(sibling => {
+                // 'this' is the specific div that was clicked (e.g., a .size-option)
+
+                // 1. Get all the direct sibling elements from its parent container.
+                const siblings = this.parentElement.children;
+
+                // 2. Loop through all siblings in the same group and remove 'selected' class.
+                //    This ensures that clicking a size only affects other sizes.
+                for (const sibling of siblings) {
                     sibling.classList.remove('selected');
-                });
+                }
+
+                // 3. Add the 'selected' class ONLY to the one that was clicked.
                 this.classList.add('selected');
+
+                // 4. Find the hidden radio button inside the clicked div and check it.
                 const radioInput = this.querySelector('input[type="radio"]');
                 if (radioInput) {
                     radioInput.checked = true;
                 }
             });
         });
+        // ================================================================= //
+        // ====== END: CORRECTED CODE FOR CUSTOM OPTION SELECTION ====== //
+        // ================================================================= //
+
 
         const updateCustomFormView = () => {
             formSteps.forEach(form => form.classList.toggle('active', parseInt(form.dataset.step) === currentStep));
@@ -94,7 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const getElVal = (id) => document.getElementById(id)?.value || 'N/A';
             
             document.querySelector('#summary-size span').textContent = getCheckedVal('custom-cake-size');
-            // ADDED: Get value for the new 'cake-type' option
             document.querySelector('#summary-type span').textContent = getCheckedVal('cake-type');
             document.querySelector('#summary-flavor span').textContent = getCheckedVal('cake-flavor');
             document.querySelector('#summary-filling span').textContent = getCheckedVal('cake-filling');
@@ -131,7 +145,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 customCakeForm.reset();
                 currentStep = 1;
                 customOptions.forEach(option => option.classList.remove('selected'));
-                // Manually re-select the default options
                 document.querySelector('.size-option input:checked').parentElement.classList.add('selected');
                 document.querySelector('.type-option input:checked').parentElement.classList.add('selected');
                 document.querySelector('.flavor-option input:checked').parentElement.classList.add('selected');
@@ -143,7 +156,6 @@ document.addEventListener('DOMContentLoaded', function() {
         customCakeForm.addEventListener('submit', (e) => {
             e.preventDefault();
             updateOrderSummary();
-            // ADDED: Cake Type to the WhatsApp message
             let message = `*New Custom Cake Order:*\n\n` +
                           `*Customer:*\nName: ${document.getElementById('custom-name').value}\n` +
                           `Phone: ${document.getElementById('custom-phone').value}\n` +
