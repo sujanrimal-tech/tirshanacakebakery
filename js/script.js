@@ -190,6 +190,7 @@ if (ajaxContactForm) {
             const form = e.target;
             
             const cakeName = form.querySelector('#modal-cake-name').value;
+            const cakeType = document.querySelector('input[name="cake-type"]:checked').value;
             const cakeSize = form.querySelector('#modal-cake-size').value;
             const cakeMessage = form.querySelector('#modal-message-on-cake').value || 'None';
             const allergies = form.querySelector('#modal-allergies').value || 'None';
