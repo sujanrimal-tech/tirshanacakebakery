@@ -1184,6 +1184,56 @@ footer {
     overflow-y: auto;
 }
 
+/* =================================================================== */
+/* ===== START: MERGED CODE FOR VEG/NON-VEG RADIO BUTTONS ===== */
+/* =================================================================== */
+
+/* Style the container for the radio buttons */
+.type-options {
+    display: flex;
+    gap: 15px; /* Adds space between the Veg and Non-Veg options */
+    margin-top: 8px;
+}
+
+/* Style each individual option's container */
+.type-option {
+    flex-grow: 1; /* Makes both options take up equal space */
+}
+
+/* Hide the actual radio button circle */
+.type-option input[type="radio"] {
+    display: none;
+}
+
+/* Style the label to be the clickable element */
+.type-option label {
+    display: block;
+    padding: 12px;
+    border: 1px solid #ddd; /* Match .form-control border */
+    border-radius: 8px;      /* Match .form-control border-radius */
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
+}
+
+/* Style the label when the user hovers over it */
+.type-option label:hover {
+    border-color: var(--secondary);
+    background-color: #fef5f7; /* A very light version of your primary color */
+}
+
+/* Style the label when its corresponding radio button is selected */
+.type-option input[type="radio"]:checked + label {
+    background-color: var(--primary); /* Use your primary theme color */
+    color: white;
+    border-color: var(--primary); /* Match the background color */
+}
+/* =================================================================== */
+/* ===== END: MERGED CODE FOR VEG/NON-VEG RADIO BUTTONS ===== */
+/* =================================================================== */
+
+
 .floating-action-buttons {
     position: fixed; /* Keeps it on the screen when scrolling */
     right: 20px;
