@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         copyrightYear.textContent = new Date().getFullYear();
     }
 
-    // --- Quick Order Modal Logic (for products.html) ---
+    // --- Quick Order Modal Logic ---
     const orderModal = document.getElementById('order-modal');
     if (orderModal) {
         const orderNowButtons = document.querySelectorAll('.order-now-btn');
@@ -49,9 +49,52 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (e.target === orderModal) closeModal();
             });
         }
+        
+        // --- Place Quick Order Form Submission Logic ---
+        const simpleOrderForm = document.getElementById('simple-order-form');
+        if (simpleOrderForm) {
+            simpleOrderForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const form = e.target;
+                
+                const getFieldValue = (selector) => form.querySelector(selector)?.value || 'N/A';
+                
+                const cakeName = getFieldValue('#modal-cake-name');
+                const cakeSize = getFieldValue('#modal-cake-size');
+                const cakeMessage = getFieldValue('#modal-message-on-cake') || 'None';
+                const allergies = getFieldValue('#modal-allergies') || 'None';
+                const customerName = getFieldValue('#modal-customer-name');
+                const customerPhone = getFieldValue('#modal-customer-phone');
+                const deliveryDate = getFieldValue('#modal-delivery-date') || 'Not specified';
+                const deliveryTime = getFieldValue('#modal-delivery-time') || 'Not specified';
+                
+                const checkedTypeElement = form.querySelector('input[name="cake-type"]:checked');
+                const cakeType = checkedTypeElement ? checkedTypeElement.value : 'Veg (Eggless)';
+
+                const message = `*New Quick Order:*\n\n` +
+                                `🎂 Cake: *${cakeName}*\n` +
+                                `⭐ Type: *${cakeType}*\n` +
+                                `📏 Size: *${cakeSize}*\n` +
+                                `✍️ Message on Cake: ${cakeMessage}\n` +
+                                `⚠️ Allergies/Instructions: ${allergies}\n\n` +
+                                `*--- Customer Details ---*\n` +
+                                `👤 Name: ${customerName}\n` +
+                                `📞 Phone: ${customerPhone}\n` +
+                                `📅 Delivery Date: ${deliveryDate}\n` +
+                                `⏰ Preferred Time: ${deliveryTime}`;
+
+                const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+                
+                alert('Thank you! Your request has been received. Please continue in WhatsApp to send the message.');
+                
+                form.reset();
+                closeModal(); // Use the function we already defined
+            });
+        }
     }
 
-   // --- Custom Cake Multi-Step Form Logic (for custom-order.html) ---
+   // --- Custom Cake Multi-Step Form Logic ---
     const customCakeForm = document.getElementById('custom-cake-form');
     if (customCakeForm) {
         const stepIndicators = document.querySelectorAll('.custom-steps .step');
