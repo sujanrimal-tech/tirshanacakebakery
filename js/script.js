@@ -228,4 +228,5 @@ if (simpleOrderForm) {
             document.body.style.overflow = 'auto';
         }
     });
+   });
 }
