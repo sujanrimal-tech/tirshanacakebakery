@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Products | Tirshana Cake Bakery</title>
-    
+     <link rel="apple-touch-icon" sizes="180x180" href="/tirshana/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/tirshana/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/tirshana/favicon-16x16.png">
+    <link rel="manifest" href="/tirshana/site.webmanifest">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css"> <!-- This will now contain the modal CSS -->
@@ -98,20 +101,23 @@
                         </div>
                         <span class="product-badge">New</span>
                     </div>
-                    <!-- Other products... make sure to update their data-cake-name and data-cake-img too -->
+                    <!-- Other products... -->
                 </div>
             </div>
         </section>
     </main>
     
-    <div id="order-modal" class="order-modal">
+   <!-- Order Modal -->
+<div id="order-modal" class="order-modal">
     <div class="modal-content">
         <div class="modal-header">
             <h3 id="modal-cake-title">Order Your Cake</h3>
             <button id="close-modal" class="close-modal">×</button>
         </div>
         <div class="modal-body">
-            <!-- The image preview has been REMOVED -->
+            <div class="cake-preview">
+                <img id="modal-cake-image" src="" alt="Cake Preview">
+            </div>
             <form id="simple-order-form" novalidate>
                 <!-- Hidden input to store the cake name -->
                 <input type="hidden" id="modal-cake-name" name="cake-name">
@@ -126,44 +132,50 @@
                     <input type="tel" id="modal-customer-phone" class="form-control" required>
                 </div>
                 
-                <!-- NEW: Size selection as a compact dropdown -->
                 <div class="form-group">
-                    <label for="modal-cake-size">Select Size</label>
-                    <select id="modal-cake-size" name="cake-size" class="form-control">
-                        <option value="Half Pound">Half Pound</option>
-                        <option value="1 Pound">1 Pound</option>
-                        <option value="2 Pounds">2 Pounds</option>
-                        <option value="3 Pounds">3 Pounds</option>
-                    </select>
+                    <label>Select Size</label>
+                    <div class="size-options">
+                         <div class="size-option selected">
+                            <input type="radio" id="modal-size-small" name="cake-size" value="Small (1 lb)" checked>
+                            <label for="modal-size-small">Small (1 lb)</label>
+                        </div>
+                        <div class="size-option">
+                            <input type="radio" id="modal-size-medium" name="cake-size" value="Medium (2 lb)">
+                            <label for="modal-size-medium">Medium (2 lb)</label>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- NEW: Field for message on cake -->
+            
                 <div class="form-group">
-                    <label for="modal-message-on-cake">Message on Cake (Optional)</label>
-                    <input type="text" id="modal-message-on-cake" class="form-control" placeholder="e.g., Happy Birthday, Anjali!">
+                    <label>Select Type</label>
+                    <div class="type-options">
+                         <div class="type-option selected">
+                            <input type="radio" id="modal-type-veg" name="cake-type" value="Veg" checked>
+                            <label for="modal-type-veg">Veg (Eggless)</label>
+                        </div>
+                        <div class="type-option">
+                            <input type="radio" id="modal-type-non-veg" name="cake-type" value="Non-Veg">
+                            <label for="modal-type-non-veg">Non-Veg (With Egg)</label>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- NEW: Field for allergies/instructions -->
-                 <div class="form-group">
-                    <label for="modal-allergies">Allergies or Special Instructions (Optional)</label>
-                    <textarea id="modal-allergies" class="form-control" rows="3" placeholder="e.g., Please make it eggless, no nuts."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="modal-delivery-date">Delivery/Pickup Date</label>
-                    <input type="date" id="modal-delivery-date" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="modal-delivery-time">Preferred Time (Optional)</label>
-                    <input type="time" id="modal-delivery-time" class="form-control">
-                </div>       
+              <div class="form-group">
+                  <label for="modal-delivery-date">Delivery/Pickup Date (BS)</label>
+                  <input type="text" id="modal-delivery-date" class="form-control" placeholder="Select a date..." autocomplete="off" required>
+              </div>
+              <div class="form-group">
+                  <label for="modal-delivery-time">Preferred Time (Optional)</label>
+                  <input type="time" id="modal-delivery-time" class="form-control">
+              </div>
                 
                 <button type="submit" class="submit-btn">Place Quick Order</button>
             </form>
         </div>
     </div>
 </div>
+
    
     <div class="floating-action-buttons">
         <a href="/products/" class="floating-btn order-now-float"><i class="fas fa-birthday-cake"></i><span>Order Now</span></a>
@@ -202,7 +214,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© <span id="copyright-year">2024</span> Tirshana Cake Bakery. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <p>© <span id="copyright-year">2025</span> Tirshana Cake Bakery. All Rights Reserved. | Designed By Sujan </a></p>
         </div>
     </footer>
     
