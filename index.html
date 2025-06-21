@@ -137,76 +137,7 @@
             </div>
         </section>
     </main>
-        <!-- Order Modal -->
-<div id="order-modal" class="order-modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 id="modal-cake-title">Order Your Cake</h3>
-            <button id="close-modal" class="close-modal">×</button>
-        </div>
-        <div class="modal-body">
-            <div class="cake-preview">
-                <img id="modal-cake-image" src="" alt="Cake Preview">
-            </div>
-            <form id="simple-order-form" novalidate>
-                <!-- Hidden input to store the cake name -->
-                <input type="hidden" id="modal-cake-name" name="cake-name">
-                
-                <div class="form-group">
-                    <label for="modal-customer-name">Your Name</label>
-                    <input type="text" id="modal-customer-name" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="modal-customer-phone">Phone Number</label>
-                    <input type="tel" id="modal-customer-phone" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Select Size</label>
-                    <div class="size-options">
-                         <div class="size-option selected">
-                            <input type="radio" id="modal-size-small" name="cake-size" value="Small (1 lb)" checked>
-                            <label for="modal-size-small">Small (1 lb)</label>
-                        </div>
-                        <div class="size-option">
-                            <input type="radio" id="modal-size-medium" name="cake-size" value="Medium (2 lb)">
-                            <label for="modal-size-medium">Medium (2 lb)</label>
-                        </div>
-                    </div>
-                </div>
-
-              
-                <div class="form-group">
-                    <label>Select Type</label>
-                    <div class="type-options">
-                         <div class="type-option selected">
-                            <input type="radio" id="modal-type-veg" name="cake-type" value="Veg" checked>
-                            <label for="modal-type-veg">Veg (Eggless)</label>
-                        </div>
-                        <div class="type-option">
-                            <input type="radio" id="modal-type-non-veg" name="cake-type" value="Non-Veg">
-                            <label for="modal-type-non-veg">Non-Veg (With Egg)</label>
-                        </div>
-                    </div>
-                </div>
-             
-                
-              <div class="form-group">
-                  <label for="modal-delivery-date">Delivery/Pickup Date (BS)</label>
-                  <input type="text" id="modal-delivery-date" class="form-control" placeholder="Select a date..." autocomplete="off" required>
-              </div>
-              <div class="form-group">
-                  <label for="modal-delivery-time">Preferred Time (Optional)</label>
-                  <input type="time" id="modal-delivery-time" class="form-control">
-              </div>
-                
-                <button type="submit" class="submit-btn">Place Quick Order</button>
-            </form>
-        </div>
-    </div>
-</div>
-
+        
     <div class="floating-action-buttons">
     
     <!-- Closable "Order Now" Button -->
