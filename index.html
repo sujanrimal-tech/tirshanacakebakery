@@ -6,9 +6,11 @@
     <title>Tirshana Cake Bakery | Handcrafted Cakes</title>
     <meta name="description" content="Welcome to Tirshana Cake Bakery. We create delicious, handcrafted cakes with the finest ingredients for birthdays, weddings, and all special occasions.">
 
-    <link href="https://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/css/nepali.datepicker.v4.0.1.min.css" rel="stylesheet" type="text/css"/>
-<script src="https://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/js/nepali.datepicker.v4.0.1.min.js" type="text/javascript"></script>
-    <!-- External CSS & Fonts -->
+    tirshana
+    link rel="apple-touch-icon" sizes="180x180" href="/tirshana/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/tirshana/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/tirshana/favicon-16x16.png">
+    <link rel="manifest" href="/tirshana/site.webmanifest">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -49,7 +51,7 @@
             </div>
         </section>
 
-        <!-- About Section (Snippet) -->
+        <!-- About Section  -->
         <section class="about section" id="about">
             <div class="section-container about-grid">
                 <div class="about-content">
@@ -59,7 +61,7 @@
                     <a href="/about/" class="cta-button">Learn More About Us</a>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Baker decorating cake">
+                    <img src="/img/aboutpic.jpg" alt="Baker decorating cake">
                 </div>
             </div>
         </section>
@@ -137,58 +139,74 @@
         </section>
     </main>
         <!-- Order Modal -->
-    <div id="order-modal" class="order-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-cake-title">Order Your Cake</h3>
-                <button id="close-modal" class="close-modal">×</button>
+<div id="order-modal" class="order-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modal-cake-title">Order Your Cake</h3>
+            <button id="close-modal" class="close-modal">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="cake-preview">
+                <img id="modal-cake-image" src="" alt="Cake Preview">
             </div>
-            <div class="modal-body">
-                <div class="cake-preview">
-                    <img id="modal-cake-image" src="" alt="Cake Preview">
+            <form id="simple-order-form" novalidate>
+                <!-- Hidden input to store the cake name -->
+                <input type="hidden" id="modal-cake-name" name="cake-name">
+                
+                <div class="form-group">
+                    <label for="modal-customer-name">Your Name</label>
+                    <input type="text" id="modal-customer-name" class="form-control" required>
                 </div>
-                <form id="simple-order-form" novalidate>
-                    <!-- Hidden input to store the cake name -->
-                    <input type="hidden" id="modal-cake-name" name="cake-name">
-                    
-                    <div class="form-group">
-                        <label for="modal-customer-name">Your Name</label>
-                        <input type="text" id="modal-customer-name" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="modal-customer-phone">Phone Number</label>
-                        <input type="tel" id="modal-customer-phone" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Select Size</label>
-                        <div class="size-options">
-                             <div class="size-option selected">
-                                <input type="radio" id="modal-size-small" name="cake-size" value="Small (1 lb)" checked>
-                                <label for="modal-size-small">Small (1 lb)</label>
-                            </div>
-                            <div class="size-option">
-                                <input type="radio" id="modal-size-medium" name="cake-size" value="Medium (2 lb)">
-                                <label for="modal-size-medium">Medium (2 lb)</label>
-                            </div>
+                
+                <div class="form-group">
+                    <label for="modal-customer-phone">Phone Number</label>
+                    <input type="tel" id="modal-customer-phone" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Select Size</label>
+                    <div class="size-options">
+                         <div class="size-option selected">
+                            <input type="radio" id="modal-size-small" name="cake-size" value="Small (1 lb)" checked>
+                            <label for="modal-size-small">Small (1 lb)</label>
+                        </div>
+                        <div class="size-option">
+                            <input type="radio" id="modal-size-medium" name="cake-size" value="Medium (2 lb)">
+                            <label for="modal-size-medium">Medium (2 lb)</label>
                         </div>
                     </div>
-                    
-                  <div class="form-group">
-    <label for="modal-delivery-date">Delivery/Pickup Date (BS)</label>
-    <input type="text" id="modal-delivery-date" class="form-control" placeholder="Select a date..." autocomplete="off" required>
-</div>
-<div class="form-group">
-    <label for="modal-delivery-time">Preferred Time (Optional)</label>
-    <input type="time" id="modal-delivery-time" class="form-control">
-</div>
-                    
-                    <button type="submit" class="submit-btn">Place Quick Order</button>
-                </form>
-            </div>
+                </div>
+
+              
+                <div class="form-group">
+                    <label>Select Type</label>
+                    <div class="type-options">
+                         <div class="type-option selected">
+                            <input type="radio" id="modal-type-veg" name="cake-type" value="Veg" checked>
+                            <label for="modal-type-veg">Veg (Eggless)</label>
+                        </div>
+                        <div class="type-option">
+                            <input type="radio" id="modal-type-non-veg" name="cake-type" value="Non-Veg">
+                            <label for="modal-type-non-veg">Non-Veg (With Egg)</label>
+                        </div>
+                    </div>
+                </div>
+             
+                
+              <div class="form-group">
+                  <label for="modal-delivery-date">Delivery/Pickup Date (BS)</label>
+                  <input type="text" id="modal-delivery-date" class="form-control" placeholder="Select a date..." autocomplete="off" required>
+              </div>
+              <div class="form-group">
+                  <label for="modal-delivery-time">Preferred Time (Optional)</label>
+                  <input type="time" id="modal-delivery-time" class="form-control">
+              </div>
+                
+                <button type="submit" class="submit-btn">Place Quick Order</button>
+            </form>
         </div>
     </div>
+</div>
 
     <div class="floating-action-buttons">
     
