@@ -240,6 +240,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const form = e.target;
             
             const cakeName = form.querySelector('#modal-cake-name').value;
+
+             const checkedTypeElement = form.querySelector('input[name="cake-type"]:checked');
+        const cakeType = checkedTypeElement ? checkedTypeElement.value : 'Not Selected';
+            
             const cakeType = document.querySelector('input[name="cake-type"]:checked').value;
             const cakeSize = form.querySelector('#modal-cake-size').value;
             const cakeMessage = form.querySelector('#modal-message-on-cake').value || 'None';
