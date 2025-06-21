@@ -51,9 +51,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- Custom Cake Multi-Step Form Logic (for custom-order.html) ---
+     // --- Custom Cake Multi-Step Form Logic (for custom-order.html) ---
     const customCakeForm = document.getElementById('custom-cake-form');
-    if (customCakeForm) {
+    if (customCakeForm) { // This "if" statement is a guard clause
         const stepIndicators = document.querySelectorAll('.custom-steps .step');
         const formSteps = customCakeForm.querySelectorAll('.custom-form');
         const nextButtons = customCakeForm.querySelectorAll('.next-btn');
@@ -105,6 +105,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
+        customCakeForm.querySelectorAll('.size-option, .flavor-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const input = this.querySelector('input[type="radio"]');
+                if (input) {
+                    input.checked = true;
+                    const groupName = input.name;
+                    customCakeForm.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
+                        radio.closest('.size-option, .flavor-option')?.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                }
+            });
+        });
+        
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
                 customCakeForm.reset();
@@ -124,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         updateCustomFormView();
-    }
+    } 
 
     // --- AJAX Contact Form Logic ---
     const ajaxContactForm = document.getElementById('contact-form-ajax');
