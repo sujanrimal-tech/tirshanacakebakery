@@ -1443,3 +1443,25 @@ body.home-page .hero {
     border: 1px solid #ef9a9a;
     display: block; /* Make it visible */
 }
+
+
+
+/* --- Add this to the end of your css/style.css file --- */
+
+.delivery-charge-note {
+    font-size: 0.9rem;
+    color: #555;
+    font-style: italic;
+    text-align: center;
+    margin-top: 15px;      /* Adds space above the note */
+    margin-bottom: 20px;   /* Adds space below the note, before the button */
+    padding: 12px;
+    background-color: var(--light); /* Uses your theme's light background color */
+    border-radius: 8px;
+    border: 1px dashed var(--secondary); /* A subtle dashed border */
+}
+
+.delivery-charge-note i {
+    margin-right: 8px;
+    color: var(--primary); /* Uses your theme's primary pink for the icon */
+}
