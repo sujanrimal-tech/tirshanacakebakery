@@ -194,11 +194,11 @@ if (ajaxContactForm) {
             const cakeSize = form.querySelector('#modal-cake-size').value;
             const cakeMessage = form.querySelector('#modal-message-on-cake').value || 'None';
             const allergies = form.querySelector('#modal-allergies').value || 'None';
-            const message = `*New Quick Order:*\n\n🎂 Cake: ${cakeName}\n📏 Size: ${cakeSize}\n✍️ Message on Cake: ${cakeMessage}\n⚠️ Allergies/Instructions: ${allergies}\n\n*--- Customer Details ---*\n👤 Name: ${form.querySelector('#modal-customer-name').value}\n📞 Phone: ${form.querySelector('#modal-customer-phone').value}\n📅 Delivery Date: ${form.querySelector('#modal-delivery-date')?.value || 'Not specified'}\n⏰ Preferred Time: ${form.querySelector('#modal-delivery-time')?.value || 'Not specified'}`;
+            const message = `*New Quick Order:*\n\n🎂 Cake: ${cakeName}\ntype: ${caketype}\n📏 Size: ${cakeSize}\n✍️ Message on Cake: ${cakeMessage}\n⚠️ Allergies/Instructions: ${allergies}\n\n*--- Customer Details ---*\n👤 Name: ${form.querySelector('#modal-customer-name').value}\n📞 Phone: ${form.querySelector('#modal-customer-phone').value}\n📅 Delivery Date: ${form.querySelector('#modal-delivery-date')?.value || 'Not specified'}\n⏰ Preferred Time: ${form.querySelector('#modal-delivery-time')?.value || 'Not specified'}`;
 
             const whatsappUrl = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
-            alert('Thank you! Your request has been prepared for WhatsApp. Please press send to confirm.');
+            alert('Thank you! Your request has been received. Please press any to continue looking pages.');
             form.reset();
             if (orderModal) {
                 orderModal.classList.remove('active');
