@@ -3,7 +3,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    const myWhatsApp = '9779821183819';
+    const myWhatsApp = '9779845883222';
 
     // --- General UI Functions (Run on all pages) ---
     const header = document.getElementById('header');
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
                           `Phone: ${document.getElementById('custom-phone').value}\n` +
                           `Email: ${document.getElementById('custom-email').value}\n\n` +
                           `*Delivery Details:*\n` +
-                          `Date (BS): ${document.getElementById('custom-date')?.value || 'Not specified'}\n` +
+                          `Date : ${document.getElementById('custom-date')?.value || 'Not specified'}\n` +
                           `Time: ${document.getElementById('custom-time')?.value || 'Not specified'}\n\n` +
                           `*Cake Details:*\n` +
                           `Size: ${document.querySelector('#summary-size span').textContent}\n` +
