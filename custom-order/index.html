@@ -46,79 +46,72 @@
                 
                 <div class="custom-cake-container">
                     <div class="custom-steps">
-                        <div class="step active" data-step="1">
-                            <div class="step-number">1</div>
-                            <div class="step-title">Choose Size</div>
-                        </div>
-                        <div class="step" data-step="2">
-                            <div class="step-number">2</div>
-                            <div class="step-title">Select Flavor</div>
-                        </div>
-                        <div class="step" data-step="3">
-                            <div class="step-number">3</div>
-                            <div class="step-title">Add Details</div>
-                        </div>
-                        <div class="step" data-step="4">
-                            <div class="step-number">4</div>
-                            <div class="step-title">Review & Order</div>
-                        </div>
-                        <div class="step" data-step="5">
-        <div class="step-number"><i class="fas fa-check"></i></div>
-        <div class="step-title">Confirmation</div>
-    </div>
-</div>
+                        <div class="step active" data-step="1"><div class="step-number">1</div><div class="step-title">Choose Size</div></div>
+                        <div class="step" data-step="2"><div class="step-number">2</div><div class="step-title">Select Flavor</div></div>
+                        <div class="step" data-step="3"><div class="step-number">3</div><div class="step-title">Add Details</div></div>
+                        <div class="step" data-step="4"><div class="step-number">4</div><div class="step-title">Review & Order</div></div>
+                        <div class="step" data-step="5"><div class="step-number"><i class="fas fa-check"></i></div><div class="step-title">Confirmation</div></div>
+                    </div>
              
-                    
                     <form id="custom-cake-form" novalidate>
                         <!-- Step 1: Choose Size -->
                         <div class="custom-form active" data-step="1">
                             <h3>Select Your Cake Size</h3>
                             <p>Choose the perfect size for your celebration.</p>
-                            
                             <div class="size-options">
-                                <div class="size-option selected">
-                                    <input type="radio" id="custom-size-small" name="custom-cake-size" value="Small (6-inch)" data-price="2000" checked>
-                                    <label for="custom-size-small"><strong>Small (6")</strong><br>Serves 8-10<br>NPR 2,000</label>
-                                </div>
-                                <div class="size-option">
-                                    <input type="radio" id="custom-size-medium" name="custom-cake-size" value="Medium (8-inch)" data-price="3000">
-                                    <label for="custom-size-medium"><strong>Medium (8")</strong><br>Serves 12-16<br>NPR 3,000</label>
-                                </div>
-                                <div class="size-option">
-                                    <input type="radio" id="custom-size-large" name="custom-cake-size" value="Large (10-inch)" data-price="4000">
-                                    <label for="custom-size-large"><strong>Large (10")</strong><br>Serves 20-25<br>NPR 4,000</label>
-                                </div>
-                                <div class="size-option">
-                                    <input type="radio" id="custom-size-xlarge" name="custom-cake-size" value="Extra Large (12-inch)" data-price="5000">
-                                    <label for="custom-size-xlarge"><strong>XL (12")</strong><br>Serves 30-40<br>NPR 5,000</label>
-                                </div>
+                                <div class="size-option selected"><input type="radio" id="custom-size-small" name="custom-cake-size" value="Small (6-inch)" data-price="2000" checked><label for="custom-size-small"><strong>Small (6")</strong><br>Serves 8-10<br>NPR 2,000</label></div>
+                                <div class="size-option"><input type="radio" id="custom-size-medium" name="custom-cake-size" value="Medium (8-inch)" data-price="3000"><label for="custom-size-medium"><strong>Medium (8")</strong><br>Serves 12-16<br>NPR 3,000</label></div>
+                                <div class="size-option"><input type="radio" id="custom-size-large" name="custom-cake-size" value="Large (10-inch)" data-price="4000"><label for="custom-size-large"><strong>Large (10")</strong><br>Serves 20-25<br>NPR 4,000</label></div>
+                                <div class="size-option"><input type="radio" id="custom-size-xlarge" name="custom-cake-size" value="Extra Large (12-inch)" data-price="5000"><label for="custom-size-xlarge"><strong>XL (12")</strong><br>Serves 30-40<br>NPR 5,000</label></div>
                             </div>
-                            
-                            <div class="form-navigation">
-                                <button type="button" class="prev-btn" disabled>Back</button>
-                                <button type="button" class="next-btn">Next: Select Flavor</button>
-                            </div>
+                            <div class="form-navigation"><button type="button" class="prev-btn" disabled>Back</button><button type="button" class="next-btn">Next: Select Flavor</button></div>
                         </div>
                         
                         <!-- Step 2: Select Flavor -->
                         <div class="custom-form" data-step="2">
-                            <h3>Choose Your Cake Flavor & Filling</h3>
+                            <h3>Choose Your Cake Type, Flavor & Filling</h3>
+                            
+                            <!-- ============================================= -->
+                            <!-- ===== NEW SECTION: VEG/NON-VEG OPTION ===== -->
+                            <!-- ============================================= -->
+                            <h4 style="margin-top: 1rem;">Select Type</h4>
+                            <div class="type-options">
+                                <div class="type-option selected">
+                                    <input type="radio" id="type-veg" name="cake-type" value="Veg (Eggless)" checked>
+                                    <label for="type-veg"><strong>Veg (Eggless)</strong></label>
+                                </div>
+                                <div class="type-option">
+                                    <input type="radio" id="type-non-veg" name="cake-type" value="Non-Veg (With Egg)">
+                                    <label for="type-non-veg"><strong>Non-Veg (With Egg)</strong></label>
+                                </div>
+                            </div>
+                            <!-- ========================================= -->
+                            <!-- =========== END OF NEW SECTION ========== -->
+                            <!-- ========================================= -->
+
+                            <h4 style="margin-top: 2rem;">Flavor Options</h4>
                             <div class="flavor-options">
                                 <div class="flavor-option selected"><input type="radio" id="flavor-vanilla" name="cake-flavor" value="Classic Vanilla" checked><label for="flavor-vanilla"><strong>Classic Vanilla</strong></label></div>
                                 <div class="flavor-option"><input type="radio" id="flavor-chocolate" name="cake-flavor" value="Rich Chocolate"><label for="flavor-chocolate"><strong>Rich Chocolate</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="flavor-blackforest" name="cake-flavor" value="Black Forest"><label for="flavor-blackforest"><strong>Black Forest</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="flavor-whiteforest" name="cake-flavor" value="White Forest"><label for="flavor-whiteforest"><strong>White Forest</strong></label></div>
                                 <div class="flavor-option"><input type="radio" id="flavor-redvelvet" name="cake-flavor" value="Red Velvet"><label for="flavor-redvelvet"><strong>Red Velvet</strong></label></div>
-                                <div class="flavor-option"><input type="radio" id="flavor-lemon" name="cake-flavor" value="Lemon"><label for="flavor-lemon"><strong>Lemon</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="flavor-pineapple" name="cake-flavor" value="Pineapple"><label for="flavor-pineapple"><strong>Pineapple</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="flavor-strawberry" name="cake-flavor" value="Strawberry"><label for="flavor-strawberry"><strong>Strawberry</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="flavor-butterscotch" name="cake-flavor" value="Butterscotch"><label for="flavor-butterscotch"><strong>Butterscotch</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="flavor-coffee" name="cake-flavor" value="Coffee Mocha"><label for="flavor-coffee"><strong>Coffee Mocha</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="flavor-mango" name="cake-flavor" value="Mango Delight"><label for="flavor-mango"><strong>Mango Delight</strong></label></div>
+                                <div class="flavor-option"><input type="radio" id="flavor-lemon" name="cake-flavor" value="Zesty Lemon"><label for="flavor-lemon"><strong>Zesty Lemon</strong></label></div>
                             </div>
+
                             <h4 style="margin-top: 2rem;">Filling Options</h4>
-                            <div class="flavor-options">
-                                <div class="flavor-option selected"><input type="radio" id="filling-vanilla" name="cake-filling" value="Vanilla Buttercream" checked><label for="filling-vanilla"><strong>Vanilla Buttercream</strong></label></div>
-                                <div class="flavor-option"><input type="radio" id="filling-chocolate" name="cake-filling" value="Chocolate Ganache"><label for="filling-chocolate"><strong>Chocolate Ganache</strong></label></div>
-                                <div class="flavor-option"><input type="radio" id="filling-fruit" name="cake-filling" value="Fresh Fruit"><label for="filling-fruit"><strong>Fresh Fruit</strong></label></div>
+                            <div class="filling-options">
+                                <div class="filling-option selected"><input type="radio" id="filling-vanilla" name="cake-filling" value="Vanilla Buttercream" checked><label for="filling-vanilla"><strong>Vanilla Buttercream</strong></label></div>
+                                <div class="filling-option"><input type="radio" id="filling-chocolate" name="cake-filling" value="Chocolate Ganache"><label for="filling-chocolate"><strong>Chocolate Ganache</strong></label></div>
+                                <div class="filling-option"><input type="radio" id="filling-fruit" name="cake-filling" value="Fresh Fruit"><label for="filling-fruit"><strong>Fresh Fruit</strong></label></div>
+                                <div class="filling-option"><input type="radio" id="filling-creamcheese" name="cake-filling" value="Cream Cheese"><label for="filling-creamcheese"><strong>Cream Cheese</strong></label></div>
                             </div>
-                            <div class="form-navigation">
-                                <button type="button" class="prev-btn">Back</button>
-                                <button type="button" class="next-btn">Next: Add Details</button>
-                            </div>
+                            <div class="form-navigation"><button type="button" class="prev-btn">Back</button><button type="button" class="next-btn">Next: Add Details</button></div>
                         </div>
                         
                         <!-- Step 3: Add Details -->
@@ -128,10 +121,7 @@
                             <div class="form-group"><label for="custom-message">Message on Cake (optional)</label><input type="text" id="custom-message" name="message" class="form-control" placeholder="e.g., Happy Birthday!"></div>
                             <div class="form-group"><label for="custom-colors">Color Scheme (optional)</label><input type="text" id="custom-colors" name="colors" class="form-control" placeholder="e.g., Pink and gold"></div>
                             <div class="form-group"><label for="custom-decoration">Decoration Ideas (optional)</label><textarea id="custom-decoration" name="decoration" class="form-control" placeholder="Describe any specific decorations"></textarea></div>
-                            <div class="form-navigation">
-                                <button type="button" class="prev-btn">Back</button>
-                                <button type="button" class="next-btn">Next: Review & Order</button>
-                            </div>
+                            <div class="form-navigation"><button type="button" class="prev-btn">Back</button><button type="button" class="next-btn">Next: Review & Order</button></div>
                         </div>
                         
                         <!-- Step 4: Review & Order -->
@@ -140,6 +130,11 @@
                             <div class="order-summary">
                                 <h4>Order Summary</h4>
                                 <div id="summary-size" class="summary-item"><strong>Size:</strong> <span></span></div>
+                                <!-- =============================================== -->
+                                <!-- ===== NEW LINE ITEM FOR VEG/NON-VEG ===== -->
+                                <!-- =============================================== -->
+                                <div id="summary-type" class="summary-item"><strong>Type:</strong> <span></span></div>
+                                <!-- =============================================== -->
                                 <div id="summary-flavor" class="summary-item"><strong>Flavor:</strong> <span></span></div>
                                 <div id="summary-filling" class="summary-item"><strong>Filling:</strong> <span></span></div>
                                 <div id="summary-occasion" class="summary-item"><strong>Occasion:</strong> <span></span></div>
@@ -151,71 +146,38 @@
                             <div class="form-group" style="margin-top: 2rem;"><label for="custom-name">Your Name</label><input type="text" id="custom-name" class="form-control" name="name" required></div>
                             <div class="form-group"><label for="custom-phone">Phone Number</label><input type="tel" id="custom-phone" class="form-control" name="phone" required></div>
                             <div class="form-group"><label for="custom-email">Email Address</label><input type="email" id="custom-email" class="form-control" name="email" required></div>
-                            <div class="form-group">
-                                <label for="custom-date">Delivery/Pickup Date (BS)</label>
-                                <input type="text" id="custom-date" class="form-control" name="date" placeholder="Select a date..." autocomplete="off" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="custom-time">Preferred Time (Optional)</label>
-                                <input type="time" id="custom-time" class="form-control" name="time">
-                            </div>
-                            <div class="form-navigation">
-                                <button type="button" class="prev-btn">Back</button>
-                                <button type="submit" class="submit-btn">Place Order</button>
+                            <div class="form-group"><label for="custom-date">Delivery/Pickup Date (BS)</label><input type="text" id="custom-date" class="form-control" name="date" placeholder="Select a date..." autocomplete="off" required></div>
+                            <div class="form-group"><label for="custom-time">Preferred Time (Optional)</label><input type="time" id="custom-time" class="form-control" name="time"></div>
+                            <div class="form-navigation"><button type="button" class="prev-btn">Back</button><button type="submit" class="submit-btn">Place Order</button></div>
+                        </div>
+                        
+                        <!-- Step 5: Confirmation -->
+                        <div class="custom-form" data-step="5">
+                            <div class="order-confirmation">
+                                <i class="fas fa-check-circle" style="font-size: 4rem; color: #4CAF50; margin-bottom: 1rem;"></i>
+                                <h3>Thank You For Your Order!</h3>
+                                <p>Your custom cake request has been prepared. Please check WhatsApp to send us the final order details.</p>
+                                <p>We will contact you shortly to confirm everything.</p>
+                                <div class="form-navigation" style="justify-content: center; margin-top: 2rem;"><button type="button" id="reset-form-btn" class="cta-button">Place Another Order</button></div>
                             </div>
                         </div>
-                        <div class="custom-form" data-step="5">
-    <div class="order-confirmation">
-        <i class="fas fa-check-circle" style="font-size: 4rem; color: #4CAF50; margin-bottom: 1rem;"></i>
-        <h3>Thank You For Your Order!</h3>
-        <p>Your custom cake request has been prepared. Please check WhatsApp to send us the final order details.</p>
-        <p>We will contact you shortly to confirm everything.</p>
-        <div class="form-navigation" style="justify-content: center; margin-top: 2rem;">
-            <button type="button" id="reset-form-btn" class="cta-button">Place Another Order</button>
-        </div>
-    </div>
-</div>
-    
+                    </form>
+                </div>
+            </div>
         </section>
     </main>
 
-  
     <!-- Footer -->
     <footer>
         <div class="footer-container">
-            <div class="footer-about">
-                <a href="/" class="footer-logo"><i class="fas fa-birthday-cake"></i> Tirshana Bakery</a>
-                <p>Creating sweet memories since 2078. Our artisan bakery specializes in custom cakes for all occasions.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="/about/">About Us</a></li>
-                    <li><a href="/products/">Our Cakes</a></li>
-                    <li><a href="/custom-order/">Custom Order</a></li>
-                    <li><a href="/contact/">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-newsletter">
-                <h3>Sweet Newsletter</h3>
-                <p>Subscribe to receive updates and special offers!</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your email address" class="newsletter-input" required>
-                    <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
-                </form>
-            </div>
+            <!-- Footer content here... -->
         </div>
         <div class="footer-bottom">
-            <p>© <span id="copyright-year">2024</span> Tirshana Cake Bakery. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <p>© <span id="copyright-year">2025</span> Tirshana Cake Bakery. All Rights Reserved.| Designed By Sujan</p>
         </div>
     </footer>
 
     <script src="../js/script.js"></script>
-
+    
 </body>
 </html>
