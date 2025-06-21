@@ -61,10 +61,10 @@
                             <h3>Select Your Cake Size</h3>
                             <p>Choose the perfect size for your celebration.</p>
                             <div class="size-options">
-                                <div class="size-option selected"><input type="radio" id="custom-size-small" name="custom-cake-size" value="Small (6-inch)" data-price="2000" checked><label for="custom-size-small"><strong>Small (6")</strong><br>Serves 8-10<br>NPR 2,000</label></div>
-                                <div class="size-option"><input type="radio" id="custom-size-medium" name="custom-cake-size" value="Medium (8-inch)" data-price="3000"><label for="custom-size-medium"><strong>Medium (8")</strong><br>Serves 12-16<br>NPR 3,000</label></div>
-                                <div class="size-option"><input type="radio" id="custom-size-large" name="custom-cake-size" value="Large (10-inch)" data-price="4000"><label for="custom-size-large"><strong>Large (10")</strong><br>Serves 20-25<br>NPR 4,000</label></div>
-                                <div class="size-option"><input type="radio" id="custom-size-xlarge" name="custom-cake-size" value="Extra Large (12-inch)" data-price="5000"><label for="custom-size-xlarge"><strong>XL (12")</strong><br>Serves 30-40<br>NPR 5,000</label></div>
+                                <div class="size-option selected"><input type="radio" id="custom-size-small" name="custom-cake-size" value="half pound" data-price="." checked><label for="custom-size-small"><strong>half pound</strong><br>.<br>starting from 600</label></div>
+                                <div class="size-option"><input type="radio" id="custom-size-medium" name="custom-cake-size" value="1 pound" data-price="."><label for="custom-size-medium"><strong>1 pound</strong><br>.<br>starting from 800</label></div>
+                                <div class="size-option"><input type="radio" id="custom-size-large" name="custom-cake-size" value="1.5 pound" data-price="."><label for="custom-size-large"><strong>1.5 pound</strong><br>.<br>starting from 1000</label></div>
+                                <div class="size-option"><input type="radio" id="custom-size-xlarge" name="custom-cake-size" value="2 pound" data-price="."><label for="custom-size-xlarge"><strong>2 pound</strong><br>.<br>starting from 1200</label></div>
                             </div>
                             <div class="form-navigation"><button type="button" class="prev-btn" disabled>Back</button><button type="button" class="next-btn">Next: Select Flavor</button></div>
                         </div>
@@ -73,9 +73,7 @@
                         <div class="custom-form" data-step="2">
                             <h3>Choose Your Cake Type, Flavor & Filling</h3>
                             
-                            <!-- ============================================= -->
-                            <!-- ===== NEW SECTION: VEG/NON-VEG OPTION ===== -->
-                            <!-- ============================================= -->
+                          
                             <h4 style="margin-top: 1rem;">Select Type</h4>
                             <div class="type-options">
                                 <div class="type-option selected">
@@ -87,9 +85,7 @@
                                     <label for="type-non-veg"><strong>Non-Veg (With Egg)</strong></label>
                                 </div>
                             </div>
-                            <!-- ========================================= -->
-                            <!-- =========== END OF NEW SECTION ========== -->
-                            <!-- ========================================= -->
+                          
 
                             <h4 style="margin-top: 2rem;">Flavor Options</h4>
                             <div class="flavor-options">
@@ -132,9 +128,7 @@
                             <div class="order-summary">
                                 <h4>Order Summary</h4>
                                 <div id="summary-size" class="summary-item"><strong>Size:</strong> <span></span></div>
-                                <!-- =============================================== -->
-                                <!-- ===== NEW LINE ITEM FOR VEG/NON-VEG ===== -->
-                                <!-- =============================================== -->
+                             
                                 <div id="summary-type" class="summary-item"><strong>Type:</strong> <span></span></div>
                                 <!-- =============================================== -->
                                 <div id="summary-flavor" class="summary-item"><strong>Flavor:</strong> <span></span></div>
@@ -148,7 +142,7 @@
                             <div class="form-group" style="margin-top: 2rem;"><label for="custom-name">Your Name</label><input type="text" id="custom-name" class="form-control" name="name" required></div>
                             <div class="form-group"><label for="custom-phone">Phone Number</label><input type="tel" id="custom-phone" class="form-control" name="phone" required></div>
                             <div class="form-group"><label for="custom-email">Email Address</label><input type="email" id="custom-email" class="form-control" name="email" required></div>
-                            <div class="form-group"><label for="custom-date">Delivery/Pickup Date (BS)</label><input type="text" id="custom-date" class="form-control" name="date" placeholder="Select a date..." autocomplete="off" required></div>
+                            <div class="form-group"><label for="custom-date">Delivery/Pickup Date</label><input type="text" id="custom-date" class="form-control" name="date" placeholder="Select a date..." autocomplete="off" required></div>
                             <div class="form-group"><label for="custom-time">Preferred Time (Optional)</label><input type="time" id="custom-time" class="form-control" name="time"></div>
 
                             <p class="delivery-charge-note">
